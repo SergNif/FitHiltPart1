@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <import type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.MainViewModel"/>
-        <variable
-            name="vmPage8"
-            type="MainViewModel" />
-        <variable
-            name="imgLoadPage8"
-            type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.ui.adapter.ImageLoader" />
-    </data>
+<!--<layout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--xmlns:tools="http://schemas.android.com/tools">-->
+<!--    <data>-->
+<!--        <import type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.MainViewModel"/>-->
+<!--        <variable-->
+<!--            name="vmPage8"-->
+<!--            type="MainViewModel" />-->
+<!--        <variable-->
+<!--            name="imgLoadPage8"-->
+<!--            type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.ui.adapter.ImageLoader" />-->
+<!--    </data>-->
 <androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_page_data_fon_white"
     android:textColor="#190F22"
-    tools:context=".fragments.Page8Data2Fragment">
+    tools:context=".presentation.part1.Pg8WaterDrinkFragment">
 
 
     <!-- TODO: Update blank fragment layout -->
@@ -79,7 +82,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <TextView
         android:id="@+id/page8_button_water_without_gas"
         android:text="Пью негазированную воду"
-        android:src="@{vmPage8.dataPage8.waterWithoutGas ? imgLoadPage8.imageResPage5: imgLoadPage8.imageResPage5NoPress}"
+
         app:layout_constraintTop_toBottomOf="@+id/text_up_page3"
         style="@style/text_data_page4"
         tools:ignore="MissingConstraints" />
@@ -87,7 +90,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <TextView
         android:id="@+id/page8_button_water_shugar"
         android:text="Часто пью сладкие газировки"
-        android:src="@{vmPage8.dataPage8.waterSugarGas ? imgLoadPage8.imageResPage5: imgLoadPage8.imageResPage5NoPress}"
+
         app:layout_constraintTop_toBottomOf="@+id/page8_button_water_without_gas"
         style="@style/text_data_page4"
         tools:ignore="MissingConstraints" />
@@ -95,7 +98,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <TextView
         android:id="@+id/page8_button_more_cofee"
         android:text="Пью много кофе"
-        android:src="@{vmPage8.dataPage8.coffee ? imgLoadPage8.imageResPage5: imgLoadPage8.imageResPage5NoPress}"
+
         app:layout_constraintTop_toBottomOf="@+id/page8_button_water_shugar"
         style="@style/text_data_page4"
         tools:ignore="MissingConstraints" />
@@ -103,7 +106,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <TextView
         android:id="@+id/page8_button_only_tea"
         android:text="Пью только чай"
-        android:src="@{vmPage8.dataPage8.tea ? imgLoadPage8.imageResPage5: imgLoadPage8.imageResPage5NoPress}"
+
         app:layout_constraintTop_toBottomOf="@+id/page8_button_more_cofee"
         style="@style/text_data_page4"
         tools:ignore="MissingConstraints" />
@@ -180,7 +183,7 @@ xmlns:tools="http://schemas.android.com/tools">
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+<!--</layout>-->
 
 
 

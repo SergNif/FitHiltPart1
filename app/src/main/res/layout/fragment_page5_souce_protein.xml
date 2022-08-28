@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools">
-<data>
-    <import type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.MainViewModel"/>
-    <variable
-        name="vmPage5"
-        type="MainViewModel" />
-    <variable
-        name="imgLoadPage5"
-        type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.ui.adapter.ImageLoader" />
-</data>
+<!--<layout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--xmlns:tools="http://schemas.android.com/tools">-->
+<!--<data>-->
+<!--    <import type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.MainViewModel"/>-->
+<!--    <variable-->
+<!--        name="vmPage5"-->
+<!--        type="MainViewModel" />-->
+<!--    <variable-->
+<!--        name="imgLoadPage5"-->
+<!--        type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.ui.adapter.ImageLoader" />-->
+<!--</data>-->
 <androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
     android:textColor="#190F22"
-    tools:context=".fragments.Page5Data2Fragment">
+    tools:context=".presentation.part1.Pg5SourceProteinFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
@@ -91,14 +94,14 @@ android:textSize="14sp"
         <TextView
             android:id="@+id/text_page5_chiken"
             android:text="Курица"
-            android:src="@{vmPage5.dataPage5.chicken ? imgLoadPage5.imageResPage5: imgLoadPage5.imageResPage5NoPress}"
+
             style="@style/text_data_page5"
             />
 
         <TextView
             android:id="@+id/text_page5_turkey"
             android:text="Индейка"
-            android:src="@{vmPage5.dataPage5.tyrkey ? imgLoadPage5.imageResPage5: imgLoadPage5.imageResPage5NoPress}"
+
             style="@style/text_data_page5"
             />
      </LinearLayout>
@@ -112,14 +115,14 @@ android:textSize="14sp"
         <TextView
             android:id="@+id/page5_button_pork"
             android:text="Свинина"
-            android:src="@{vmPage5.dataPage5.pork ? imgLoadPage5.imageResPage5: imgLoadPage5.imageResPage5NoPress}"
+
             style="@style/text_data_page5"
             />
 
         <TextView
             android:id="@+id/page5_beef"
             android:text="Говядина"
-            android:src="@{vmPage5.dataPage5.meat ? imgLoadPage5.imageResPage5: imgLoadPage5.imageResPage5NoPress}"
+
             style="@style/text_data_page5"
             />
     </LinearLayout>
@@ -133,13 +136,13 @@ android:textSize="14sp"
         <TextView
             android:id="@+id/page5_button_fish"
             android:text="Рыба"
-            android:src="@{vmPage5.dataPage5.fish ? imgLoadPage5.imageResPage5: imgLoadPage5.imageResPage5NoPress}"
+
             style="@style/text_data_page5"
             />
         <TextView
             android:id="@+id/page5_seafood"
             android:text="Морепродукты"
-            android:src="@{vmPage5.dataPage5.seaFood ? imgLoadPage5.imageResPage5: imgLoadPage5.imageResPage5NoPress}"
+
             style="@style/text_data_page5"
             />
     </LinearLayout>
@@ -154,14 +157,14 @@ android:textSize="14sp"
         <TextView
             android:id="@+id/page5_button_without_meat"
             android:text="Без мяса"
-            android:src="@{vmPage5.dataPage5.withoutMeat ? imgLoadPage5.imageResPage5: imgLoadPage5.imageResPage5NoPress}"
+
             style="@style/text_data_page5"
             />
 
         <TextView
             android:id="@+id/text_page5_without_fish"
             android:text="Без рыбы"
-            android:src="@{vmPage5.dataPage5.withoutFish ? imgLoadPage5.imageResPage5: imgLoadPage5.imageResPage5NoPress}"
+
             style="@style/text_data_page5"
             />
 
@@ -238,7 +241,7 @@ android:textSize="14sp"
         app:layout_constraintVertical_bias="0.0"
         />
 </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+<!--</layout>-->
 
 
 <!--<ImageView-->

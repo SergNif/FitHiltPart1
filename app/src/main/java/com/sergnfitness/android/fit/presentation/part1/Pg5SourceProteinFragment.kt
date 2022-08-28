@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.sergnfitness.android.fit.R
+import com.sergnfitness.android.fit.databinding.FragmentPage5SouceProteinBinding
 import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg5SourceProteinViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -29,7 +30,7 @@ class Pg5SourceProteinFragment : Fragment() {
 
 //    lateinit var viewModel: MainViewModel
     val TAG = "Fragment Page5"
-
+lateinit var binding : FragmentPage5SouceProteinBinding
     private val viewModel: Pg5SourceProteinViewModel by viewModels<Pg5SourceProteinViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -51,7 +52,7 @@ class Pg5SourceProteinFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 //        viewModel = (activity as MainActivity).viewModel
-//        binding = FragmentPage5Data2Binding.bind(view)
+        binding = FragmentPage5SouceProteinBinding.bind(view)
 ////if (viewModel.dataPage5.isInitialized)
 //        var modifiedButton: Boolean = false
 //

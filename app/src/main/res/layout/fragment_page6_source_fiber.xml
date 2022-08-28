@@ -1,24 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools">
+<!--<layout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--xmlns:tools="http://schemas.android.com/tools">-->
 
-    <data>
-        <import type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.MainViewModel"/>
-        <variable
-            name="vmPage6"
-            type="MainViewModel" />
-        <variable
-            name="imgLoadPage6"
-            type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.ui.adapter.ImageLoader" />
-    </data>
+<!--    <data>-->
+<!--        <import type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.MainViewModel"/>-->
+<!--        <variable-->
+<!--            name="vmPage6"-->
+<!--            type="MainViewModel" />-->
+<!--        <variable-->
+<!--            name="imgLoadPage6"-->
+<!--            type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.ui.adapter.ImageLoader" />-->
+<!--    </data>-->
 
 <androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_page_data_fon_white"
     android:textColor="#190F22"
-    tools:context=".fragments.Page6Data2Fragment">
+    tools:context=".presentation.part1.Pg6SourceFiberFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
@@ -96,14 +99,14 @@ xmlns:tools="http://schemas.android.com/tools">
             <TextView
                 android:id="@+id/text_page6_zukini"
                 android:text="Цуккини"
-                android:src="@{vmPage6.dataPage6.zucchini ? imgLoadPage6.imageResPage5: imgLoadPage6.imageResPage5NoPress}"
+
                 style="@style/text_data_page5"
                 />
 
             <TextView
                 android:id="@+id/text_page6_tomato"
                 android:text="Помидоры"
-                android:src="@{vmPage6.dataPage6.tomato ? imgLoadPage6.imageResPage5: imgLoadPage6.imageResPage5NoPress}"
+
                 style="@style/text_data_page5"
                 />
         </LinearLayout>
@@ -116,14 +119,14 @@ xmlns:tools="http://schemas.android.com/tools">
             <TextView
                 android:id="@+id/text_page6_baklagan"
                 android:text="Баклажан"
-                android:src="@{vmPage6.dataPage6.eggplant ? imgLoadPage6.imageResPage5: imgLoadPage6.imageResPage5NoPress}"
+
                 style="@style/text_data_page5"
                 />
 
             <TextView
                 android:id="@+id/text_page6_color_cabbage"
                 android:text="Цв.капуста"
-                android:src="@{vmPage6.dataPage6.cauliflower ? imgLoadPage6.imageResPage5: imgLoadPage6.imageResPage5NoPress}"
+
                 style="@style/text_data_page5"
                 />
         </LinearLayout>
@@ -138,13 +141,13 @@ xmlns:tools="http://schemas.android.com/tools">
             <TextView
                 android:id="@+id/text_page6_ogurz"
                 android:text="Огурцы"
-                android:src="@{vmPage6.dataPage6.cucumbers ? imgLoadPage6.imageResPage5: imgLoadPage6.imageResPage5NoPress}"
+
                 style="@style/text_data_page5"
                 />
             <TextView
                 android:id="@+id/text_page6_broccoli"
                 android:text="Брокколи"
-                android:src="@{vmPage6.dataPage6.broccoli ? imgLoadPage6.imageResPage5: imgLoadPage6.imageResPage5NoPress}"
+
                 style="@style/text_data_page5"
                 />
         </LinearLayout>
@@ -159,14 +162,14 @@ xmlns:tools="http://schemas.android.com/tools">
             <TextView
                 android:id="@+id/page5_button_without_meat"
                 android:text="Грибы"
-                android:src="@{vmPage6.dataPage6.mushrooms ? imgLoadPage6.imageResPage5: imgLoadPage6.imageResPage5NoPress}"
+
                 style="@style/text_data_page5"
                 />
 
             <TextView
                 android:id="@+id/text_page5_without_fish"
                 android:text="Авокадо"
-                android:src="@{vmPage6.dataPage6.avocado ? imgLoadPage6.imageResPage5: imgLoadPage6.imageResPage5NoPress}"
+
                 style="@style/text_data_page5"
                 />
 
@@ -244,7 +247,7 @@ xmlns:tools="http://schemas.android.com/tools">
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+<!--</layout>-->
 
 
 

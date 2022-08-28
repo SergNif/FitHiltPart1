@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <import type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.MainViewModel"/>
-        <variable
-            name="vmPage9"
-            type="MainViewModel" />
-        <variable
-            name="imgLoadPage9"
-            type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.ui.adapter.ImageLoader" />
-    </data>
+<!--<layout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--xmlns:tools="http://schemas.android.com/tools">-->
+<!--    <data>-->
+<!--        <import type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.MainViewModel"/>-->
+<!--        <variable-->
+<!--            name="vmPage9"-->
+<!--            type="MainViewModel" />-->
+<!--        <variable-->
+<!--            name="imgLoadPage9"-->
+<!--            type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.ui.adapter.ImageLoader" />-->
+<!--    </data>-->
 <androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_page_data_fon_white"
     android:textColor="#190F22"
-    tools:context=".fragments.Page9Data2Fragment">
+    tools:context=".presentation.part1.Pg9TypicalDayFragment">
 
 
     <!-- TODO: Update blank fragment layout -->
@@ -76,7 +79,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <TextView
         android:id="@+id/page9_work_office"
         android:text="Работаю в офисе"
-        android:src="@{vmPage9.dataPage9.workOffice ? imgLoadPage9.imageResPage5: imgLoadPage9.imageResPage5NoPress}"
+
         app:layout_constraintTop_toBottomOf="@+id/text_up_page3"
         style="@style/text_data_page4"
         tools:ignore="MissingConstraints" />
@@ -84,7 +87,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <TextView
         android:id="@+id/page9_in_travel"
         android:text="Регулярно нахожусь в разъездах"
-        android:src="@{vmPage9.dataPage9.regularTraffic ? imgLoadPage9.imageResPage5: imgLoadPage9.imageResPage5NoPress}"
+
         app:layout_constraintTop_toBottomOf="@+id/page9_work_office"
         style="@style/text_data_page4"
         tools:ignore="MissingConstraints" />
@@ -92,7 +95,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <TextView
         android:id="@+id/page9_day_foot"
         android:text="Большую часть дня провожу на ногах"
-        android:src="@{vmPage9.dataPage9.onFoot ? imgLoadPage9.imageResPage5: imgLoadPage9.imageResPage5NoPress}"
+
         app:layout_constraintTop_toBottomOf="@+id/page9_in_travel"
         style="@style/text_data_page4"
         tools:ignore="MissingConstraints" />
@@ -100,7 +103,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <TextView
         android:id="@+id/page9_in_house"
         android:text="Большую часть провожу дома"
-        android:src="@{vmPage9.dataPage9.inHome ? imgLoadPage9.imageResPage5: imgLoadPage9.imageResPage5NoPress}"
+
         app:layout_constraintTop_toBottomOf="@+id/page9_day_foot"
         style="@style/text_data_page4"
         tools:ignore="MissingConstraints" />
@@ -175,7 +178,7 @@ xmlns:tools="http://schemas.android.com/tools">
             android:background="@drawable/footer_image" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+<!--</layout>-->
 
 
 <!--<ImageView-->

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.sergnfitness.android.fit.R
 import com.sergnfitness.android.fit.databinding.Pg1FragmentMaFemale1Binding
+import com.sergnfitness.android.fit.databinding.Pg2NextBinding
 import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg2NextViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -28,7 +29,7 @@ class Pg2NextFragment : Fragment(R.layout.pg2_next) {
     private var param1: String? = null
     private var param2: String? = null
     val TAG = "Fragment Page3 DataAgeHightWeight MaFemale1"
-    lateinit var binding: Pg1FragmentMaFemale1Binding
+    lateinit var binding: Pg2NextBinding
 private val viewModel: Pg2NextViewModel by viewModels<Pg2NextViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,7 +50,7 @@ private val viewModel: Pg2NextViewModel by viewModels<Pg2NextViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = Pg1FragmentMaFemale1Binding.bind(view)
+        binding = Pg2NextBinding.bind(view)
     }
 
     companion object {
