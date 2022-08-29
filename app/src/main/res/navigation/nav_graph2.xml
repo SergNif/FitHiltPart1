@@ -11,9 +11,9 @@
         <action
             android:id="@+id/action_pg1MaleFemale1_to_next2"
             app:destination="@id/next2" />
-        <action
-            android:id="@+id/action_pg1MaleFemale1_to_loginFragment2"
-            app:destination="@id/loginFragment2" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment2"
@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_registerFragment2_to_pg1MaleFemale1"
             app:destination="@id/pg1MaleFemale1" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
     </fragment>
     <fragment
         android:id="@+id/loginFragment2"
@@ -34,6 +37,9 @@
         <action
             android:id="@+id/action_loginFragment2_to_pg1MaleFemale1"
             app:destination="@id/pg1MaleFemale1" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
     </fragment>
     <fragment
         android:id="@+id/next2"
@@ -43,10 +49,20 @@
         <action
             android:id="@+id/action_next2_to_dataAgeHightWeight2"
             app:destination="@id/dataAgeHightWeight2" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
     </fragment>
     <fragment
         android:id="@+id/dataAgeHightWeight2"
         android:name="com.sergnfitness.android.fit.presentation.part1.Pg3DataAgeHightWeightFrafment"
         android:label="pg3_data_age_hight_weight"
-        tools:layout="@layout/pg3_data_age_hight_weight" />
+        tools:layout="@layout/pg3_data_age_hight_weight" >
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <action
+            android:id="@+id/action_dataAgeHightWeight2_to_loginFragment2"
+            app:destination="@id/loginFragment2" />
+    </fragment>
 </navigation>

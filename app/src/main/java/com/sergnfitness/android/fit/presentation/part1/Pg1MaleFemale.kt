@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import com.sergnfitness.android.fit.R
 import com.sergnfitness.android.fit.databinding.Pg1FragmentMaFemale1Binding
@@ -16,6 +17,9 @@ import com.sergnfitness.android.fit.databinding.Pg1FragmentMaFemale1Binding
 import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5
 import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5NoPress
 import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg1MaleFemaleViewModel
+import com.sergnfitness.data.storage.storageModel.DataUserStorage
+import com.sergnfitness.domain.models.user.DataUser
+import com.sergnfitness.domain.models.user.User
 import com.sergnfitness.domain.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -36,6 +40,8 @@ class Pg1MaleFemale : Fragment() {
     // TODO: Rename and change types of parameters
     var param1: String? = null
     var param2: String? = null
+
+    lateinit var paramUser: User
 
     val TAG = "Fragment Page1 MaFemale1 "
     lateinit var binding: Pg1FragmentMaFemale1Binding
@@ -71,6 +77,8 @@ class Pg1MaleFemale : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = Pg1FragmentMaFemale1Binding.bind(view)
+        val bundle = Bundle()
+
 
 //        (requireActivity().applicationContext as App).appComponent.inject(this)
 
@@ -110,8 +118,13 @@ class Pg1MaleFemale : Fragment() {
             binding.imageViewBoy.setBackgroundResource(changeFonButtonPage5.execute())
             binding.imageViewGirl.setBackgroundResource(changeFonButtonPage5NoPress.execute())
         }
+
+
+
     binding.image.setOnClickListener {
-        findNavController().navigate(R.id.action_pg1MaleFemale1_to_loginFragment2)
+        val action: NavDirections = Pg1MaleFemaleDirections.actionPg1MaleFemale1ToNext2(paramUser)
+//        findNavController().navigate(R.id.action_pg1MaleFemale1_to_next2)
+        findNavController().navigate(action)
     }
 
         viewModel.userResourceLiveData.observe(viewLifecycleOwner) { responce ->
@@ -122,7 +135,9 @@ class Pg1MaleFemale : Fragment() {
 
 //                    viewModel.userLiveData.value.toString().let { binding.textPage1.text = it.toString()}
                     responce.data?.let {
+                        Log.e(TAG, "$it")
                         //newsAdapter.differ.submitList(it.articles)
+                        paramUser = it as User
                         binding.textPage1.text = it.toString()
                     }
                     binding.loading.visibility = View.INVISIBLE

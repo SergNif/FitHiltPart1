@@ -1,15 +1,23 @@
 package com.sergnfitness.android.fit.presentation.part1
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.sergnfitness.android.fit.R
 import com.sergnfitness.android.fit.databinding.Pg1FragmentMaFemale1Binding
 import com.sergnfitness.android.fit.databinding.Pg2NextBinding
+import com.sergnfitness.android.fit.presentation.part1.Pg2NextFragmentDirections.Companion.actionNext2ToDataAgeHightWeight2
 import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg2NextViewModel
+import com.sergnfitness.data.storage.storageModel.DataUserStorage
+import com.sergnfitness.domain.models.user.DataUser
+import com.sergnfitness.domain.models.user.User
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -28,9 +36,13 @@ class Pg2NextFragment : Fragment(R.layout.pg2_next) {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+
+    private val args by navArgs<Pg2NextFragmentArgs>()
+
+
     val TAG = "Fragment Page3 DataAgeHightWeight MaFemale1"
     lateinit var binding: Pg2NextBinding
-private val viewModel: Pg2NextViewModel by viewModels<Pg2NextViewModel>()
+    private val viewModel: Pg2NextViewModel by viewModels<Pg2NextViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +63,18 @@ private val viewModel: Pg2NextViewModel by viewModels<Pg2NextViewModel>()
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = Pg2NextBinding.bind(view)
+
+        Log.e(TAG, "budle bundle ${this.args}")
+        binding.textBack.setOnClickListener {
+//            if (modifiedButton){viewModel.createLocalDataPage5()}
+            findNavController().popBackStack()
+        }
+        binding.textNext.setOnClickListener {
+            val action: NavDirections =
+                Pg2NextFragmentDirections.actionNext2ToDataAgeHightWeight2(args.currentUser)       //actionNext2ToDataAgeHightWeight2
+//        if (modifiedButton){viewModel.createLocalDataPage5()}
+            findNavController().navigate(action)
+        }
     }
 
     companion object {

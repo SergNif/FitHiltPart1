@@ -1,12 +1,21 @@
 package com.sergnfitness.android.fit.presentation.part1
 
 import android.os.Bundle
+import android.text.Editable
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.sergnfitness.android.fit.R
 import com.sergnfitness.android.fit.databinding.Pg3DataAgeHightWeightBinding
+import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg3DataAgeHightWeightViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -26,8 +35,11 @@ class Pg3DataAgeHightWeightFrafment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private val args:Pg3DataAgeHightWeightFrafmentArgs by navArgs<Pg3DataAgeHightWeightFrafmentArgs>()
+
     val TAG = "Fragment Page3 DataAgeHightWeight"
     lateinit var binding: Pg3DataAgeHightWeightBinding
+    private val viewModel: Pg3DataAgeHightWeightViewModel by viewModels<Pg3DataAgeHightWeightViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -47,6 +59,60 @@ class Pg3DataAgeHightWeightFrafment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = Pg3DataAgeHightWeightBinding.bind(view)
+
+        fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
+        var list = mutableMapOf<String, String>()
+
+        viewModel.live_age.observe(viewLifecycleOwner, Observer { age ->
+            binding.dataHeartAgePage3.text = age.toString().toEditable()
+            list["age"] = age.toString()
+        })
+
+        viewModel.live_height.observe(viewLifecycleOwner, Observer { height ->
+            binding.dataHeartAgePage3.text = height.toString().toEditable()
+            list["height"] = height.toString()
+        })
+
+        viewModel.live_weight.observe(viewLifecycleOwner, Observer { weight ->
+            binding.dataHeartAgePage3.text = weight.toString().toEditable()
+            list["weight"] = weight.toString()
+        })
+
+
+        viewModel.live_desired_weight.observe(viewLifecycleOwner, Observer { desired_weight ->
+            binding.dataHeartAgePage3.text = desired_weight.toString().toEditable()
+            list["desired_weight"] = desired_weight.toString()
+        })
+
+        binding.textNext.setOnClickListener{
+            if (
+                (binding.dataHeartAgePage3.text.isNotEmpty()) and
+                (binding.dataHightPage3.text.isNotEmpty()) and
+                (binding.dataWeightPage3.text.isNotEmpty()) and
+                (binding.dataDiceweightPage3.text.isNotEmpty())
+            )
+            {
+                Log.e(TAG, "textNext  ")
+                val action: NavDirections = Pg3DataAgeHightWeightFrafmentDirections.actionDataAgeHightWeight2ToLoginFragment2(args.currentUser)
+                findNavController().navigate(action)
+            }else {
+                when {
+                    binding.dataHeartAgePage3.text.isEmpty() -> Toast.makeText(context,
+                        "Пожалуйста, введите возраст",
+                        Toast.LENGTH_SHORT).show()
+                    binding.dataHightPage3.text.isEmpty() -> Toast.makeText(context,
+                        "Пожалуйста, введите рост",
+                        Toast.LENGTH_SHORT).show()
+                    binding.dataWeightPage3.text.isEmpty() -> Toast.makeText(context,
+                        "Пожалуйста, введите вес",
+                        Toast.LENGTH_SHORT).show()
+                    binding.dataDiceweightPage3.text.isEmpty() -> Toast.makeText(context,
+                        "Пожалуйста, введите желаемый вес",
+                        Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
     }
 
 
