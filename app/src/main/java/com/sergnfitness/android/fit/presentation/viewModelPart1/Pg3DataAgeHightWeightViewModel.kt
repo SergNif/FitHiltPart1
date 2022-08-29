@@ -10,6 +10,7 @@ import com.sergnfitness.domain.usecase.SaveUserSharedPreferenceUseCase
 import com.sergnfitness.domain.usecase.putGetUserClass.CreateExemplarClassDataUserStorageUseCase
 import com.sergnfitness.domain.usecase.putGetUserClass.CreateExemplarClassDataUserStorageUseCase_Factory
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.time.LocalDateTime
 import javax.inject.Inject
 
 @HiltViewModel
@@ -36,5 +37,12 @@ class Pg3DataAgeHightWeightViewModel @Inject constructor(
         private val _desired_weight = MutableLiveData<String>()
     val live_desired_weight: LiveData<String> = _desired_weight
 
+
+    fun changeAge(text: MutableMap<String, String>) {
+        _age.value = text.get("age")?.toInt()
+        _height.value = text.get("height")?.toInt()
+        _weight.value = text.get("weight")
+        _desired_weight.value = text.get("desired_weight")
+        }
 
 }
