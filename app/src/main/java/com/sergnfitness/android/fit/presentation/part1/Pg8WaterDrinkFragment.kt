@@ -6,120 +6,150 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.sergnfitness.android.fit.R
+import com.sergnfitness.android.fit.databinding.FragmentPg8WaterDrinkBinding
 import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg8WaterDrinkViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Pg8WaterDrinkFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-
 @AndroidEntryPoint
 class Pg8WaterDrinkFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-  private val viewModel: Pg8WaterDrinkViewModel by viewModels<Pg8WaterDrinkViewModel>()
-    val TAG = "Fragment Page8"
-
-//    private lateinit var binding: FragmentPage8Data2Binding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    companion object {
+        fun newInstance() = Pg8WaterDrinkFragment()
     }
+
+    private  val viewModel: Pg8WaterDrinkViewModel by viewModels<Pg8WaterDrinkViewModel>()
+    private lateinit var binding: FragmentPg8WaterDrinkBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_page8_water_drink, container, false)
+        return inflater.inflate(R.layout.fragment_pg8_water_drink, container, false)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        viewModel = (activity as MainActivity).viewModel
-//        binding = FragmentPage8Data2Binding.bind(view)
-//        var modifiedButton: Boolean = false
-//
-//
-//        binding.vmPage8 = viewModel
-//        binding.imgLoadPage8 = ImageLoader()
-//        binding.lifecycleOwner = this
-//
-//        binding.page8ButtonWaterWithoutGas.setOnClickListener { viewModel.changeColorButtonPage8("1")
-//                    val navController = findNavController()
+        binding = FragmentPg8WaterDrinkBinding.bind(view)
+
+        //        binding.textPage5Chiken.setOnClickListener {
+//            viewModel.changeColorButtonPage51()
+//            val navController = findNavController()
 //            navController.run {
 //                popBackStack()
-//                navigate(R.id.page8Data2Fragment)
+//                navigate(R.id.page5Data2Fragment)
 //            }
 //        }
-//        binding.page8ButtonWaterShugar.setOnClickListener { viewModel.changeColorButtonPage8("2")
-//                    val navController = findNavController()
+//        binding.textPage5Turkey.setOnClickListener {
+//            viewModel.changeColorButtonPage52()
+//            val navController = findNavController()
 //            navController.run {
 //                popBackStack()
-//                navigate(R.id.page8Data2Fragment)
+//                navigate(R.id.page5Data2Fragment)
 //            }
 //        }
-//        binding.page8ButtonMoreCofee.setOnClickListener { viewModel.changeColorButtonPage8("3")
-//                    val navController = findNavController()
+//        binding.page5ButtonPork.setOnClickListener {
+//            viewModel.changeColorButtonPage53()
+//            val navController = findNavController()
 //            navController.run {
 //                popBackStack()
-//                navigate(R.id.page8Data2Fragment)
+//                navigate(R.id.page5Data2Fragment)
 //            }
 //        }
-//        binding.page8ButtonOnlyTea.setOnClickListener { viewModel.changeColorButtonPage8("4")
-//                    val navController = findNavController()
+//        binding.page5Beef.setOnClickListener {
+//            viewModel.changeColorButtonPage54()
+//            val navController = findNavController()
 //            navController.run {
 //                popBackStack()
-//                navigate(R.id.page8Data2Fragment)
+//                navigate(R.id.page5Data2Fragment)
+//            }
+//        }
+//        binding.page5ButtonFish.setOnClickListener {
+//            viewModel.changeColorButtonPage55()
+//            val navController = findNavController()
+//            navController.run {
+//                popBackStack()
+//                navigate(R.id.page5Data2Fragment)
+//            }
+//        }
+//        binding.page5Seafood.setOnClickListener {
+//            viewModel.changeColorButtonPage56()
+//            val navController = findNavController()
+//            navController.run {
+//                popBackStack()
+//                navigate(R.id.page5Data2Fragment)
+//            }
+//        }
+//        binding.page5ButtonWithoutMeat.setOnClickListener {
+//            viewModel.changeColorButtonPage57()
+//            val navController = findNavController()
+//            navController.run {
+//                popBackStack()
+//                navigate(R.id.page5Data2Fragment)
+//            }
+//        }
+//        binding.textPage5WithoutFish.setOnClickListener {
+//            viewModel.changeColorButtonPage58()
+//            val navController = findNavController()
+//            navController.run {
+//                popBackStack()
+//                navigate(R.id.page5Data2Fragment)
 //            }
 //        }
 
-//        viewModel.livepage8Button1.observe(viewLifecycleOwner, Observer { color ->
-//             modifiedButton = true
-////            binding.page8ButtonWaterWithoutGas.setBackgroundColor(Color.parseColor(color))
-//            binding.page8ButtonWaterWithoutGas.setBackgroundResource(color)
+//        viewModel.livepage5Button1.observe(viewLifecycleOwner, Observer { color ->
+//            modifiedButton = true
+////            binding.textPage5Chiken.setBackgroundColor(Color.parseColor(color))
+//            binding.textPage5Chiken.setBackgroundResource(color)
 //        })
-//        viewModel.livepage8Button2.observe(viewLifecycleOwner, Observer { color ->
-//             modifiedButton = true
-////            binding.page8ButtonWaterShugar.setBackgroundColor(Color.parseColor(color))
-//            binding.page8ButtonWaterShugar.setBackgroundResource(color)
+//        viewModel.livepage5Button2.observe(viewLifecycleOwner, Observer { color ->
+//            modifiedButton = true
+////            binding.textPage5Turkey.setBackgroundColor(Color.parseColor(color))
+//            binding.textPage5Turkey.setBackgroundResource(color)
 //        })
-//        viewModel.livepage8Button3.observe(viewLifecycleOwner, Observer { color ->
-//             modifiedButton = true
-////            binding.page8ButtonMoreCofee.setBackgroundColor(Color.parseColor(color))
-//            binding.page8ButtonMoreCofee.setBackgroundResource(color)
+//        viewModel.livepage5Button3.observe(viewLifecycleOwner, Observer { color ->
+//            modifiedButton = true
+////            binding.page5ButtonPork.setBackgroundColor(Color.parseColor(color))
+//            binding.page5ButtonPork.setBackgroundResource(color)
 //        })
-//        viewModel.livepage8Button4.observe(viewLifecycleOwner, Observer { color ->
-//             modifiedButton = true
-////            binding.page8ButtonOnlyTea.setBackgroundColor(Color.parseColor(color))
-//            binding.page8ButtonOnlyTea.setBackgroundResource(color)
+//        viewModel.livepage5Button4.observe(viewLifecycleOwner, Observer { color ->
+//            modifiedButton = true
+////            binding.page5Beef.setBackgroundColor(Color.parseColor(color))
+//            binding.page5Beef.setBackgroundResource(color)
+//        })
+//        viewModel.livepage5Button5.observe(viewLifecycleOwner, Observer { color ->
+//            modifiedButton = true
+////            binding.page5ButtonFish.setBackgroundColor(Color.parseColor(color))
+//            binding.page5ButtonFish.setBackgroundResource(color)
+//        })
+//        viewModel.livepage5Button6.observe(viewLifecycleOwner, Observer { color ->
+//            modifiedButton = true
+////            binding.page5Seafood.setBackgroundColor(Color.parseColor(color))
+//            binding.page5Seafood.setBackgroundResource(color)
+//        })
+//        viewModel.livepage5Button7.observe(viewLifecycleOwner, Observer { color ->
+//            modifiedButton = true
+////            binding.page5ButtonWithoutMeat.setBackgroundColor(Color.parseColor(color))
+//            binding.page5ButtonWithoutMeat.setBackgroundResource(color)
+//        })
+//        viewModel.livepage5Button8.observe(viewLifecycleOwner, Observer { color ->
+//            modifiedButton = true
+////            binding.textPage5WithoutFish.setBackgroundColor(Color.parseColor(color))
+//            binding.textPage5WithoutFish.setBackgroundResource(color)
 //        })
 
 
-//        binding.textBack.setOnClickListener{
-////            if (modifiedButton){viewModel.createLocalDataPage8()}
+//        binding.textBack.setOnClickListener {
+////            if (modifiedButton){viewModel.createLocalDataPage5()}
 //            findNavController().popBackStack()
 //        }
-//        binding.textNext.setOnClickListener{
-////            if (modifiedButton){viewModel.createLocalDataPage8()}
-//            findNavController().navigate(R.id.action_page8Data2Fragment_to_page9Data2Fragment)
+//        binding.textNext.setOnClickListener {
+////        if (modifiedButton){viewModel.createLocalDataPage5()}
+//            findNavController().navigate(R.id.action_page5Data2Fragment_to_page6Data2Fragment)
 //        }
 //    }
+//
 //    companion object {
 //        /**
 //         * Use this factory method to create a new instance of
@@ -127,16 +157,18 @@ class Pg8WaterDrinkFragment : Fragment() {
 //         *
 //         * @param param1 Parameter 1.
 //         * @param param2 Parameter 2.
-//         * @return A new instance of fragment Page8Data2Fragment.
+//         * @return A new instance of fragment Page5Data2Fragment.
 //         */
 //        // TODO: Rename and change types and number of parameters
 //        @JvmStatic
 //        fun newInstance(param1: String, param2: String) =
-//            Pg8WaterDrinkFragment().apply {
+//            Pg5SourceProteinFragment().apply {
 //                arguments = Bundle().apply {
 //                    putString(ARG_PARAM1, param1)
 //                    putString(ARG_PARAM2, param2)
 //                }
 //            }
+
     }
+
 }

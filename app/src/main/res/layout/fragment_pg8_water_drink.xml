@@ -1,27 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<layout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--    xmlns:tools="http://schemas.android.com/tools">-->
-
-<!--    <data>-->
-<!--        <import type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.MainViewModel"/>-->
-<!--        <variable-->
-<!--            name="vmod"-->
-<!--            type="MainViewModel" />-->
-<!--        <variable-->
-<!--            name="imgLoad"-->
-<!--            type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.ui.adapter.ImageLoader" />-->
-<!--    </data>-->
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.part1.Pg8WaterDrinkFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/color_page_data_fon_white"
         android:textColor="#190F22"
-        tools:context=".presentation.part1.Pg4PhysicalActiveFragment">
+        tools:context=".presentation.part1.Pg8WaterDrinkFragment2">
 
 
         <!-- TODO: Update blank fragment layout -->
@@ -31,7 +20,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30sp"
-android:layout_marginHorizontal="15sp"
+            android:layout_marginHorizontal="15sp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -41,87 +30,77 @@ android:layout_marginHorizontal="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:padding="6sp"
                 android:scaleX="1.2"
                 android:scaleY="1.2"
                 android:src="@drawable/ic_logo" />
 
             <TextView
-                android:text="Движение - это жизнь"
-
-                style="@style/up_grin_text" />
+                android:text="Необходимо пить 1,5л воды"
+                style="@style/up_grin_text"
+                android:textSize="14sp"
+                android:padding="2sp"
+                />
         </LinearLayout>
-
-
-
-
 
         <TextView
             android:id="@+id/text_enter_data_page4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/tienne_black"
-            android:text="ФИЗИЧЕСКАЯ АКТИВНОСТЬ"
+            android:text="НАПИТКИ"
             android:textColor="@color/red_text"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginVertical="1sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pick_page_4_image"
-            />
+            app:layout_constraintVertical_bias="0.02" />
 
         <TextView
             android:id="@+id/text_up_page3"
-            android:text="Выберите пункты, котрые Вам больше всего\nподходят"
+            android:text="Выберите напитки, котрые Вы чаще всего\nпьёте в течении дня"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_enter_data_page4"
             app:layout_constraintVertical_bias="0.0"
-            style="@style/middle_text_style" />
+            style="@style/middle_text_style"/>
 
 
 
         <TextView
-            android:id="@+id/page4_button_min_activ"
-            android:text="Минимальная физическая активность"
+            android:id="@+id/page8_button_water_without_gas"
+            android:text="Пью негазированную воду"
 
             app:layout_constraintTop_toBottomOf="@+id/text_up_page3"
             style="@style/text_data_page4"
             tools:ignore="MissingConstraints" />
 
         <TextView
-            android:id="@+id/page4_button_fast_walk"
-            android:text="Я часто хожу пешком"
+            android:id="@+id/page8_button_water_shugar"
+            android:text="Часто пью сладкие газировки"
 
-            app:layout_constraintTop_toBottomOf="@+id/page4_button_min_activ"
+            app:layout_constraintTop_toBottomOf="@+id/page8_button_water_without_gas"
             style="@style/text_data_page4"
             tools:ignore="MissingConstraints" />
 
         <TextView
-            android:id="@+id/page4_button_1_2_per_week"
-            android:text="Я занимаюсь 1 - 2 раза в неделю"
-            app:layout_constraintTop_toBottomOf="@+id/page4_button_fast_walk"
+            android:id="@+id/page8_button_more_cofee"
+            android:text="Пью много кофе"
 
+            app:layout_constraintTop_toBottomOf="@+id/page8_button_water_shugar"
             style="@style/text_data_page4"
             tools:ignore="MissingConstraints" />
 
         <TextView
-            android:id="@+id/page4_button_3_5_per_week"
-            android:text="Я занимаюсь 3 - 5 раз в неделю"
+            android:id="@+id/page8_button_only_tea"
+            android:text="Пью только чай"
 
-            app:layout_constraintTop_toBottomOf="@+id/page4_button_1_2_per_week"
+            app:layout_constraintTop_toBottomOf="@+id/page8_button_more_cofee"
             style="@style/text_data_page4"
             tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/page4_button_every_day_fitness"
-            android:text="Каждый день посещаю фитнес клуб"
-
-            app:layout_constraintTop_toBottomOf="@+id/page4_button_3_5_per_week"
-            style="@style/text_data_page4"
-            tools:ignore="MissingConstraints" />
-
 
 
 
@@ -131,14 +110,13 @@ android:layout_marginHorizontal="15sp"
             android:layout_height="206dp"
             android:scaleX="1"
             android:scaleY="1"
-            android:src="@drawable/pict_page4"
+            android:src="@drawable/pict_page_8"
 
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lin_lay1"
             app:layout_constraintVertical_bias="0.0" />
-
 
         <LinearLayout
             android:id="@+id/lin_bottom"
@@ -196,14 +174,6 @@ android:layout_marginHorizontal="15sp"
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-<!--</layout>-->
 
-<!--<ImageView-->
-<!--android:id="@+id/arrow_back_navigation"-->
-<!--android:layout_width="wrap_content"-->
-<!--android:layout_height="wrap_content"-->
-<!--android:src="@drawable/ic_bar_menu_back_navigation"-->
-<!--app:layout_constraintBottom_toBottomOf="@id/button_next_page3"-->
-<!--app:layout_constraintEnd_toStartOf="@id/button_next_page3"-->
-<!--app:layout_constraintStart_toStartOf="parent"-->
-<!--app:layout_constraintTop_toTopOf="@id/button_next_page3" />-->
+
+</FrameLayout>

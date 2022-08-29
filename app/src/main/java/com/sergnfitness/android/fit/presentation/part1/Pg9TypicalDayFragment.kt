@@ -6,58 +6,33 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.sergnfitness.android.fit.R
-import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg10BadHabbitsViewModel
+import com.sergnfitness.android.fit.databinding.FragmentPg9TypicalDayBinding
 import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg9TypicalDayViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Pg9TypicalDayFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 @AndroidEntryPoint
 class Pg9TypicalDayFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    private val viewModel: Pg9TypicalDayViewModel by viewModels<Pg9TypicalDayViewModel>()
-    val TAG = "Fragment Page9"
-
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    companion object {
+        fun newInstance() = Pg9TypicalDayFragment()
     }
 
+    private  val viewModel: Pg9TypicalDayViewModel by viewModels<Pg9TypicalDayViewModel>()
+private lateinit var binding: FragmentPg9TypicalDayBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_page9_typical_day, container, false)
+        return inflater.inflate(R.layout.fragment_pg9_typical_day, container, false)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        viewModel = (activity as MainActivity).viewModel
-//        binding = FragmentPage9Data2Binding.bind(view)
-//        var modifiedButton: Boolean = false
-//
-//        binding.vmPage9 = viewModel
-//        binding.imgLoadPage9 = ImageLoader()
-//        binding.lifecycleOwner = this
+        binding = FragmentPg9TypicalDayBinding.bind(view)
+
+        //        binding.lifecycleOwner = this
 //
 //        binding.page9WorkOffice.setOnClickListener { viewModel.changeColorButtonPage9("1")
 //                    val navController = findNavController()
@@ -132,5 +107,7 @@ class Pg9TypicalDayFragment : Fragment() {
 //                    putString(ARG_PARAM2, param2)
 //                }
 //            }
+
     }
+
 }

@@ -6,57 +6,34 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.sergnfitness.android.fit.R
-import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg7FoodsViewModels
+import com.sergnfitness.android.fit.databinding.FragmentPg7FoodsBinding
+import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg7FoodsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Pg7FoodsFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+@AndroidEntryPoint
 class Pg7FoodsFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    private val viewModel: Pg7FoodsViewModels by viewModels<Pg7FoodsViewModels>()
-
-        val TAG = "Fragment Page6"
-
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    companion object {
+        fun newInstance() = Pg7FoodsFragment()
     }
+
+    private val viewModel: Pg7FoodsViewModel by viewModels<Pg7FoodsViewModel>()
+    private lateinit var binding: FragmentPg7FoodsBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_page7_foods, container, false)
+        return inflater.inflate(R.layout.fragment_pg7_foods, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        viewModel = (activity as MainActivity).viewModel
-//        binding = FragmentPage7Data2Binding.bind(view)
-//
-//        var modifiedButton: Boolean = false
-//
-//        binding.vmPage7 = viewModel
-//        binding.imgLoadPage7 = ImageLoader()
-//        binding.lifecycleOwner = this
+        binding = FragmentPg7FoodsBinding.bind(view)
+
+        //        binding.lifecycleOwner = this
 //
 //        binding.textPage6Egg.setOnClickListener { viewModel.changeColorButtonPage71()
 //                    val navController = findNavController()
@@ -164,4 +141,5 @@ class Pg7FoodsFragment : Fragment() {
 //                }
 //            }
     }
+
 }

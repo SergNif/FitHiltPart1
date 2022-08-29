@@ -1,70 +1,47 @@
 package com.sergnfitness.android.fit.presentation.part1
 
+import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.sergnfitness.android.fit.R
-import com.sergnfitness.android.fit.databinding.FragmentPage4PhysicalActiveBinding
-import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg4PhysicalActiveFragmentViewModel
+import com.sergnfitness.android.fit.databinding.FragmentPg4PhysicalActiveBinding
+import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg4PhysicalActiveViewModel
 import dagger.hilt.android.AndroidEntryPoint
-
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Pg4PhysicalActiveFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 @AndroidEntryPoint
 class Pg4PhysicalActiveFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    //    lateinit var viewModel: MainViewModel
-    private val viewModel: Pg4PhysicalActiveFragmentViewModel by viewModels<Pg4PhysicalActiveFragmentViewModel>()
-
-
-    val TAG = "Fragment Page4"
-
-    //    private lateinit var bindi  //FragmentPage4Data2Binding
-    private lateinit var binding: FragmentPage4PhysicalActiveBinding
-//private lateinit var binding: com.sergnfitness.android.fit.databinding.FragmentPg4PhysicalActiveBinding
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            param1 = it.getString(ARG_PARAM1)
-//            param2 = it.getString(ARG_PARAM2)
-//        }
+//
+//    companion object {
+//        fun newInstance() = Pg4PhysicalActiveFragment()
 //    }
 
-//    override fun onCreateView(
-//        inflater: LayoutInflater, container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_page4_data2, container, false)
-//    }
+lateinit var binding: FragmentPg4PhysicalActiveBinding
+//    private lateinit var viewModel: Pg4PhysicalActiveViewModel
 
+    private val viewModel: Pg4PhysicalActiveViewModel by viewModels<Pg4PhysicalActiveViewModel>()
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View? {
+        return inflater.inflate(R.layout.fragment_pg4_physical_active, container, false)
+    }
+
+    val TAG = "Fragment Pg4PhysicalActiveFragment"
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = FragmentPg4PhysicalActiveBinding.bind(view)
+    }
 
-//        viewModel = (activity as MainActivity).viewModel
-//        binding = FragmentPage4Data2Binding.bind(view)
-        var modifiedButton: Boolean = false
-//
-//        binding.vmod = viewModel
-//        binding.imgLoad = ImageLoader()
-//        binding.lifecycleOwner = this
-
-
-//        binding.page4ButtonMinActiv.setClickable(true)
+    //        binding.page4ButtonMinActiv.setClickable(true)
 //        binding.page4ButtonFastWalk.setClickable(true)
 //        binding.page4Button12PerWeek.setClickable(true)
 //        binding.page4Button35PerWeek.setClickable(true)
@@ -148,7 +125,7 @@ class Pg4PhysicalActiveFragment : Fragment() {
 //        }
 
 //        viewModel.dataPage5
-        //*********************************************************************************
+    //*********************************************************************************
 //        var dw = getResources().getDrawable(R.drawable.ic_fon_text_page_4)
 //        var dwNo = getResources().getDrawable(R.drawable.ic_fon_text_page_4_no_press)
 //
@@ -190,25 +167,27 @@ class Pg4PhysicalActiveFragment : Fragment() {
 //
 //            findNavController().navigate(R.id.action_page4Data2Fragment_to_page5Data2Fragment)
 //        }
-    }
+//}
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment Page4Data2Fragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            Pg4PhysicalActiveFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+companion object {
+    /**
+     * Use this factory method to create a new instance of
+     * this fragment using the provided parameters.
+     *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
+     * @return A new instance of fragment Page4Data2Fragment.
+     */
+    // TODO: Rename and change types and number of parameters
+    @JvmStatic
+    fun newInstance(param1: String, param2: String) =
+        Pg4PhysicalActiveFragment().apply {
+            arguments = Bundle().apply {
+                putString(ARG_PARAM1, param1)
+                putString(ARG_PARAM2, param2)
             }
-    }
+        }
+}
+
+
 }

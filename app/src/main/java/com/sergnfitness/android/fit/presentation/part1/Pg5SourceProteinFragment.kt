@@ -6,60 +6,37 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.fragment.findNavController
 import com.sergnfitness.android.fit.R
-import com.sergnfitness.android.fit.databinding.FragmentPage5SouceProteinBinding
+import com.sergnfitness.android.fit.databinding.FragmentPg5SourceProteinBinding
 import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg5SourceProteinViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Pg5SourceProteinFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 @AndroidEntryPoint
 class Pg5SourceProteinFragment : Fragment() {
-    // TODO: Rename and change types of parameters
+
     private var param1: String? = null
     private var param2: String? = null
 
-//    lateinit var viewModel: MainViewModel
-    val TAG = "Fragment Page5"
-lateinit var binding : FragmentPage5SouceProteinBinding
-    private val viewModel: Pg5SourceProteinViewModel by viewModels<Pg5SourceProteinViewModel>()
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    companion object {
+        fun newInstance() = Pg5SourceProteinFragment()
     }
-
+    val TAG = "Fragment Pg5SourceProteinFragment"
+    private val viewModel: Pg5SourceProteinViewModel by viewModels<Pg5SourceProteinViewModel>()
+    private lateinit var binding: FragmentPg5SourceProteinBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_page5_souce_protein, container, false)
+        return inflater.inflate(R.layout.fragment_pg5_source_protein, container, false)
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        viewModel = (activity as MainActivity).viewModel
-        binding = FragmentPage5SouceProteinBinding.bind(view)
-////if (viewModel.dataPage5.isInitialized)
-//        var modifiedButton: Boolean = false
-//
-//        binding.vmPage5 = viewModel
-//        binding.imgLoadPage5 = ImageLoader()
-//        binding.lifecycleOwner = this
-
+        binding = FragmentPg5SourceProteinBinding.bind(view)
 //        binding.textPage5Chiken.setOnClickListener {
 //            viewModel.changeColorButtonPage51()
 //            val navController = findNavController()
@@ -195,5 +172,7 @@ lateinit var binding : FragmentPage5SouceProteinBinding
 //                    putString(ARG_PARAM2, param2)
 //                }
 //            }
+
     }
+
 }
