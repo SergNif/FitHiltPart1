@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph2"
-    app:startDestination="@id/pg1MaleFemale1">
+    app:startDestination="@id/loginFragment2">
     <fragment
         android:id="@+id/pg1MaleFemale1"
         android:name="com.sergnfitness.android.fit.presentation.part1.Pg1MaleFemale"
@@ -13,6 +13,9 @@
             app:destination="@id/next2" />
         <argument
             android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
             app:argType="com.sergnfitness.domain.models.user.DataUser" />
     </fragment>
     <fragment
@@ -40,6 +43,9 @@
         <argument
             android:name="currentUser"
             app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
     </fragment>
     <fragment
         android:id="@+id/next2"
@@ -52,6 +58,9 @@
         <argument
             android:name="currentUser"
             app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
     </fragment>
     <fragment
         android:id="@+id/dataAgeHightWeight2"

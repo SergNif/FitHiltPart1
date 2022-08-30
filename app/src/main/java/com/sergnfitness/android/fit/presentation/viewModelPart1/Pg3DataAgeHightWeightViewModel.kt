@@ -3,6 +3,7 @@ package com.sergnfitness.android.fit.presentation.viewModelPart1
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.sergnfitness.domain.models.user.DataUser
 import com.sergnfitness.domain.repository.ApiRepository
 import com.sergnfitness.domain.usecase.GetUserOfIdApiUseCase
 import com.sergnfitness.domain.usecase.GetUserSharedPreferenceUseCase
@@ -25,6 +26,8 @@ class Pg3DataAgeHightWeightViewModel @Inject constructor(
     ):ViewModel() {
         val TAG = "Pg3DataAgeHightWeightViewModel"
 
+    var dataUser:DataUser = DataUser()
+
     private val _age = MutableLiveData<Int>()
     val live_age: LiveData<Int> = _age
 
@@ -38,11 +41,30 @@ class Pg3DataAgeHightWeightViewModel @Inject constructor(
     val live_desired_weight: LiveData<String> = _desired_weight
 
 
-    fun changeAge(text: MutableMap<String, String>) {
-        _age.value = text.get("age")?.toInt()
-        _height.value = text.get("height")?.toInt()
-        _weight.value = text.get("weight")
-        _desired_weight.value = text.get("desired_weight")
-        }
+    fun changeAge(text:String){
+        _age.value = text.toInt()
+    }
+    fun changeHaight(text:String){
+        _height.value = text.toInt()
+    }
+    fun changeWeight(text:String){
+        _weight.value = text
+    }
+    fun changedesireWeight(text:String){
+        _desired_weight.value = text
+    }
+//
+//    fun changeAge2(text: MutableMap<String, String>) {
+//        _age.value = text.get("age")?.toInt()
+//        _height.value = text.get("height")?.toInt()
+//        _weight.value = text.get("weight")
+//        _desired_weight.value = text.get("desired_weight")
+//        }
+    fun creatUserClass(list: MutableMap<String, String>){
+        dataUser.age = list.get("age")?.toInt()!!
+        dataUser.height = list.get("height")?.toInt()!!
+        dataUser.weight = list.get("weight")!!
+        dataUser.desired_weight = list.get("desired_weight")!!
+    }
 
 }

@@ -3,6 +3,7 @@ package com.sergnfitness.data.api
 
 import com.sergnfitness.data.storage.storageModel.DataUserStorage
 import com.sergnfitness.data.storage.storageModel.UserStorage
+import com.sergnfitness.domain.models.user.DataUser
 import com.sergnfitness.domain.models.user.User
 import retrofit2.Call
 import retrofit2.Response
@@ -24,6 +25,11 @@ interface ApiServer {
         @Body params: User
         ): Call<User>
 
+    @POST("fit_new_user_hilt/{user_email}")
+    fun postQueryCreateUser(
+        @Path("user_email") user_email:String,
+        @Body params: DataUser
+    ): Call<DataUser>
 
     @GET("/get_one_user/{user_id}")
     fun getUserOfId(

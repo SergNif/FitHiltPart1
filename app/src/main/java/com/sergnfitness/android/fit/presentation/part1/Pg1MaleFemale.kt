@@ -10,12 +10,14 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.sergnfitness.android.fit.R
 import com.sergnfitness.android.fit.databinding.Pg1FragmentMaFemale1Binding
 
 
 import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5
 import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5NoPress
+import com.sergnfitness.android.fit.presentation.login.LoginFragmentArgs
 import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg1MaleFemaleViewModel
 import com.sergnfitness.data.storage.storageModel.DataUserStorage
 import com.sergnfitness.domain.models.user.DataUser
@@ -45,7 +47,7 @@ class Pg1MaleFemale : Fragment() {
 
     val TAG = "Fragment Page1 MaFemale1 "
     lateinit var binding: Pg1FragmentMaFemale1Binding
-
+    private val args: Pg1MaleFemaleArgs by navArgs<Pg1MaleFemaleArgs>()
 
 //    lateinit var vmFactory: Pg1MaleFemaleViewModelFactory
 //    lateinit var viewModel: Pg1MaleFemaleViewModel
@@ -122,7 +124,7 @@ class Pg1MaleFemale : Fragment() {
 
 
     binding.image.setOnClickListener {
-        val action: NavDirections = Pg1MaleFemaleDirections.actionPg1MaleFemale1ToNext2(paramUser)
+        val action: NavDirections = Pg1MaleFemaleDirections.actionPg1MaleFemale1ToNext2(args.currentUser, args.currentDataUser )
 //        findNavController().navigate(R.id.action_pg1MaleFemale1_to_next2)
         findNavController().navigate(action)
     }

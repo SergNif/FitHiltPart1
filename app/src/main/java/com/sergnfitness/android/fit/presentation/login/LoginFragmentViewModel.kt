@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sergnfitness.data.api.ApiServer
 import com.sergnfitness.data.api.RetrofitInstanceModule
+import com.sergnfitness.domain.models.user.DataUser
 import com.sergnfitness.domain.models.user.User
 import com.sergnfitness.domain.repository.ApiRepository
 import com.sergnfitness.domain.repository.UserRepository
@@ -31,14 +32,23 @@ class LoginFragmentViewModel @Inject constructor(
 
     val TAG = "LoginFragmentViewModel"
 
+    var dataUser: DataUser = DataUser()
+    var user: User = User()
+
     private val _resultLive = MutableLiveData<String>()
     val resultLive: LiveData<String> = _resultLive
 
     private val _userLiveData = MutableLiveData<User?>()
     val userLiveData: LiveData<User?> = _userLiveData
 
+    private val _dataUserLiveData = MutableLiveData<DataUser?>()
+    val dataUserLiveData: LiveData<DataUser?> = _dataUserLiveData
+
     private val _userResourceLiveData = MutableLiveData<Resource<Any>>()
     val userResourceLiveData: LiveData<Resource<Any>> = _userResourceLiveData
+
+    private val _dataUserResourceLiveData = MutableLiveData<Resource<Any>>()
+    val dataUserResourceLiveData: LiveData<Resource<Any>> = _dataUserResourceLiveData
 
 
     fun isNewUser(): Boolean {
@@ -86,5 +96,44 @@ class LoginFragmentViewModel @Inject constructor(
 
     fun saveUserToSharedPref(it: User) {
         userRepository.saveDataUser(it)
+    }
+
+    fun createDataUserOnServer(email: String)  = viewModelScope.launch {
+        Log.e(TAG, "inside query")
+
+        safeCallPostDataUserOfEmailViewModel(email)
+    }
+
+    private suspend fun safeCallPostDataUserOfEmailViewModel(email: String) {
+        _dataUserResourceLiveData.postValue(Resource.Loading())
+
+//        val retroService = RetrofitInstanceModule.getRetroInstance().create(ApiServer::class.java)
+        val call =  apiRepository.postQueryCreateUserRepos(email = email, user = dataUser)
+        call.enqueue(object : Callback<DataUser> {
+            override fun onFailure(call: Call<DataUser>, t: Throwable) {
+                Log.e(TAG, "Retrofit 1")
+                _dataUserResourceLiveData.postValue(Resource.Error(t.message.toString()))
+                _dataUserLiveData.postValue(null)
+            }
+
+            override fun onResponse(call: Call<DataUser>, response: Response<DataUser>) {
+                _dataUserResourceLiveData.postValue(Resource.Loading(response))
+                Log.e(TAG, "Retrofit 2 ${response.body()?.id}")
+                if (response.isSuccessful && response.body() != null) {
+
+                    // получен ответ от сервера после записи данных
+                    response.body().let { res ->
+                        _dataUserLiveData.postValue(res)
+                        _dataUserResourceLiveData.postValue(Resource.Success(res))
+                    }
+                } else {
+                    Log.e(TAG, "${response.message()} Retrofit 3")
+                    _dataUserLiveData.postValue(null)
+                    _dataUserResourceLiveData.postValue(Resource.Error("${response.message()} No this data"))
+                }
+            }
+        })
+
+
     }
 }
