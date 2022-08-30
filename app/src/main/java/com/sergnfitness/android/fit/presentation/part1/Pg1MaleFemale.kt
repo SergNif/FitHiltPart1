@@ -81,28 +81,7 @@ class Pg1MaleFemale : Fragment() {
         binding = Pg1FragmentMaFemale1Binding.bind(view)
         val bundle = Bundle()
 
-
-//        (requireActivity().applicationContext as App).appComponent.inject(this)
-
-//        viewModel = ViewModelProvider(this, vmFactory)[Pg1MaleFemaleViewModel::class.java]
-
-//        viewModel.resultLive.observe(viewLifecycleOwner) {
-//            binding.textPage1.text = it
-//            Log.e(TAG, " resultLive {${it}}")
-//        }
-//        viewModel.state.observe(viewLifecycleOwner){
-//            Log.e(TAG, "{${it.error}}")
-////            binding.textPage1.text = it.coins
-//        }
-//
-//        viewModel.userLiveData.observe(viewLifecycleOwner){
-//            Log.e(TAG, " newsLiveData {${it.toString()}}")
-//            binding.textPage1.text = it.toString()
-//        }
-//        viewModel.mm.observe(viewLifecycleOwner){
-//            Log.e(TAG, " mm {${it}}")
-//            binding.textPage1.text = it.toString()
-//        }
+        showParamOnDisplay()
 
         binding.imageViewBoy.setOnClickListener {
 //            val textv = binding.editTextPage1.t ext
@@ -161,6 +140,18 @@ class Pg1MaleFemale : Fragment() {
         }
 
 
+
+    }
+
+    private fun showParamOnDisplay() {
+        if(args.currentDataUser.man){
+            binding.imageViewBoy.setBackgroundResource(changeFonButtonPage5.execute())
+            binding.imageViewGirl.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+        }else{
+            binding.imageViewBoy.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+            binding.imageViewGirl.setBackgroundResource(changeFonButtonPage5.execute())
+
+        }
 
     }
 

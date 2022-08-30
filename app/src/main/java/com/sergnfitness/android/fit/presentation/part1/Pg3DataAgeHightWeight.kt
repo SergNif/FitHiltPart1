@@ -61,6 +61,8 @@ class Pg3DataAgeHightWeightFrafment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         binding = Pg3DataAgeHightWeightBinding.bind(view)
 
+        showParamOnDisplay()
+
         fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
 
         binding.dataHeartAgePage3.addTextChangedListener(object : TextWatcher {
@@ -196,6 +198,13 @@ class Pg3DataAgeHightWeightFrafment : Fragment() {
             }
         }
 
+    }
+
+    private fun showParamOnDisplay() {
+        binding.dataHeartAgePage3.setText(args.currentDataUser.age.toString())
+        binding.dataHightPage3.setText(args.currentDataUser.height.toString())
+        binding.dataWeightPage3.setText(args.currentDataUser.weight.toString())
+        binding.dataDiceweightPage3.setText(args.currentDataUser.desired_weight.toString())
     }
 
 //    private fun createList() {

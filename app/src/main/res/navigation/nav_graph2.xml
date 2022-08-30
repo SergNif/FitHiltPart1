@@ -73,5 +73,8 @@
         <action
             android:id="@+id/action_dataAgeHightWeight2_to_loginFragment2"
             app:destination="@id/loginFragment2" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
     </fragment>
 </navigation>
