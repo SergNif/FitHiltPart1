@@ -67,80 +67,58 @@ class Pg3DataAgeHightWeightFrafment : Fragment() {
 
         binding.dataHeartAgePage3.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//               binding.dataDiceweightPage3.setText(p0)
             }
 
             override fun afterTextChanged(p0: Editable?) {
                 list["age"] = p0.toString()
-//                createList()
-//                viewModel.changeAge(list)
             }
         }
         )
 
-
-
         binding.dataHightPage3.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
 
             override fun afterTextChanged(p0: Editable?) {
                 list["height"] = p0.toString()
-//                createList()
-//                viewModel.changeAge(list)
             }
         }
         )
 
         binding.dataWeightPage3.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-//                binding.dataWeightPage3.setText(p0)
             }
 
             override fun afterTextChanged(p0: Editable?) {
                 list["weight"] = p0.toString()
-//                createList()
-//                viewModel.changeAge(list)
             }
         }
         )
 
-        binding.dataHeartAgePage3.onFocusChangeListener.let { it ->
-
-        }
-
+//        binding.dataHeartAgePage3.onFocusChangeListener.let { it ->
+//        }
 
         binding.dataDiceweightPage3.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
             }
 
             override fun afterTextChanged(p0: Editable?) {
                 list["desired_weight"] = p0.toString()
-//                createList()
-//                viewModel.changeAge(list)
             }
         }
         )
-
-
 
         viewModel.live_age.observe(viewLifecycleOwner, Observer { age ->
             binding.dataHeartAgePage3.text = age.toString().toEditable()
@@ -159,7 +137,6 @@ class Pg3DataAgeHightWeightFrafment : Fragment() {
             list["weight"] = weight.toString()
             Log.e(TAG, "$list  ")
         })
-
 
         viewModel.live_desired_weight.observe(viewLifecycleOwner, Observer { desired_weight ->
             binding.dataHeartAgePage3.text = desired_weight.toString().toEditable()
@@ -197,7 +174,6 @@ class Pg3DataAgeHightWeightFrafment : Fragment() {
                 }
             }
         }
-
     }
 
     private fun showParamOnDisplay() {
@@ -206,15 +182,6 @@ class Pg3DataAgeHightWeightFrafment : Fragment() {
         binding.dataWeightPage3.setText(args.currentDataUser.weight.toString())
         binding.dataDiceweightPage3.setText(args.currentDataUser.desired_weight.toString())
     }
-
-//    private fun createList() {
-//        list["age"] = binding.dataHeartAgePage3.toString()
-//        list["height"] = binding.dataHightPage3.toString()
-//        list["weight"] = binding.dataWeightPage3.toString()
-//        list["desired_weight"] = binding.dataDiceweightPage3.toString()
-//        Log.e(TAG, "list list  $list")
-//    }
-
 
     companion object {
         /**
