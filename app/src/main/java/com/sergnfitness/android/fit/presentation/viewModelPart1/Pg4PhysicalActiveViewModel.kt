@@ -7,8 +7,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sergnfitness.domain.models.user.DataUser
 import com.sergnfitness.domain.models.user.User
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class Pg4PhysicalActiveViewModel : ViewModel() {
+@HiltViewModel
+class Pg4PhysicalActiveViewModel @Inject constructor(): ViewModel() {
 
 
     val TAG = "Pg4PhysicalActiveViewModel"
@@ -25,10 +28,10 @@ class Pg4PhysicalActiveViewModel : ViewModel() {
     private var _page4_button_1_2_per_week = MutableLiveData<Boolean>(false)
     val live_page4_button_1_2_per_week: LiveData<Boolean> = _page4_button_1_2_per_week
 
-    private val _page4_button_3_5_per_week = MutableLiveData<Boolean>(false)
+    private var _page4_button_3_5_per_week = MutableLiveData<Boolean>(false)
     val live_page4_button_3_5_per_week: LiveData<Boolean> = _page4_button_3_5_per_week
 
-    private val _page4_button_every_day_fitness = MutableLiveData<Boolean>(false)
+    private var _page4_button_every_day_fitness = MutableLiveData<Boolean>(false)
     val live_page4_button_every_day_fitness: LiveData<Boolean> = _page4_button_every_day_fitness
 
     fun initLive() {

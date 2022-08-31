@@ -26,11 +26,11 @@ class Pg3DataAgeHightWeightViewModel @Inject constructor(
 
 ) : ViewModel() {
     var userClass: User = User()
+    var dataUser: DataUser = DataUser()
+
     val TAG = "Pg3DataAgeHightWeightViewModel"
 
     var list = mutableMapOf<String, String>()
-
-    var dataUser: DataUser = DataUser()
 
     private val _age = MutableLiveData<Int>()
     val live_age: LiveData<Int> = _age

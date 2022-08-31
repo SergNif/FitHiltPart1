@@ -145,11 +145,9 @@ class Pg4PhysicalActiveFragment : Fragment() {
                     args.currentUser, viewModel.dataUser)
             findNavController().navigate(action)
         }
-
     }
 
     private fun showParamOnDisplay() {
-
         binding.page4ButtonMinActiv.setBackgroundResource(changeFonButtonPage5NoPress.execute())
         binding.page4ButtonFastWalk.setBackgroundResource(changeFonButtonPage5NoPress.execute())
         binding.page4Button12PerWeek.setBackgroundResource(changeFonButtonPage5NoPress.execute())
