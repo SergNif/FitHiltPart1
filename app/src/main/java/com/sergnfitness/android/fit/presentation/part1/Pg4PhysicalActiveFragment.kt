@@ -33,8 +33,8 @@ class Pg4PhysicalActiveFragment : Fragment() {
     lateinit var binding: FragmentPg4PhysicalActiveBinding
     private val args: Pg4PhysicalActiveFragmentArgs by navArgs<Pg4PhysicalActiveFragmentArgs>()
     private val viewModel: Pg4PhysicalActiveViewModel by viewModels<Pg4PhysicalActiveViewModel>()
-    val changeFonButtonPage5NoPress = ChangeFonButtonPage5()
-    val changeFonButtonPage5 = ChangeFonButtonPage5NoPress()
+    private val changeFonButtonPage5NoPress = ChangeFonButtonPage5()
+    private val changeFonButtonPage5 = ChangeFonButtonPage5NoPress()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,7 +43,7 @@ class Pg4PhysicalActiveFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_pg4_physical_active, container, false)
     }
 
-    val TAG = "Fragment Pg4PhysicalActiveFragment"
+    private val taG = "Fragment Pg4PhysicalActiveFragment"
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentPg4PhysicalActiveBinding.bind(view)
@@ -53,11 +53,11 @@ class Pg4PhysicalActiveFragment : Fragment() {
         viewModel.initLive()
         showParamOnDisplay()
 
-        binding.page4ButtonMinActiv.setClickable(true)
-        binding.page4ButtonFastWalk.setClickable(true)
-        binding.page4Button12PerWeek.setClickable(true)
-        binding.page4Button35PerWeek.setClickable(true)
-        binding.page4ButtonEveryDayFitness.setClickable(true)
+        binding.page4ButtonMinActiv.isClickable = true
+        binding.page4ButtonFastWalk.isClickable = true
+        binding.page4Button12PerWeek.isClickable = true
+        binding.page4Button35PerWeek.isClickable = true
+        binding.page4ButtonEveryDayFitness.isClickable = true
 
 
         with(binding) {
@@ -155,7 +155,7 @@ class Pg4PhysicalActiveFragment : Fragment() {
         binding.page4ButtonEveryDayFitness.setBackgroundResource(changeFonButtonPage5NoPress.execute())
 
         if (args.currentDataUser.minimalPhysicalActive) {
-            Log.e(TAG, "showwwww   clickkkkkkk")
+            Log.e(taG, "showwwww   clickkkkkkk")
             binding.page4ButtonMinActiv.setBackgroundResource(changeFonButtonPage5.execute())
         }
         if (args.currentDataUser.fastWalkOnFoot) {
