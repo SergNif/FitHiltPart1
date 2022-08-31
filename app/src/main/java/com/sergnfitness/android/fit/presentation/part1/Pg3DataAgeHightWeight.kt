@@ -60,7 +60,9 @@ class Pg3DataAgeHightWeightFrafment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = Pg3DataAgeHightWeightBinding.bind(view)
-
+viewModel.dataUser = args.currentDataUser
+viewModel.userClass = args.currentUser
+        viewModel.makeList()
         showParamOnDisplay()
 
         fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
@@ -68,10 +70,8 @@ class Pg3DataAgeHightWeightFrafment : Fragment() {
         binding.dataHeartAgePage3.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-
             override fun afterTextChanged(p0: Editable?) {
                 list["age"] = p0.toString()
             }
@@ -81,10 +81,8 @@ class Pg3DataAgeHightWeightFrafment : Fragment() {
         binding.dataHightPage3.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-
             override fun afterTextChanged(p0: Editable?) {
                 list["height"] = p0.toString()
             }
@@ -94,10 +92,8 @@ class Pg3DataAgeHightWeightFrafment : Fragment() {
         binding.dataWeightPage3.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-
             override fun afterTextChanged(p0: Editable?) {
                 list["weight"] = p0.toString()
             }
@@ -110,10 +106,8 @@ class Pg3DataAgeHightWeightFrafment : Fragment() {
         binding.dataDiceweightPage3.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
-
             override fun afterTextChanged(p0: Editable?) {
                 list["desired_weight"] = p0.toString()
             }
@@ -154,7 +148,7 @@ class Pg3DataAgeHightWeightFrafment : Fragment() {
                 Log.e(TAG, "$list  ")
                 viewModel.creatUserClass(list)
                 val action: NavDirections =
-                    Pg3DataAgeHightWeightFrafmentDirections.actionDataAgeHightWeight2ToLoginFragment2(
+                    Pg3DataAgeHightWeightFrafmentDirections.actionDataAgeHightWeight2ToPg4PhysicalActiveFragment(
                         args.currentUser, viewModel.dataUser)
                 findNavController().navigate(action)
             } else {

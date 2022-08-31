@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_button_text_fon_page5.xml" value="0.265" />
         <entry key="app/src/main/res/layout/activity_dictionary.xml" value="0.27708333333333335" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.5796875" />
         <entry key="app/src/main/res/layout/content_dictionary.xml" value="0.5796875" />

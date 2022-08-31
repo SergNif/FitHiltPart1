@@ -70,9 +70,54 @@
         <argument
             android:name="currentUser"
             app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
         <action
-            android:id="@+id/action_dataAgeHightWeight2_to_loginFragment2"
+            android:id="@+id/action_dataAgeHightWeight2_to_pg4PhysicalActiveFragment"
+            app:destination="@id/pg4PhysicalActiveFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pg4PhysicalActiveFragment"
+        android:name="com.sergnfitness.android.fit.presentation.part1.Pg4PhysicalActiveFragment"
+        android:label="fragment_pg4_physical_active"
+        tools:layout="@layout/fragment_pg4_physical_active" >
+        <action
+            android:id="@+id/action_pg4PhysicalActiveFragment_to_pg5SourceProteinFragment"
+            app:destination="@id/pg5SourceProteinFragment" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
+    </fragment>
+    <fragment
+        android:id="@+id/pg5SourceProteinFragment"
+        android:name="com.sergnfitness.android.fit.presentation.part1.Pg5SourceProteinFragment"
+        android:label="fragment_pg5_source_protein"
+        tools:layout="@layout/fragment_pg5_source_protein" >
+        <action
+            android:id="@+id/action_pg5SourceProteinFragment_to_pg6SourceFiberFragment"
+            app:destination="@id/pg6SourceFiberFragment" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
+    </fragment>
+    <fragment
+        android:id="@+id/pg6SourceFiberFragment"
+        android:name="com.sergnfitness.android.fit.presentation.part1.Pg6SourceFiberFragment"
+        android:label="fragment_pg6_source_fiber"
+        tools:layout="@layout/fragment_pg6_source_fiber" >
+        <action
+            android:id="@+id/action_pg6SourceFiberFragment_to_loginFragment2"
             app:destination="@id/loginFragment2" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
         <argument
             android:name="currentDataUser"
             app:argType="com.sergnfitness.domain.models.user.DataUser" />
