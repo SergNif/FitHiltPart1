@@ -70,33 +70,41 @@
 
 
 
-        <TextView
+        <ToggleButton
             android:id="@+id/page8_button_water_without_gas"
             android:text="Пью негазированную воду"
+            android:textOn="Пью негазированную воду"
+            android:textOff="Пью негазированную воду"
 
             app:layout_constraintTop_toBottomOf="@+id/text_up_page3"
             style="@style/text_data_page4"
             tools:ignore="MissingConstraints" />
 
-        <TextView
+        <ToggleButton
             android:id="@+id/page8_button_water_shugar"
             android:text="Часто пью сладкие газировки"
+            android:textOn="Часто пью сладкие газировки"
+            android:textOff="Часто пью сладкие газировки"
 
             app:layout_constraintTop_toBottomOf="@+id/page8_button_water_without_gas"
             style="@style/text_data_page4"
             tools:ignore="MissingConstraints" />
 
-        <TextView
+        <ToggleButton
             android:id="@+id/page8_button_more_cofee"
             android:text="Пью много кофе"
+            android:textOn="Пью много кофе"
+            android:textOff="Пью много кофе"
 
             app:layout_constraintTop_toBottomOf="@+id/page8_button_water_shugar"
             style="@style/text_data_page4"
             tools:ignore="MissingConstraints" />
 
-        <TextView
+        <ToggleButton
             android:id="@+id/page8_button_only_tea"
             android:text="Пью только чай"
+            android:textOn="Пью только чай"
+            android:textOff="Пью только чай"
 
             app:layout_constraintTop_toBottomOf="@+id/page8_button_more_cofee"
             style="@style/text_data_page4"

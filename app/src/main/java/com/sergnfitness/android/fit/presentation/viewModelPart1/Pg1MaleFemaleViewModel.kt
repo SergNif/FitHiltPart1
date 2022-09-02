@@ -7,8 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sergnfitness.android.model.CoinListState
-import com.sergnfitness.data.api.ApiServer
-import com.sergnfitness.data.api.RetrofitInstanceModule
+import com.sergnfitness.domain.models.user.DataUser
 import com.sergnfitness.domain.models.user.User
 import com.sergnfitness.domain.repository.ApiRepository
 
@@ -37,15 +36,25 @@ class Pg1MaleFemaleViewModel @Inject constructor(
 //    private val getUserNameUseCase by lazy(LazyThreadSafetyMode.NONE) { GetUserNameUseCase(userRepository = userRepository) }
 //    private val getIdSharedPreference = GetIdSharedPreference()
 //    private val saveUserNameUseCase by lazy(LazyThreadSafetyMode.NONE) { SaveUserNameUseCase(userRepository = userRepository) }
-    val TAG = "Pg1MaleFemaleViewModel"
+    val taG = "Pg1MaleFemaleViewModel"
+
+    lateinit var userClass: User
+    lateinit var dataUser: DataUser
+
     private val _resultLive = MutableLiveData<String>()
     val resultLive: LiveData<String> = _resultLive
+
+    private val _man = MutableLiveData<Boolean>()
+    val live_man: LiveData<Boolean> = _man
+
+    private val _woman = MutableLiveData<Boolean>()
+    val live_woman: LiveData<Boolean> = _woman
 
     private val _state = MutableLiveData<CoinListState>()
     val state: LiveData<CoinListState> = _state
 
-    private val  _mm = MutableLiveData<User>()
-    val mm:LiveData<User> = _mm
+    private val _mm = MutableLiveData<User>()
+    val mm: LiveData<User> = _mm
 
     private val _userLiveData = MutableLiveData<User?>()
     val userLiveData: LiveData<User?> = _userLiveData
@@ -54,9 +63,9 @@ class Pg1MaleFemaleViewModel @Inject constructor(
     val userResourceLiveData: LiveData<Resource<Any>> = _userResourceLiveData
 
     init {
-        Log.e(TAG, "init Pg1MaleFemaleViewModel")
+        Log.e(taG, "init Pg1MaleFemaleViewModel")
 //        getCoins()
-        Log.e(TAG, "init Pg1MaleFemaleViewModel")
+        Log.e(taG, "init Pg1MaleFemaleViewModel")
     }
 
     fun save(textv: String) {
@@ -82,54 +91,60 @@ class Pg1MaleFemaleViewModel @Inject constructor(
         _resultLive.value = result
     }
 
-    fun queryOfEmaiPassword(email:String, password:String) = viewModelScope.launch {
-        Log.e(TAG, "inside query")
+    fun queryOfEmaiPassword(email: String, password: String) = viewModelScope.launch {
+        Log.e(taG, "inside query")
 
         safeCallGetUserOfEmailPasswordViewModel(email, password)
     }
-    private suspend fun safeCallGetUserOfEmailPasswordViewModel(email:String, password:String) {
+
+    private suspend fun safeCallGetUserOfEmailPasswordViewModel(email: String, password: String) {
 //        _newsLiveData.postValue(Resource.Loading())
 
 //        val retroService = RetrofitInstanceModule.getRetroInstance().create(ApiServer::class.java)
-        val call = apiRepository.getUserOfEmailPasswordRepos(emailQuery = email, passwQuery = password)
+        val call =
+            apiRepository.getUserOfEmailPasswordRepos(emailQuery = email, passwQuery = password)
         call.enqueue(object : Callback<User> {
             override fun onFailure(call: Call<User>, t: Throwable) {
-                Log.e(TAG, "Retrofit 1")
+                Log.e(taG, "Retrofit 1")
                 _userLiveData.postValue(null)
             }
+
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful) {
                     // получен ответ от сервера после записи данных
-                    Log.e(TAG, "Retrofit 2 ${response.body()?.id}")
+                    Log.e(taG, "Retrofit 2 ${response.body()?.id}")
                     response.body().let { res ->
                         _userLiveData.postValue(res)
                     }
                 } else {
                     _userLiveData.postValue(null)
-                    Log.e(TAG, "Retrofit 3")
+                    Log.e(taG, "Retrofit 3")
                 }
             }
         })
     }
-    fun queryOfId(id:Int) = viewModelScope.launch {
-        Log.e(TAG, "inside query")
+
+    fun queryOfId(id: Int) = viewModelScope.launch {
+        Log.e(taG, "inside query")
 
         safeCallGetUserOfId(id)
     }
-    suspend fun safeCallGetUserOfId(id:Int) {
+
+    suspend fun safeCallGetUserOfId(id: Int) {
         _userResourceLiveData.postValue(Resource.Loading())
-        Log.e(TAG, "Retrofit 0")
+        Log.e(taG, "Retrofit 0")
 //        val retroService = RetrofitInstanceModule.getRetroInstance().create(ApiServer::class.java)
         val call = apiRepository.getUserOfIdRepos(id = id)
         call.enqueue(object : Callback<User> {
             override fun onFailure(call: Call<User>, t: Throwable) {
-                Log.e(TAG, "Retrofit 1")
+                Log.e(taG, "Retrofit 1")
                 _userResourceLiveData.postValue(Resource.Error(t.message.toString()))
                 _userLiveData.postValue(null)
             }
+
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 _userResourceLiveData.postValue(Resource.Loading(response))
-                Log.e(TAG, "Retrofit 2 ${response.body()?.id}")
+                Log.e(taG, "Retrofit 2 ${response.body()?.id}")
                 if (response.isSuccessful && response.body() != null) {
 
                     // получен ответ от сервера после записи данных
@@ -138,7 +153,7 @@ class Pg1MaleFemaleViewModel @Inject constructor(
                         _userResourceLiveData.postValue(Resource.Success(res))
                     }
                 } else {
-                    Log.e(TAG, "${response.message()} Retrofit 3")
+                    Log.e(taG, "${response.message()} Retrofit 3")
                     _userLiveData.postValue(null)
                     _userResourceLiveData.postValue(Resource.Error("${response.message()} No this data"))
                 }
@@ -146,55 +161,19 @@ class Pg1MaleFemaleViewModel @Inject constructor(
         })
     }
 
-//    fun getNews(id: Int) =
-//        viewModelScope.launch {
-//            _newsLiveData.postValue(Resource.Loading())
-//            val response = getUserOfIdApiUseCase.invoke(id = id)//repository.getNews(countryCode = countryCode, pageNumber = newsPage)
-//            if (response.isSuccessful) {
-//                response.body().let { res ->
-//                    _newsLiveData.postValue(Resource.Success(res))
-//                }
-//            } else {
-//                _newsLiveData.postValue(Resource.Error(message = response.message()))
-//            }
-//        }
+    fun changeimageViewBoy() {
+        _man.value = true
+        _woman.value = false
+        dataUser.man = true
+        dataUser.woman = false
+        Log.e(taG, "woman ${dataUser.woman}  man    ${dataUser.man}")
+    }
 
-
-//    fun getCoins() {
-//        Log.e(TAG, "init Pg1MaleFemaleViewModel Get coins")
-//        getUserOfIdApiUseCase().let { result ->
-//            when (result) {
-//                is Resource.Succes<*> -> {
-//                    _state.value = CoinListState(coins = (result.data
-//                        ?: "") as String) // CoinListState(coins = result.data ?: emptyList())
-//
-//                }
-//                is Resource.Error<*> -> {
-//                    _state.value =
-//                        CoinListState(error = result.message ?: "An unexpected error occurred!")
-//                }
-//                is Resource.Loading<*> -> {
-//                    _state.value = CoinListState(isLoading = true)
-//                }
-//            }
-//        }//            launchIn(viewModelScope)
-//    }
-
-//    fun getuserOfIdApiViewModel(id: Int) =
-//        viewModelScope.launch {
-//            _newsLiveData.postValue(Resource.Loading())
-//            val response = getUserOfIdApiUseCase.invoke(id = id)
-//
-//            if (response.isSuccessful) {
-//                _mm.postValue(response.body()!!)
-////                response.body().let { ress ->_mm }
-//                response.body().let { res ->
-//                    _newsLiveData  //.postValue(Resource.Succes(res))
-//                    Log.e(TAG, "getuserOfIdApiViewModel  ${_newsLiveData.value}")
-//                }
-//            } else {
-//                _newsLiveData.postValue(Resource.Error(message = response.message()))
-//            }
-//        }
-
+    fun changeimageViewGirl() {
+        _man.value = false
+        _woman.value = true
+        dataUser.man = false
+        dataUser.woman = true
+        Log.e(taG, "woman ${dataUser.woman}  man    ${dataUser.man}")
+    }
 }

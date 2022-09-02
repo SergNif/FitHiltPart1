@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:background="@color/color_page_data_fon_white"
         android:textColor="#190F22"
-        tools:context=".presentation.part1.Pg7FoodsFragment2">
+        tools:context=".presentation.part1.Pg7FoodsFragment">
 
 
         <!-- TODO: Update blank fragment layout -->
@@ -89,16 +89,20 @@
                 android:orientation="horizontal"
                 android:layout_marginVertical="5sp">
 
-                <TextView
+                <ToggleButton
                     android:id="@+id/text_page6_egg"
                     android:text="Яйца"
+                    android:textOn="Яйца"
+                    android:textOff="Яйца"
 
                     style="@style/text_data_page5"
                     />
 
-                <TextView
+                <ToggleButton
                     android:id="@+id/text_page6_chees"
                     android:text="Сыр"
+                    android:textOn="Сыр"
+                    android:textOff="Сыр"
 
                     style="@style/text_data_page5"
                     />
@@ -110,16 +114,20 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginVertical="5sp">
-                <TextView
+                <ToggleButton
 
                     android:id="@+id/text_page6_nut"
                     android:text="Орехи"
+                    android:textOn="Орехи"
+                    android:textOff="Орехи"
 
                     style="@style/text_data_page5"
                     />
-                <TextView
+                <ToggleButton
                     android:id="@+id/text_page6_cottage_cheese"
                     android:text="Творог"
+                    android:textOn="Творог"
+                    android:textOff="Творог"
 
                     style="@style/text_data_page5"
                     />
@@ -132,16 +140,20 @@
                 android:orientation="horizontal"
                 android:layout_marginVertical="5sp">
 
-                <TextView
+                <ToggleButton
                     android:id="@+id/text_page6_kefir"
                     android:text="Кефир"
+                    android:textOn="Кефир"
+                    android:textOff="Кефир"
 
                     style="@style/text_data_page5"
                     />
 
-                <TextView
+                <ToggleButton
                     android:id="@+id/text_page6_yogurt"
                     android:text="Йогурт"
+                    android:textOn="Йогурт"
+                    android:textOff="Йогурт"
 
                     style="@style/text_data_page5"
                     />

@@ -1,13 +1,19 @@
 package com.sergnfitness.android.fit.presentation.part1
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.sergnfitness.android.fit.R
 import com.sergnfitness.android.fit.databinding.FragmentPg8WaterDrinkBinding
+import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5
+import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5NoPress
 import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg8WaterDrinkViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,8 +24,13 @@ class Pg8WaterDrinkFragment : Fragment() {
         fun newInstance() = Pg8WaterDrinkFragment()
     }
 
-    private  val viewModel: Pg8WaterDrinkViewModel by viewModels<Pg8WaterDrinkViewModel>()
+    private val taG = "Pg8WaterDrinkFragment "
+    private val viewModel: Pg8WaterDrinkViewModel by viewModels<Pg8WaterDrinkViewModel>()
     private lateinit var binding: FragmentPg8WaterDrinkBinding
+    private val args: Pg8WaterDrinkFragmentArgs by navArgs()
+
+    private val changeFonButtonPage5NoPress = ChangeFonButtonPage5()
+    private val changeFonButtonPage5 = ChangeFonButtonPage5NoPress()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -28,147 +39,82 @@ class Pg8WaterDrinkFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_pg8_water_drink, container, false)
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentPg8WaterDrinkBinding.bind(view)
+        viewModel.dataUser = args.currentDataUser
+        viewModel.userClass = args.currentUser
 
-        //        binding.textPage5Chiken.setOnClickListener {
-//            viewModel.changeColorButtonPage51()
-//            val navController = findNavController()
-//            navController.run {
-//                popBackStack()
-//                navigate(R.id.page5Data2Fragment)
-//            }
-//        }
-//        binding.textPage5Turkey.setOnClickListener {
-//            viewModel.changeColorButtonPage52()
-//            val navController = findNavController()
-//            navController.run {
-//                popBackStack()
-//                navigate(R.id.page5Data2Fragment)
-//            }
-//        }
-//        binding.page5ButtonPork.setOnClickListener {
-//            viewModel.changeColorButtonPage53()
-//            val navController = findNavController()
-//            navController.run {
-//                popBackStack()
-//                navigate(R.id.page5Data2Fragment)
-//            }
-//        }
-//        binding.page5Beef.setOnClickListener {
-//            viewModel.changeColorButtonPage54()
-//            val navController = findNavController()
-//            navController.run {
-//                popBackStack()
-//                navigate(R.id.page5Data2Fragment)
-//            }
-//        }
-//        binding.page5ButtonFish.setOnClickListener {
-//            viewModel.changeColorButtonPage55()
-//            val navController = findNavController()
-//            navController.run {
-//                popBackStack()
-//                navigate(R.id.page5Data2Fragment)
-//            }
-//        }
-//        binding.page5Seafood.setOnClickListener {
-//            viewModel.changeColorButtonPage56()
-//            val navController = findNavController()
-//            navController.run {
-//                popBackStack()
-//                navigate(R.id.page5Data2Fragment)
-//            }
-//        }
-//        binding.page5ButtonWithoutMeat.setOnClickListener {
-//            viewModel.changeColorButtonPage57()
-//            val navController = findNavController()
-//            navController.run {
-//                popBackStack()
-//                navigate(R.id.page5Data2Fragment)
-//            }
-//        }
-//        binding.textPage5WithoutFish.setOnClickListener {
-//            viewModel.changeColorButtonPage58()
-//            val navController = findNavController()
-//            navController.run {
-//                popBackStack()
-//                navigate(R.id.page5Data2Fragment)
-//            }
-//        }
+        viewModel.initLive()
 
-//        viewModel.livepage5Button1.observe(viewLifecycleOwner, Observer { color ->
-//            modifiedButton = true
-////            binding.textPage5Chiken.setBackgroundColor(Color.parseColor(color))
-//            binding.textPage5Chiken.setBackgroundResource(color)
-//        })
-//        viewModel.livepage5Button2.observe(viewLifecycleOwner, Observer { color ->
-//            modifiedButton = true
-////            binding.textPage5Turkey.setBackgroundColor(Color.parseColor(color))
-//            binding.textPage5Turkey.setBackgroundResource(color)
-//        })
-//        viewModel.livepage5Button3.observe(viewLifecycleOwner, Observer { color ->
-//            modifiedButton = true
-////            binding.page5ButtonPork.setBackgroundColor(Color.parseColor(color))
-//            binding.page5ButtonPork.setBackgroundResource(color)
-//        })
-//        viewModel.livepage5Button4.observe(viewLifecycleOwner, Observer { color ->
-//            modifiedButton = true
-////            binding.page5Beef.setBackgroundColor(Color.parseColor(color))
-//            binding.page5Beef.setBackgroundResource(color)
-//        })
-//        viewModel.livepage5Button5.observe(viewLifecycleOwner, Observer { color ->
-//            modifiedButton = true
-////            binding.page5ButtonFish.setBackgroundColor(Color.parseColor(color))
-//            binding.page5ButtonFish.setBackgroundResource(color)
-//        })
-//        viewModel.livepage5Button6.observe(viewLifecycleOwner, Observer { color ->
-//            modifiedButton = true
-////            binding.page5Seafood.setBackgroundColor(Color.parseColor(color))
-//            binding.page5Seafood.setBackgroundResource(color)
-//        })
-//        viewModel.livepage5Button7.observe(viewLifecycleOwner, Observer { color ->
-//            modifiedButton = true
-////            binding.page5ButtonWithoutMeat.setBackgroundColor(Color.parseColor(color))
-//            binding.page5ButtonWithoutMeat.setBackgroundResource(color)
-//        })
-//        viewModel.livepage5Button8.observe(viewLifecycleOwner, Observer { color ->
-//            modifiedButton = true
-////            binding.textPage5WithoutFish.setBackgroundColor(Color.parseColor(color))
-//            binding.textPage5WithoutFish.setBackgroundResource(color)
-//        })
+        with(binding) {
+            page8ButtonWaterWithoutGas.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    viewModel.changepage8ButtonWaterWithoutGas(true)
+                    page8ButtonWaterWithoutGas.setBackgroundResource(changeFonButtonPage5.execute())
+                    page8ButtonWaterShugar.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                    page8ButtonMoreCofee.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                    page8ButtonOnlyTea.setBackgroundResource(changeFonButtonPage5NoPress.execute())
 
-
-//        binding.textBack.setOnClickListener {
-////            if (modifiedButton){viewModel.createLocalDataPage5()}
-//            findNavController().popBackStack()
-//        }
-//        binding.textNext.setOnClickListener {
-////        if (modifiedButton){viewModel.createLocalDataPage5()}
-//            findNavController().navigate(R.id.action_page5Data2Fragment_to_page6Data2Fragment)
-//        }
-//    }
-//
-//    companion object {
-//        /**
-//         * Use this factory method to create a new instance of
-//         * this fragment using the provided parameters.
-//         *
-//         * @param param1 Parameter 1.
-//         * @param param2 Parameter 2.
-//         * @return A new instance of fragment Page5Data2Fragment.
-//         */
-//        // TODO: Rename and change types and number of parameters
-//        @JvmStatic
-//        fun newInstance(param1: String, param2: String) =
-//            Pg5SourceProteinFragment().apply {
-//                arguments = Bundle().apply {
-//                    putString(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
-//                }
-//            }
-
+                    page8ButtonWaterShugar.isChecked = false
+                    page8ButtonMoreCofee.isChecked = false
+                    page8ButtonOnlyTea.isChecked = false
+                } else {
+                    viewModel.changepage8ButtonWaterWithoutGas(false)
+                }
+            }
+            page8ButtonWaterShugar.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    viewModel.changepage8ButtonWaterShugar(true)
+                    page8ButtonWaterWithoutGas.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                    page8ButtonWaterShugar.setBackgroundResource(changeFonButtonPage5.execute())
+                    page8ButtonMoreCofee.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                    page8ButtonOnlyTea.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                } else {
+                    viewModel.changepage8ButtonWaterShugar(false)
+                    page8ButtonWaterWithoutGas.isChecked = false
+                    page8ButtonMoreCofee.isChecked = false
+                    page8ButtonOnlyTea.isChecked = false
+                }
+            }
+            page8ButtonMoreCofee.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    viewModel.changepage8ButtonMoreCofee(true)
+                    page8ButtonWaterWithoutGas.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                    page8ButtonWaterShugar.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                    page8ButtonMoreCofee.setBackgroundResource(changeFonButtonPage5.execute())
+                    page8ButtonOnlyTea.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                } else {
+                    viewModel.changepage8ButtonMoreCofee(false)
+                    page8ButtonWaterWithoutGas.isChecked = false
+                    page8ButtonWaterShugar.isChecked = false
+                    page8ButtonOnlyTea.isChecked = false
+                }
+            }
+            page8ButtonOnlyTea.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    viewModel.changepage8ButtonOnlyTea(true)
+                    page8ButtonWaterWithoutGas.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                    page8ButtonWaterShugar.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                    page8ButtonMoreCofee.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                    page8ButtonOnlyTea.setBackgroundResource(changeFonButtonPage5.execute())
+                } else {
+                    viewModel.changepage8ButtonOnlyTea(false)
+                    page8ButtonWaterWithoutGas.isChecked = false
+                    page8ButtonWaterShugar.isChecked = false
+                    page8ButtonMoreCofee.isChecked = false
+                }
+            }
+        }
+        binding.textBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+        binding.textNext.setOnClickListener {
+            Log.e(taG, "${args.currentUser}")
+            val action: NavDirections =
+                Pg8WaterDrinkFragmentDirections.actionPg8WaterDrinkFragmentToPg9TypicalDayFragment(
+                    args.currentUser, viewModel.dataUser)
+            findNavController().navigate(action)
+        }
     }
-
 }

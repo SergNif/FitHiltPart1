@@ -1,13 +1,19 @@
 package com.sergnfitness.android.fit.presentation.part1
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.sergnfitness.android.fit.R
 import com.sergnfitness.android.fit.databinding.FragmentPg6SourceFiberBinding
+import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5
+import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5NoPress
 import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg6SourceFiberViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -18,8 +24,14 @@ class Pg6SourceFiberFragment : Fragment() {
         fun newInstance() = Pg6SourceFiberFragment()
     }
 
+    private val taG = "Fragment Pg6SourceFiberFragment"
     private val viewModel: Pg6SourceFiberViewModel by viewModels<Pg6SourceFiberViewModel>()
     lateinit var binding: FragmentPg6SourceFiberBinding
+    private val args: Pg6SourceFiberFragmentArgs by navArgs()
+
+    private val changeFonButtonPage5NoPress = ChangeFonButtonPage5()
+    private val changeFonButtonPage5 = ChangeFonButtonPage5NoPress()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?,
@@ -31,142 +43,97 @@ class Pg6SourceFiberFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentPg6SourceFiberBinding.bind(view)
+        viewModel.dataUser = args.currentDataUser
+        viewModel.userClass = args.currentUser
 
-        //        binding.textPage6Zukini.setOnClickListener { viewModel.changeColorButtonPage61()
-//                    val navController = findNavController()
-//            navController.run {
-//                popBackStack()
-//                navigate(R.id.page6Data2Fragment)
-//            }
-//
-//        }
-//        binding.textPage6Tomato.setOnClickListener { viewModel.changeColorButtonPage62()
-//                    val navController = findNavController()
-//            navController.run {
-//                popBackStack()
-//                navigate(R.id.page6Data2Fragment)
-//            }
-//
-//        }
-//        binding.textPage6Baklagan.setOnClickListener { viewModel.changeColorButtonPage63()
-//                    val navController = findNavController()
-//            navController.run {
-//                popBackStack()
-//                navigate(R.id.page6Data2Fragment)
-//            }
-//
-//        }
-//        binding.textPage6ColorCabbage.setOnClickListener { viewModel.changeColorButtonPage64()
-//                    val navController = findNavController()
-//            navController.run {
-//                popBackStack()
-//                navigate(R.id.page6Data2Fragment)
-//            }
-//
-//        }
-//        binding.textPage6Ogurz.setOnClickListener { viewModel.changeColorButtonPage65()
-//                    val navController = findNavController()
-//            navController.run {
-//                popBackStack()
-//                navigate(R.id.page6Data2Fragment)
-//            }
-//
-//        }
-//        binding.textPage6Broccoli.setOnClickListener { viewModel.changeColorButtonPage66()
-//                    val navController = findNavController()
-//            navController.run {
-//                popBackStack()
-//                navigate(R.id.page6Data2Fragment)
-//            }
-//
-//        }
-//        binding.page5ButtonWithoutMeat.setOnClickListener { viewModel.changeColorButtonPage67()
-//                    val navController = findNavController()
-//            navController.run {
-//                popBackStack()
-//                navigate(R.id.page6Data2Fragment)
-//            }
-//
-//        }
-//        binding.textPage5WithoutFish.setOnClickListener { viewModel.changeColorButtonPage68()
-//                    val navController = findNavController()
-//            navController.run {
-//                popBackStack()
-//                navigate(R.id.page6Data2Fragment)
-//            }
-//
-//        }
+        viewModel.initLive()
 
-//        viewModel.livepage6Button1.observe(viewLifecycleOwner, Observer { color ->
-//            modifiedButton = true
-////            binding.textPage6Zukini.setBackgroundColor(Color.parseColor(color))
-//            binding.textPage6Zukini.setBackgroundResource(color)
-//        })
-//        viewModel.livepage6Button2.observe(viewLifecycleOwner, Observer { color ->
-//            modifiedButton = true
-////            binding.textPage6Tomato.setBackgroundColor(Color.parseColor(color))
-//            binding.textPage6Tomato.setBackgroundResource(color)
-//        })
-//        viewModel.livepage6Button3.observe(viewLifecycleOwner, Observer { color ->
-//            modifiedButton = true
-////            binding.textPage6Baklagan.setBackgroundColor(Color.parseColor(color))
-//            binding.textPage6Baklagan.setBackgroundResource(color)
-//        })
-//        viewModel.livepage6Button4.observe(viewLifecycleOwner, Observer { color ->
-//            modifiedButton = true
-////            binding.textPage6ColorCabbage.setBackgroundColor(Color.parseColor(color))
-//            binding.textPage6ColorCabbage.setBackgroundResource(color)
-//        })
-//        viewModel.livepage6Button5.observe(viewLifecycleOwner, Observer { color ->
-//            modifiedButton = true
-////            binding.textPage6Ogurz.setBackgroundColor(Color.parseColor(color))
-//            binding.textPage6Ogurz.setBackgroundResource(color)
-//        })
-//        viewModel.livepage6Button6.observe(viewLifecycleOwner, Observer { color ->
-//            modifiedButton = true
-////            binding.textPage6Broccoli.setBackgroundColor(Color.parseColor(color))
-//            binding.textPage6Broccoli.setBackgroundResource(color)
-//        })
-//        viewModel.livepage6Button7.observe(viewLifecycleOwner, Observer { color ->
-//            modifiedButton = true
-////            binding.page5ButtonWithoutMeat.setBackgroundColor(Color.parseColor(color))
-//            binding.page5ButtonWithoutMeat.setBackgroundResource(color)
-//        })
-//        viewModel.livepage6Button8.observe(viewLifecycleOwner, Observer { color ->
-//            modifiedButton = true
-////            binding.textPage5WithoutFish.setBackgroundColor(Color.parseColor(color))
-//            binding.textPage5WithoutFish.setBackgroundResource(color)
-//        })
+        with(binding) {
+            textPage6Zukini.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    viewModel.changetextPage6Zukini(true)
+                    textPage6Zukini.setBackgroundResource(changeFonButtonPage5.execute())
+                } else {
+                    viewModel.changetextPage6Zukini(false)
+                    textPage6Zukini.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                }
+            }
+            textPage6Tomato.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    viewModel.changetextPage6Tomato(true)
+                    textPage6Tomato.setBackgroundResource(changeFonButtonPage5.execute())
+                } else {
+                    viewModel.changetextPage6Tomato(false)
+                    textPage6Tomato.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                }
+            }
+            textPage6Baklagan.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    viewModel.changetextPage6Baklagan(true)
+                    textPage6Baklagan.setBackgroundResource(changeFonButtonPage5.execute())
+                } else {
+                    viewModel.changetextPage6Baklagan(false)
+                    textPage6Baklagan.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                }
+            }
+            textPage6ColorCabbage.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    viewModel.changetextPage6ColorCabbage(true)
+                    textPage6ColorCabbage.setBackgroundResource(changeFonButtonPage5.execute())
 
-//        binding.textBack.setOnClickListener{
-////            if (modifiedButton){viewModel.createLocalDataPage6()}
-//            findNavController().popBackStack()
-//        }
-//        binding.textNext.setOnClickListener{
-////            if (modifiedButton){viewModel.createLocalDataPage6()}
-//            findNavController().navigate(R.id.action_page6Data2Fragment_to_page7Data2Fragment)
-//        }
-//    }
-//
-//    companion object {
-//        /**
-//         * Use this factory method to create a new instance of
-//         * this fragment using the provided parameters.
-//         *
-//         * @param param1 Parameter 1.
-//         * @param param2 Parameter 2.
-//         * @return A new instance of fragment Page6Data2Fragment.
-//         */
-//        // TODO: Rename and change types and number of parameters
-//        @JvmStatic
-//        fun newInstance(param1: String, param2: String) =
-//            Pg6SourceFiberFragment().apply {
-//                arguments = Bundle().apply {
-//                    putString(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
-//                }
-//            }
+                } else {
+                    textPage6ColorCabbage.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                    viewModel.changetextPage6ColorCabbage(false)
+                }
+            }
+            textPage6Ogurz.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    viewModel.changetextPage6Ogurz(true)
+                    textPage6Ogurz.setBackgroundResource(changeFonButtonPage5.execute())
+                } else {
+                    viewModel.changetextPage6Ogurz(false)
+                    textPage6Ogurz.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                }
+            }
+            textPage6Broccoli.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    viewModel.changetextPage6Broccoli(true)
+                    textPage6Broccoli.setBackgroundResource(changeFonButtonPage5.execute())
+                } else {
+                    viewModel.changetextPage6Ogurz(false)
+                    textPage6Broccoli.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                }
+            }
+            textPage6Avocado.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    viewModel.changetextPage6ButtonMuhroms(true)
+                    textPage6Avocado.setBackgroundResource(changeFonButtonPage5.execute())
 
+                } else {
+                    textPage6Avocado.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                    viewModel.changetextPage6ButtonMuhroms(false)
+                }
+            }
+            textPage6ButtonMuhroms.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    viewModel.changetextPage6Avocado(true)
+                    textPage6ButtonMuhroms.setBackgroundResource(changeFonButtonPage5.execute())
+                } else {
+                    viewModel.changetextPage6Avocado(false)
+                    textPage6ButtonMuhroms.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                }
+            }
+        }
 
+        binding.textBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+        binding.textNext.setOnClickListener {
+            Log.e(taG, "${args.currentUser}")
+            val action: NavDirections =
+                Pg6SourceFiberFragmentDirections.actionPg6SourceFiberFragmentToPg7FoodsFragment(
+                    args.currentUser, viewModel.dataUser)
+            findNavController().navigate(action)
+        }
     }
 }

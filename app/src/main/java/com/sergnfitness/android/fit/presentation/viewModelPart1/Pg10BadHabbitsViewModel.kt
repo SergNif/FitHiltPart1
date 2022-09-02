@@ -1,4 +1,4 @@
-package com.sergnfitness.android.fit.presentation.part1
+package com.sergnfitness.android.fit.presentation.viewModelPart1
 
 import androidx.lifecycle.ViewModel
 

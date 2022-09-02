@@ -1,6 +1,5 @@
 package com.sergnfitness.android.fit.presentation.part1
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.sergnfitness.android.fit.R
 import com.sergnfitness.android.fit.databinding.FragmentPg10BadHabbitsBinding
+import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg10BadHabbitsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

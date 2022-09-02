@@ -137,6 +137,10 @@ viewModel.userClass = args.currentUser
             list["desired_weight"] = desired_weight.toString()
             Log.e(TAG, "$list  ")
         })
+        binding.textBack.setOnClickListener {
+//            if (modifiedButton){viewModel.createLocalDataPage4()}
+            findNavController().popBackStack()
+        }
 
         binding.textNext.setOnClickListener {
             if (

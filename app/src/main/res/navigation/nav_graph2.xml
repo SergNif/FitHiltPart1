@@ -112,9 +112,69 @@
         android:name="com.sergnfitness.android.fit.presentation.part1.Pg6SourceFiberFragment"
         android:label="fragment_pg6_source_fiber"
         tools:layout="@layout/fragment_pg6_source_fiber" >
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
         <action
-            android:id="@+id/action_pg6SourceFiberFragment_to_loginFragment2"
+            android:id="@+id/action_pg6SourceFiberFragment_to_pg7FoodsFragment"
+            app:destination="@id/pg7FoodsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pg7FoodsFragment"
+        android:name="com.sergnfitness.android.fit.presentation.part1.Pg7FoodsFragment"
+        android:label="fragment_pg7_foods"
+        tools:layout="@layout/fragment_pg7_foods" >
+        <action
+            android:id="@+id/action_pg7FoodsFragment_to_pg8WaterDrinkFragment"
+            app:destination="@id/pg8WaterDrinkFragment" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
+    </fragment>
+    <fragment
+        android:id="@+id/pg9TypicalDayFragment"
+        android:name="com.sergnfitness.android.fit.presentation.part1.Pg9TypicalDayFragment"
+        android:label="fragment_pg9_typical_day"
+        tools:layout="@layout/fragment_pg9_typical_day" >
+        <action
+            android:id="@+id/action_pg9TypicalDayFragment_to_pg10BadHabbitsFragment"
+            app:destination="@id/pg10BadHabbitsFragment" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
+    </fragment>
+    <fragment
+        android:id="@+id/pg10BadHabbitsFragment"
+        android:name="com.sergnfitness.android.fit.presentation.part1.Pg10BadHabbitsFragment"
+        android:label="fragment_page10_bad_habbits"
+        tools:layout="@layout/fragment_page10_bad_habbits" >
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
+        <action
+            android:id="@+id/action_pg10BadHabbitsFragment_to_loginFragment2"
             app:destination="@id/loginFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/pg8WaterDrinkFragment"
+        android:name="com.sergnfitness.android.fit.presentation.part1.Pg8WaterDrinkFragment"
+        android:label="fragment_pg8_water_drink"
+        tools:layout="@layout/fragment_pg8_water_drink" >
+        <action
+            android:id="@+id/action_pg8WaterDrinkFragment_to_pg9TypicalDayFragment"
+            app:destination="@id/pg9TypicalDayFragment" />
         <argument
             android:name="currentUser"
             app:argType="com.sergnfitness.domain.models.user.User" />
