@@ -1,11 +1,14 @@
 package com.sergnfitness.android.fit.presentation.part1
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDirections
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sergnfitness.android.fit.R
 import com.sergnfitness.android.fit.databinding.FragmentPg9TypicalDayBinding
@@ -103,6 +106,16 @@ class Pg9TypicalDayFragment : Fragment() {
                 }
             } else {
             }
+        }
+        binding.textBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+        binding.textNext.setOnClickListener {
+            Log.e(taG, "${args.currentUser}")
+            val action: NavDirections =
+                Pg9TypicalDayFragmentDirections.actionPg9TypicalDayFragmentToPg10BadHabbitsFragment(
+                    args.currentUser, viewModel.dataUser)
+            findNavController().navigate(action)
         }
     }
 }
