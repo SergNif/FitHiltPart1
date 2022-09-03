@@ -1,18 +1,11 @@
-package com.sergnfitness.android.fit.presentation.viewModelPart1
+package com.sergnfitness.android.fit.presentation.part1.part1viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.sergnfitness.domain.models.user.DataUser
 import com.sergnfitness.domain.models.user.User
-import com.sergnfitness.domain.repository.ApiRepository
-import com.sergnfitness.domain.usecase.GetUserOfIdApiUseCase
-import com.sergnfitness.domain.usecase.GetUserSharedPreferenceUseCase
-import com.sergnfitness.domain.usecase.SaveUserSharedPreferenceUseCase
-import com.sergnfitness.domain.usecase.putGetUserClass.CreateExemplarClassDataUserStorageUseCase
-import com.sergnfitness.domain.usecase.putGetUserClass.CreateExemplarClassDataUserStorageUseCase_Factory
 import dagger.hilt.android.lifecycle.HiltViewModel
-import java.time.LocalDateTime
 import javax.inject.Inject
 
 @HiltViewModel

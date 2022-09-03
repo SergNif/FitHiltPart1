@@ -1,4 +1,4 @@
-package com.sergnfitness.android.fit.presentation.viewModelPart1
+package com.sergnfitness.android.fit.presentation.part1.part1viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

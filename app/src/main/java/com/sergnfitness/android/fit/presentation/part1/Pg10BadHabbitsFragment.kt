@@ -14,7 +14,7 @@ import com.sergnfitness.android.fit.R
 import com.sergnfitness.android.fit.databinding.FragmentPg10BadHabbitsBinding
 import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5
 import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5NoPress
-import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg10BadHabbitsViewModel
+import com.sergnfitness.android.fit.presentation.part1.part1viewModel.Pg10BadHabbitsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -70,6 +70,11 @@ private lateinit var binding: FragmentPg10BadHabbitsBinding
                     page10EatNigth.setBackgroundResource(changeFonButtonPage5NoPress.execute())
                     page10FastShugar.setBackgroundResource(changeFonButtonPage5NoPress.execute())
                     page10NothingOfList.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+
+                    viewModel.dataUser.fastFood = true
+                    viewModel.dataUser.laterNight = false
+                    viewModel.dataUser.fastSugar = false
+                    viewModel.dataUser.Nothing = false
                 }
             }
         }
@@ -80,6 +85,11 @@ private lateinit var binding: FragmentPg10BadHabbitsBinding
                     page10EatNigth.setBackgroundResource(changeFonButtonPage5.execute())
                     page10FastShugar.setBackgroundResource(changeFonButtonPage5NoPress.execute())
                     page10NothingOfList.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+
+                    viewModel.dataUser.fastFood = false
+                    viewModel.dataUser.laterNight = true
+                    viewModel.dataUser.fastSugar = false
+                    viewModel.dataUser.Nothing = false
                 }
             }
         }
@@ -90,6 +100,11 @@ private lateinit var binding: FragmentPg10BadHabbitsBinding
                     page10EatNigth.setBackgroundResource(changeFonButtonPage5NoPress.execute())
                     page10FastShugar.setBackgroundResource(changeFonButtonPage5.execute())
                     page10NothingOfList.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+
+                    viewModel.dataUser.fastFood = false
+                    viewModel.dataUser.laterNight = false
+                    viewModel.dataUser.fastSugar = true
+                    viewModel.dataUser.Nothing = false
                 }
             }
         }
@@ -100,6 +115,11 @@ private lateinit var binding: FragmentPg10BadHabbitsBinding
                     page10EatNigth.setBackgroundResource(changeFonButtonPage5NoPress.execute())
                     page10FastShugar.setBackgroundResource(changeFonButtonPage5NoPress.execute())
                     page10NothingOfList.setBackgroundResource(changeFonButtonPage5.execute())
+
+                    viewModel.dataUser.fastFood = false
+                    viewModel.dataUser.laterNight = false
+                    viewModel.dataUser.fastSugar = false
+                    viewModel.dataUser.Nothing = true
                 }
             }
         }
@@ -107,7 +127,9 @@ private lateinit var binding: FragmentPg10BadHabbitsBinding
             findNavController().popBackStack()
         }
         binding.textNext.setOnClickListener {
+            Log.e(taG, "viewModel.dataUser   ${viewModel.dataUser}")
             Log.e(taG, "${args.currentUser}")
+            args.currentUser.email?.let { it1 -> viewModel.createDataUserOnServer(it1) }
             val action: NavDirections =
                 Pg10BadHabbitsFragmentDirections.actionPg10BadHabbitsFragmentToLoginFragment2(
                     args.currentUser, viewModel.dataUser)

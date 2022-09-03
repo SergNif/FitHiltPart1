@@ -5,8 +5,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.sergnfitness.data.api.ApiServer
-import com.sergnfitness.data.api.RetrofitInstanceModule
 import com.sergnfitness.domain.models.user.DataUser
 import com.sergnfitness.domain.models.user.User
 import com.sergnfitness.domain.repository.ApiRepository
@@ -30,7 +28,7 @@ class LoginFragmentViewModel @Inject constructor(
     private val saveUserSharedPreferenceUseCase: SaveUserSharedPreferenceUseCase,
 ) : ViewModel() {
 
-    val TAG = "LoginFragmentViewModel"
+    val taG = "LoginFragmentViewModel"
 
     var dataUser: DataUser = DataUser()
     var user: User = User()
@@ -55,8 +53,10 @@ class LoginFragmentViewModel @Inject constructor(
         return getUserSharedPreferenceUseCase.execute().id == 85000
     }
 
+
+    //************  GET USER classs
     fun queryOfEmaiPassword(email: String, password: String) = viewModelScope.launch {
-        Log.e(TAG, "inside query")
+        Log.e(taG, "inside query")
 
         safeCallGetUserOfEmailPasswordViewModel(email, password)
     }
@@ -68,14 +68,14 @@ class LoginFragmentViewModel @Inject constructor(
         val call =  apiRepository.getUserOfEmailPasswordRepos(emailQuery = email, passwQuery = password)
         call.enqueue(object : Callback<User> {
             override fun onFailure(call: Call<User>, t: Throwable) {
-                Log.e(TAG, "Retrofit 1")
+                Log.e(taG, "Retrofit 1")
                 _userResourceLiveData.postValue(Resource.Error(t.message.toString()))
                 _userLiveData.postValue(null)
             }
 
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 _userResourceLiveData.postValue(Resource.Loading(response))
-                Log.e(TAG, "Retrofit 2 ${response.body()?.id}")
+                Log.e(taG, "Retrofit 2 ${response.body()?.id}")
                 if (response.isSuccessful && response.body() != null) {
 
                     // получен ответ от сервера после записи данных
@@ -84,22 +84,66 @@ class LoginFragmentViewModel @Inject constructor(
                         _userResourceLiveData.postValue(Resource.Success(res))
                     }
                 } else {
-                    Log.e(TAG, "${response.message()} Retrofit 3")
+                    Log.e(taG, "${response.message()} Retrofit 3")
                     _userLiveData.postValue(null)
                     _userResourceLiveData.postValue(Resource.Error("${response.message()} No this data"))
                 }
             }
         })
-
-
     }
+    //*********************   GET USER class
+
+
+    //***************  GET DataUSER  **********
+    fun queryOfEmaiPasswordDataUser(id:Int)//email: String)//, password: String)
+    = viewModelScope.launch {
+        Log.e(taG, "inside query")
+
+        safeCallGetDataUserOfEmailPasswordViewModel(id)//email)//, password)
+    }
+
+    suspend fun safeCallGetDataUserOfEmailPasswordViewModel(idQuery:Int){//email: String){//, password: String) {
+        _dataUserResourceLiveData.postValue(Resource.Loading())
+
+//        val retroService = RetrofitInstanceModule.getRetroInstance().create(ApiServer::class.java)
+        val call =  apiRepository.getDataUserOfEmailPasswordRepos(idQuery = idQuery)// emailQuery = email)//, passwQuery = password)
+        call.enqueue(object : Callback<DataUser> {
+            override fun onFailure(call: Call<DataUser>, t: Throwable) {
+                Log.e(taG, "Retrofit 1")
+                _dataUserResourceLiveData.postValue(Resource.Error(t.message.toString()))
+                _userLiveData.postValue(null)
+            }
+
+            override fun onResponse(call: Call<DataUser>, response: Response<DataUser>) {
+                _dataUserResourceLiveData.postValue(Resource.Loading(response))
+                Log.e(taG, "Retrofit 2 ${response.body()?.id}")
+                if (response.isSuccessful && response.body() != null) {
+
+                    // получен ответ от сервера после записи данных
+                    response.body().let { res ->
+                        _dataUserLiveData.postValue(res)
+                        _dataUserResourceLiveData.postValue(Resource.Success(res))
+                    }
+                } else {
+                    Log.e(taG, "${response.message()} Retrofit 3")
+                    _dataUserLiveData.postValue(null)
+                    _dataUserResourceLiveData.postValue(Resource.Error("${response.message()} No this data"))
+                }
+            }
+        })
+    }
+    //***************  GET DataUSER  **********
+
+
+
+
 
     fun saveUserToSharedPref(it: User) {
         userRepository.saveDataUser(it)
     }
 
     fun createDataUserOnServer(email: String)  = viewModelScope.launch {
-        Log.e(TAG, "inside query")
+        Log.e(taG, "inside query")
 
         safeCallPostDataUserOfEmailViewModel(email)
     }
@@ -111,14 +155,14 @@ class LoginFragmentViewModel @Inject constructor(
         val call =  apiRepository.postQueryCreateUserRepos(email = email, user = dataUser)
         call.enqueue(object : Callback<DataUser> {
             override fun onFailure(call: Call<DataUser>, t: Throwable) {
-                Log.e(TAG, "Retrofit 1")
+                Log.e(taG, "Retrofit 1")
                 _dataUserResourceLiveData.postValue(Resource.Error(t.message.toString()))
                 _dataUserLiveData.postValue(null)
             }
 
             override fun onResponse(call: Call<DataUser>, response: Response<DataUser>) {
                 _dataUserResourceLiveData.postValue(Resource.Loading(response))
-                Log.e(TAG, "Retrofit 2 ${response.body()?.id}")
+                Log.e(taG, "Retrofit 2 ${response.body()?.id}")
                 if (response.isSuccessful && response.body() != null) {
 
                     // получен ответ от сервера после записи данных
@@ -127,13 +171,13 @@ class LoginFragmentViewModel @Inject constructor(
                         _dataUserResourceLiveData.postValue(Resource.Success(res))
                     }
                 } else {
-                    Log.e(TAG, "${response.message()} Retrofit 3")
+                    Log.e(taG, "${response.message()} Retrofit 3")
                     _dataUserLiveData.postValue(null)
                     _dataUserResourceLiveData.postValue(Resource.Error("${response.message()} No this data"))
                 }
             }
         })
-
-
     }
+
+
 }

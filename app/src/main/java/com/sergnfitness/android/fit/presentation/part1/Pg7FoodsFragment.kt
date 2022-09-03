@@ -11,11 +11,10 @@ import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.sergnfitness.android.fit.R
-import com.sergnfitness.android.fit.databinding.FragmentPg6SourceFiberBinding
 import com.sergnfitness.android.fit.databinding.FragmentPg7FoodsBinding
 import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5
 import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5NoPress
-import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg7FoodsViewModel
+import com.sergnfitness.android.fit.presentation.part1.part1viewModel.Pg7FoodsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -60,62 +59,105 @@ class Pg7FoodsFragment : Fragment() {
             textPage6Egg.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     viewModel.changetextPage6Egg(true)
-                    textPage6Egg.setBackgroundResource(changeFonButtonPage5.execute())
+//                    textPage6Egg.setBackgroundResource(changeFonButtonPage5.execute())
                 } else {
                     viewModel.changetextPage6Egg(false)
-                    textPage6Egg.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+//                    textPage6Egg.setBackgroundResource(changeFonButtonPage5NoPress.execute())
                 }
             }
             textPage6Chees.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     viewModel.changetextPage6Chees(true)
-                    textPage6Chees.setBackgroundResource(changeFonButtonPage5.execute())
+//                    textPage6Chees.setBackgroundResource(changeFonButtonPage5.execute())
                 } else {
                     viewModel.changetextPage6Chees(false)
-                    textPage6Chees.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+//                    textPage6Chees.setBackgroundResource(changeFonButtonPage5NoPress.execute())
                 }
             }
             textPage6Nut.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     viewModel.changetextPage6Nut(true)
-                    textPage6Nut.setBackgroundResource(changeFonButtonPage5.execute())
+//                    textPage6Nut.setBackgroundResource(changeFonButtonPage5.execute())
                 } else {
                     viewModel.changetextPage6Nut(false)
-                    textPage6Nut.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+//                    textPage6Nut.setBackgroundResource(changeFonButtonPage5NoPress.execute())
                 }
             }
             textPage6CottageCheese.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     viewModel.changetextPage6CottageCheese(true)
-                    textPage6CottageCheese.setBackgroundResource(changeFonButtonPage5.execute())
+//                    textPage6CottageCheese.setBackgroundResource(changeFonButtonPage5.execute())
                 } else {
                     textPage6CottageCheese.setBackgroundResource(changeFonButtonPage5NoPress.execute())
-                    viewModel.changetextPage6CottageCheese(false)
+//                    viewModel.changetextPage6CottageCheese(false)
                 }
             }
             textPage6Kefir.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     viewModel.changetextPage6Kefir(true)
-                    textPage6Kefir.setBackgroundResource(changeFonButtonPage5.execute())
+//                    textPage6Kefir.setBackgroundResource(changeFonButtonPage5.execute())
                 } else {
                     viewModel.changetextPage6Kefir(false)
-                    textPage6Kefir.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+//                    textPage6Kefir.setBackgroundResource(changeFonButtonPage5NoPress.execute())
                 }
             }
             textPage6Yogurt.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     viewModel.changetextPage6Yogurt(true)
-                    textPage6Yogurt.setBackgroundResource(changeFonButtonPage5.execute())
+//                    textPage6Yogurt.setBackgroundResource(changeFonButtonPage5.execute())
                 } else {
                     viewModel.changetextPage6Yogurt(false)
-                    textPage6Yogurt.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+//                    textPage6Yogurt.setBackgroundResource(changeFonButtonPage5NoPress.execute())
                 }
+            }
+        }
+        viewModel.live_text_page6_egg.observe(viewLifecycleOwner){
+            if (it){
+                binding.textPage6Egg.setBackgroundResource(changeFonButtonPage5.execute())
+            }else{
+                binding.textPage6Egg.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+            }
+        }
+        viewModel.live_text_page6_chees.observe(viewLifecycleOwner){
+            if (it){
+                binding.textPage6Chees.setBackgroundResource(changeFonButtonPage5.execute())
+            }else{
+                binding.textPage6Chees.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+            }
+        }
+        viewModel.live_text_page6_nut.observe(viewLifecycleOwner){
+            if (it){
+                binding.textPage6Nut.setBackgroundResource(changeFonButtonPage5.execute())
+            }else{
+                binding.textPage6Nut.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+            }
+        }
+        viewModel.live_text_page6_cottage_cheese.observe(viewLifecycleOwner){
+            if (it){
+                binding.textPage6CottageCheese.setBackgroundResource(changeFonButtonPage5.execute())
+            }else{
+                binding.textPage6CottageCheese.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+            }
+        }
+        viewModel.live_text_page6_kefir.observe(viewLifecycleOwner){
+            if (it){
+                binding.textPage6Kefir.setBackgroundResource(changeFonButtonPage5.execute())
+            }else{
+                binding.textPage6Kefir.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+            }
+        }
+        viewModel.live_text_page6_yogurt.observe(viewLifecycleOwner){
+            if (it){
+                binding.textPage6Yogurt.setBackgroundResource(changeFonButtonPage5.execute())
+            }else{
+                binding.textPage6Yogurt.setBackgroundResource(changeFonButtonPage5NoPress.execute())
             }
         }
         binding.textBack.setOnClickListener {
             findNavController().popBackStack()
         }
         binding.textNext.setOnClickListener {
+            Log.e(taG, "viewModel.dataUser   ${viewModel.dataUser}")
             Log.e(taG, "${args.currentUser}")
             val action: NavDirections =
                 Pg7FoodsFragmentDirections.actionPg7FoodsFragmentToPg8WaterDrinkFragment(

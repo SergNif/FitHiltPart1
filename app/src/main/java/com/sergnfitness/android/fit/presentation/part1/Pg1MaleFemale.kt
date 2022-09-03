@@ -18,7 +18,7 @@ import com.sergnfitness.android.fit.databinding.Pg1FragmentMaFemale1Binding
 
 import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5
 import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5NoPress
-import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg1MaleFemaleViewModel
+import com.sergnfitness.android.fit.presentation.part1.part1viewModel.Pg1MaleFemaleViewModel
 import com.sergnfitness.domain.models.user.User
 import com.sergnfitness.domain.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,8 +36,8 @@ class Pg1MaleFemale : Fragment() {
     private val viewModel: Pg1MaleFemaleViewModel by viewModels()
 
     //    lateinit var viewModelFactory: Pg1MaleFemaleViewModelFactory
-    val changeFonButtonPage5 = ChangeFonButtonPage5()
-    val changeFonButtonPage5NoPress = ChangeFonButtonPage5NoPress()
+    val changeFonButtonPage5NoPress = ChangeFonButtonPage5()
+    val changeFonButtonPage5 = ChangeFonButtonPage5NoPress()
 
 
     override fun onCreateView(
@@ -69,21 +69,21 @@ class Pg1MaleFemale : Fragment() {
         binding.imageViewGirl.setOnClickListener {
             viewModel.changeimageViewGirl()
 //            viewModel.load()  // "Save ${userName.email} = ${userName.password}"
-            binding.imageViewBoy.setBackgroundResource(changeFonButtonPage5.execute())
-            binding.imageViewGirl.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+//            binding.imageViewBoy.setBackgroundResource(changeFonButtonPage5.execute())
+//            binding.imageViewGirl.setBackgroundResource(changeFonButtonPage5NoPress.execute())
             goNext()
         }
 
         binding.editTextPage1.isVisible = false
         binding.textPage1.isVisible = false
 
-        binding.image.setOnClickListener {
-            val action: NavDirections =
-                Pg1MaleFemaleDirections.actionPg1MaleFemale1ToNext2(args.currentUser,
-                    args.currentDataUser)
-//        findNavController().navigate(R.id.action_pg1MaleFemale1_to_next2)
-            findNavController().navigate(action)
-        }
+//        binding.image.setOnClickListener {
+//            val action: NavDirections =
+//                Pg1MaleFemaleDirections.actionPg1MaleFemale1ToNext2(args.currentUser,
+//                    args.currentDataUser)
+////        findNavController().navigate(R.id.action_pg1MaleFemale1_to_next2)
+//            findNavController().navigate(action)
+//        }
 
         viewModel.userResourceLiveData.observe(viewLifecycleOwner) { responce ->
             when (responce) {
@@ -118,19 +118,25 @@ class Pg1MaleFemale : Fragment() {
 
         viewModel.live_man.observe(viewLifecycleOwner) {
             if (it) {
-                binding.imageViewGirl.setBackgroundResource(changeFonButtonPage5.execute())
-                binding.imageViewBoy.setBackgroundResource(changeFonButtonPage5NoPress.execute())
-            }
-        }
-        viewModel.live_woman.observe(viewLifecycleOwner) {
-            if (it) {
+                Log.e(taG, "showLiveMan(man)  woman ${viewModel.dataUser.woman}  man    ${viewModel.dataUser.man}")
                 binding.imageViewBoy.setBackgroundResource(changeFonButtonPage5.execute())
                 binding.imageViewGirl.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+            }else{
+                binding.imageViewBoy.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.imageViewGirl.setBackgroundResource(changeFonButtonPage5.execute())
             }
         }
+//        viewModel.live_woman.observe(viewLifecycleOwner) {
+//            if (it) {
+//                Log.e(taG, "showLiveWoman(woman)  woman ${viewModel.dataUser.woman}  man    ${viewModel.dataUser.man}")
+//                binding.imageViewBoy.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+//                binding.imageViewGirl.setBackgroundResource(changeFonButtonPage5.execute())
+//            }
+//        }
     }
 
     private fun goNext() {
+        Log.e(taG, "viewModel.dataUser   ${viewModel.dataUser}")
         val action: NavDirections =
             Pg1MaleFemaleDirections.actionPg1MaleFemale1ToNext2(args.currentUser,
                 args.currentDataUser)
@@ -144,12 +150,10 @@ class Pg1MaleFemale : Fragment() {
             binding.imageViewBoy.setBackgroundResource(changeFonButtonPage5.execute())
             binding.imageViewGirl.setBackgroundResource(changeFonButtonPage5NoPress.execute())
         }
-        if (viewModel.dataUser.woman) {
+        else{
             Log.e(taG, "showParamOnDisplay(woman)  woman ${viewModel.dataUser.woman}  man    ${viewModel.dataUser.man}")
             binding.imageViewBoy.setBackgroundResource(changeFonButtonPage5NoPress.execute())
             binding.imageViewGirl.setBackgroundResource(changeFonButtonPage5.execute())
-
         }
-
     }
 }

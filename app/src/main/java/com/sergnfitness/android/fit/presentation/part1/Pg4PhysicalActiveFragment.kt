@@ -15,7 +15,7 @@ import com.sergnfitness.android.fit.R
 import com.sergnfitness.android.fit.databinding.FragmentPg4PhysicalActiveBinding
 import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5
 import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5NoPress
-import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg4PhysicalActiveViewModel
+import com.sergnfitness.android.fit.presentation.part1.part1viewModel.Pg4PhysicalActiveViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 // TODO: Rename parameter arguments, choose names that match
@@ -140,6 +140,7 @@ class Pg4PhysicalActiveFragment : Fragment() {
             findNavController().popBackStack()
         }
         binding.textNext.setOnClickListener {
+            Log.e(taG, "viewModel.dataUser   ${viewModel.dataUser}")
             val action: NavDirections =
                 Pg4PhysicalActiveFragmentDirections.actionPg4PhysicalActiveFragmentToPg5SourceProteinFragment(
                     args.currentUser, viewModel.dataUser)

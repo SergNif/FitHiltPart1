@@ -29,7 +29,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     private val viewModel: LoginFragmentViewModel by viewModels<LoginFragmentViewModel>()
     private val args: LoginFragmentArgs by navArgs<LoginFragmentArgs>()
 
-    val TAG = "Fragment Login"
+    val taG = "Fragment Login"
     lateinit var emailEditText: EditText
 
     // This property is only valid between onCreateView and
@@ -86,29 +86,30 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         viewModel.userResourceLiveData.observe(viewLifecycleOwner) { responce ->
             when (responce) {
                 is Resource.Success -> { // пришел хороший ответ
-                    Log.e(TAG, " Resource.Success  ${responce.data.toString()}")
+                    Log.e(taG, " Resource.Success  ${responce.data.toString()}")
 
                     responce.data?.let {
                         if (it is User) { // сравниваются оля email и password в активити с базой на сервере
                             if (it.email.toString() == emailQuery && it.password.toString() == passwQuery) {
-                                viewModel.createDataUserOnServer(it.email.toString())
+//                                viewModel.createDataUserOnServer(it.email.toString())
+                                it.id?.let { it1 -> viewModel.queryOfEmaiPasswordDataUser(it1) }
                                 viewModel.saveUserToSharedPref(it)
                                 viewModel.user = it
                                 // при совпадении почты и пароля -> переход на следующий фрагмент
                             }
-                            Log.e(TAG, "response is User")
+                            Log.e(taG, "response is User")
                         }
                     }
                     binding.loading.visibility = View.INVISIBLE
                 }
                 is Resource.Error -> {  // при запросе на сервер пришла ошибка
-                    Log.e(TAG, " Resource.Error  ${responce.message.toString()}")
+                    Log.e(taG, " Resource.Error  ${responce.message.toString()}")
 
                     Toast.makeText(requireContext(), responce.message, Toast.LENGTH_LONG).show()
                     binding.loading.visibility = View.INVISIBLE
                 }
                 is Resource.Loading -> {
-                    Log.e(TAG, " Resource.Loading  $responce")
+                    Log.e(taG, " Resource.Loading  $responce")
                     binding.loading.visibility = View.VISIBLE
                 }
             }
@@ -118,7 +119,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         viewModel.dataUserResourceLiveData.observe(viewLifecycleOwner) { responce ->
             when (responce) {
                 is Resource.Success -> { // пришел хороший ответ
-                    Log.e(TAG, " Resource.Success  ${responce.data.toString()}")
+                    Log.e(taG, " Resource.Success  ${responce.data.toString()}")
 
                     responce.data?.let {
 
@@ -130,18 +131,18 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                         findNavController().navigate(action)//(R.id.action_loginFragment2_to_pg1MaleFemale1)
                         // при совпадении почты и пароля -> переход на следующий фрагмент
                     }
-                    Log.e(TAG, "response is User")
+                    Log.e(taG, "response is User")
   
                     binding.loading.visibility = View.INVISIBLE
                 }
                 is Resource.Error -> {  // при запросе на сервер пришла ошибка
-                    Log.e(TAG, " Resource.Error  ${responce.message.toString()}")
+                    Log.e(taG, " Resource.Error  ${responce.message.toString()}")
 
                     Toast.makeText(requireContext(), responce.message, Toast.LENGTH_LONG).show()
                     binding.loading.visibility = View.INVISIBLE
                 }
                 is Resource.Loading -> {
-                    Log.e(TAG, " Resource.Loading  $responce")
+                    Log.e(taG, " Resource.Loading  $responce")
                     binding.loading.visibility = View.VISIBLE
                 }
             }
@@ -150,7 +151,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     override fun onDestroyView() {
         super.onDestroyView()
-        Log.e(TAG, "destroy login fragment")
+        Log.e(taG, "destroy login fragment")
     }
 }
 

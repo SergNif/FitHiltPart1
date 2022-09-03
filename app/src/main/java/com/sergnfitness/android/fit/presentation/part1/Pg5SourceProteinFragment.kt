@@ -15,7 +15,7 @@ import com.sergnfitness.android.fit.R
 import com.sergnfitness.android.fit.databinding.FragmentPg5SourceProteinBinding
 import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5
 import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5NoPress
-import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg5SourceProteinViewModel
+import com.sergnfitness.android.fit.presentation.part1.part1viewModel.Pg5SourceProteinViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -175,6 +175,7 @@ class Pg5SourceProteinFragment : Fragment() {
             findNavController().popBackStack()
         }
         binding.textNext.setOnClickListener {
+            Log.e(taG, "viewModel.dataUser   ${viewModel.dataUser}")
             Log.e(taG, "${args.currentUser}")
             val action: NavDirections =
                 Pg5SourceProteinFragmentDirections.actionPg5SourceProteinFragmentToPg6SourceFiberFragment(

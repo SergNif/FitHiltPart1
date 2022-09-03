@@ -2,13 +2,11 @@ package com.sergnfitness.data.repository
 
 import android.app.Application
 import android.util.Log
-import com.sergnfitness.data.R
 import com.sergnfitness.data.api.ApiServer
 import com.sergnfitness.domain.models.user.DataUser
 import com.sergnfitness.domain.models.user.User
 import com.sergnfitness.domain.repository.ApiRepository
 import retrofit2.Call
-import retrofit2.Response
 import javax.inject.Inject
 
 class ApiRepositoryImpl @Inject constructor(
@@ -33,19 +31,30 @@ class ApiRepositoryImpl @Inject constructor(
         return api.getUserOfEmailPassword(emailQuery = emailQuery,
             passwQuery = passwQuery)//, emailQuery = email, passwQuery = password) //.body().toUser()
     }
+    override suspend fun getDataUserOfEmailPasswordRepos(
+//        emailQuery: String,
+//        passwQuery: String,
+    idQuery: Int,
+    ): Call<DataUser> {
+        return api.getDataUserOfEmail(
+            user_id = idQuery,
+//            user_email = emailQuery,
+//            passwQuery = passwQuery
+        )//, emailQuery = email, passwQuery = password) //.body().toUser()
+    }
 
 
     override suspend fun saveNewUserOfEmailPasswordRepos(
         user: User,
     ): Call<User> {
-        return api.saveNewUserOfEmailPassword(user)//, emailQuery = email, passwQuery = password) //.body().toUser()
+        return api.newUserOfEmailPassword(user)//, emailQuery = email, passwQuery = password) //.body().toUser()
     }
 
     override suspend fun postQueryCreateUserRepos(
         email:String,
         user: DataUser,
     ): Call<DataUser> {
-        return api.postQueryCreateUser(user_email = email, params = user)//, emailQuery = email, passwQuery = password) //.body().toUser()
+        return api.postDataUser(user_email = email, params = user)//, emailQuery = email, passwQuery = password) //.body().toUser()
     }
 
 

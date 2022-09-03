@@ -14,7 +14,7 @@ import com.sergnfitness.android.fit.R
 import com.sergnfitness.android.fit.databinding.FragmentPg9TypicalDayBinding
 import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5
 import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5NoPress
-import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg9TypicalDayViewModel
+import com.sergnfitness.android.fit.presentation.part1.part1viewModel.Pg9TypicalDayViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -111,6 +111,7 @@ class Pg9TypicalDayFragment : Fragment() {
             findNavController().popBackStack()
         }
         binding.textNext.setOnClickListener {
+            Log.e(taG, "viewModel.dataUser   ${viewModel.dataUser}")
             Log.e(taG, "${args.currentUser}")
             val action: NavDirections =
                 Pg9TypicalDayFragmentDirections.actionPg9TypicalDayFragmentToPg10BadHabbitsFragment(

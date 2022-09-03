@@ -14,7 +14,7 @@ import com.sergnfitness.android.fit.R
 import com.sergnfitness.android.fit.databinding.FragmentPg6SourceFiberBinding
 import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5
 import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5NoPress
-import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg6SourceFiberViewModel
+import com.sergnfitness.android.fit.presentation.part1.part1viewModel.Pg6SourceFiberViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -52,76 +52,133 @@ class Pg6SourceFiberFragment : Fragment() {
             textPage6Zukini.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     viewModel.changetextPage6Zukini(true)
-                    textPage6Zukini.setBackgroundResource(changeFonButtonPage5.execute())
+//                    textPage6Zukini.setBackgroundResource(changeFonButtonPage5.execute())
                 } else {
                     viewModel.changetextPage6Zukini(false)
-                    textPage6Zukini.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+//                    textPage6Zukini.setBackgroundResource(changeFonButtonPage5NoPress.execute())
                 }
             }
             textPage6Tomato.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     viewModel.changetextPage6Tomato(true)
-                    textPage6Tomato.setBackgroundResource(changeFonButtonPage5.execute())
+//                    textPage6Tomato.setBackgroundResource(changeFonButtonPage5.execute())
                 } else {
                     viewModel.changetextPage6Tomato(false)
-                    textPage6Tomato.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+//                    textPage6Tomato.setBackgroundResource(changeFonButtonPage5NoPress.execute())
                 }
             }
             textPage6Baklagan.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     viewModel.changetextPage6Baklagan(true)
-                    textPage6Baklagan.setBackgroundResource(changeFonButtonPage5.execute())
+//                    textPage6Baklagan.setBackgroundResource(changeFonButtonPage5.execute())
                 } else {
                     viewModel.changetextPage6Baklagan(false)
-                    textPage6Baklagan.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+//                    textPage6Baklagan.setBackgroundResource(changeFonButtonPage5NoPress.execute())
                 }
             }
             textPage6ColorCabbage.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     viewModel.changetextPage6ColorCabbage(true)
-                    textPage6ColorCabbage.setBackgroundResource(changeFonButtonPage5.execute())
+//                    textPage6ColorCabbage.setBackgroundResource(changeFonButtonPage5.execute())
 
                 } else {
+//                    viewModel.changetextPage6ColorCabbage(false)
                     textPage6ColorCabbage.setBackgroundResource(changeFonButtonPage5NoPress.execute())
-                    viewModel.changetextPage6ColorCabbage(false)
                 }
             }
             textPage6Ogurz.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     viewModel.changetextPage6Ogurz(true)
-                    textPage6Ogurz.setBackgroundResource(changeFonButtonPage5.execute())
+//                    textPage6Ogurz.setBackgroundResource(changeFonButtonPage5.execute())
                 } else {
                     viewModel.changetextPage6Ogurz(false)
-                    textPage6Ogurz.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+//                    textPage6Ogurz.setBackgroundResource(changeFonButtonPage5NoPress.execute())
                 }
             }
             textPage6Broccoli.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     viewModel.changetextPage6Broccoli(true)
-                    textPage6Broccoli.setBackgroundResource(changeFonButtonPage5.execute())
+//                    textPage6Broccoli.setBackgroundResource(changeFonButtonPage5.execute())
                 } else {
                     viewModel.changetextPage6Ogurz(false)
-                    textPage6Broccoli.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+//                    textPage6Broccoli.setBackgroundResource(changeFonButtonPage5NoPress.execute())
                 }
             }
             textPage6Avocado.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     viewModel.changetextPage6ButtonMuhroms(true)
-                    textPage6Avocado.setBackgroundResource(changeFonButtonPage5.execute())
+//                    textPage6Avocado.setBackgroundResource(changeFonButtonPage5.execute())
 
                 } else {
-                    textPage6Avocado.setBackgroundResource(changeFonButtonPage5NoPress.execute())
                     viewModel.changetextPage6ButtonMuhroms(false)
+//                    textPage6Avocado.setBackgroundResource(changeFonButtonPage5NoPress.execute())
                 }
             }
             textPage6ButtonMuhroms.setOnCheckedChangeListener { _, isChecked ->
                 if (isChecked) {
                     viewModel.changetextPage6Avocado(true)
-                    textPage6ButtonMuhroms.setBackgroundResource(changeFonButtonPage5.execute())
+//                    textPage6ButtonMuhroms.setBackgroundResource(changeFonButtonPage5.execute())
                 } else {
                     viewModel.changetextPage6Avocado(false)
-                    textPage6ButtonMuhroms.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+//                    textPage6ButtonMuhroms.setBackgroundResource(changeFonButtonPage5NoPress.execute())
                 }
+            }
+        }
+
+        viewModel.live_text_page6_zukini.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.textPage6Zukini.setBackgroundResource(changeFonButtonPage5.execute())
+            } else {
+                binding.textPage6Zukini.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+            }
+        }
+        viewModel.live_text_page6_tomato.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.textPage6Tomato.setBackgroundResource(changeFonButtonPage5.execute())
+            } else {
+                binding.textPage6Tomato.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+            }
+        }
+        viewModel.live_text_page6_baklagan.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.textPage6Baklagan.setBackgroundResource(changeFonButtonPage5.execute())
+            } else {
+                binding.textPage6Baklagan.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+            }
+        }
+        viewModel.live_text_page6_color_cabbage.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.textPage6ColorCabbage.setBackgroundResource(changeFonButtonPage5.execute())
+            } else {
+                binding.textPage6ColorCabbage.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+            }
+        }
+        viewModel.live_text_page6_ogurz.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.textPage6Ogurz.setBackgroundResource(changeFonButtonPage5.execute())
+            } else {
+                binding.textPage6Ogurz.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+            }
+        }
+        viewModel.live_text_page6_broccoli.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.textPage6Broccoli.setBackgroundResource(changeFonButtonPage5.execute())
+            } else {
+                binding.textPage6Broccoli.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+            }
+        }
+        viewModel.live_text_page6_button_muhroms.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.textPage6Avocado.setBackgroundResource(changeFonButtonPage5.execute())
+            } else {
+                binding.textPage6Avocado.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+            }
+        }
+        viewModel.live_text_page6_avocado.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.textPage6ButtonMuhroms.setBackgroundResource(changeFonButtonPage5.execute())
+            } else {
+                binding.textPage6ButtonMuhroms.setBackgroundResource(changeFonButtonPage5NoPress.execute())
             }
         }
 
@@ -129,6 +186,7 @@ class Pg6SourceFiberFragment : Fragment() {
             findNavController().popBackStack()
         }
         binding.textNext.setOnClickListener {
+            Log.e(taG, "viewModel.dataUser   ${viewModel.dataUser}")
             Log.e(taG, "${args.currentUser}")
             val action: NavDirections =
                 Pg6SourceFiberFragmentDirections.actionPg6SourceFiberFragmentToPg7FoodsFragment(
