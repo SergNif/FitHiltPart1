@@ -46,6 +46,9 @@
         <argument
             android:name="currentDataUser"
             app:argType="com.sergnfitness.domain.models.user.DataUser" />
+        <action
+            android:id="@+id/action_loginFragment2_to_part2Page1Fragment"
+            app:destination="@id/part2Page1Fragment" />
     </fragment>
     <fragment
         android:id="@+id/next2"
@@ -175,6 +178,18 @@
         <action
             android:id="@+id/action_pg8WaterDrinkFragment_to_pg9TypicalDayFragment"
             app:destination="@id/pg9TypicalDayFragment" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
+    </fragment>
+    <fragment
+        android:id="@+id/part2Page1Fragment"
+        android:name="com.sergnfitness.android.fit.presentation.part2.Part2Page1Fragment"
+        android:label="fragment_part2_page1"
+        tools:layout="@layout/fragment_part2_page1" >
         <argument
             android:name="currentUser"
             app:argType="com.sergnfitness.domain.models.user.User" />
