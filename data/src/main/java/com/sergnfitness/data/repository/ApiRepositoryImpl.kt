@@ -4,6 +4,7 @@ import android.app.Application
 import android.util.Log
 import com.sergnfitness.data.api.ApiServer
 import com.sergnfitness.domain.models.user.DataUser
+import com.sergnfitness.domain.models.user.MenuDayList
 import com.sergnfitness.domain.models.user.User
 import com.sergnfitness.domain.repository.ApiRepository
 import retrofit2.Call
@@ -55,6 +56,17 @@ class ApiRepositoryImpl @Inject constructor(
         user: DataUser,
     ): Call<DataUser> {
         return api.postDataUser(user_email = email, params = user)//, emailQuery = email, passwQuery = password) //.body().toUser()
+    }
+
+    override suspend fun getMenuDayStrings(
+        id: Int,
+        startDate: String,
+        endDate: String
+    ): Call<MenuDayList> {
+        return api.getMenuStrings(//user_email = email, params = user)//, emailQuery = email, passwQuery = password) //.body().toUser()
+            id  = id,
+            startDate = startDate,
+            endDate = endDate)
     }
 
 

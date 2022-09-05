@@ -163,4 +163,7 @@ class Pg8WaterDrinkFragment : Fragment() {
             findNavController().navigate(action)
         }
     }
+
+    fun onClickHouse(view: View) {}
+    fun onClickHistoryWeightDiagramm(view: View) {}
 }

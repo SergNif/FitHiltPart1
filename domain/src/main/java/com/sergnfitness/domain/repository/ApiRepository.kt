@@ -2,6 +2,7 @@ package com.sergnfitness.domain.repository
 
 import android.app.DownloadManager
 import com.sergnfitness.domain.models.user.DataUser
+import com.sergnfitness.domain.models.user.MenuDayList
 import com.sergnfitness.domain.models.user.User
 import retrofit2.Call
 import retrofit2.Response
@@ -17,5 +18,7 @@ interface ApiRepository {
     ) : Call<DataUser>
     suspend fun saveNewUserOfEmailPasswordRepos(user: User) : Call<User>
     suspend fun postQueryCreateUserRepos( email:String, user: DataUser): Call<DataUser>
+
+    suspend fun getMenuDayStrings(id:Int,  startDate:String, endDate:String): Call<MenuDayList>
 
 }

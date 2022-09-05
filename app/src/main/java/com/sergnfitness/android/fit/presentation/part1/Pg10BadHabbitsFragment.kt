@@ -131,7 +131,7 @@ private lateinit var binding: FragmentPg10BadHabbitsBinding
             Log.e(taG, "${args.currentUser}")
             args.currentUser.email?.let { it1 -> viewModel.createDataUserOnServer(it1) }
             val action: NavDirections =
-                Pg10BadHabbitsFragmentDirections.actionPg10BadHabbitsFragmentToLoginFragment2(
+                Pg10BadHabbitsFragmentDirections.actionPg10BadHabbitsFragmentToPart2Page1Fragment(
                     args.currentUser, viewModel.dataUser)
             findNavController().navigate(action)
         }
