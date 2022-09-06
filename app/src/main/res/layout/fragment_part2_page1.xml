@@ -422,8 +422,8 @@
             android:layout_width="300dp"
             android:layout_height="360dp"
             android:orientation="vertical"
-            android:paddingTop="5sp"
 
+android:background="@drawable/ic_button_text_fon_page5_no_press"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -439,7 +439,7 @@
                 app:layout_constraintBottom_toTopOf="@+id/day_chart"
                 app:layout_constraintEnd_toEndOf="@+id/day_chart"
                 app:layout_constraintStart_toStartOf="@+id/day_chart"
-                android:background="#7D6992"
+                android:background="@drawable/ic_fon_chart_xy_header"
                 android:gravity="center"
                 tools:layout_editor_absoluteX="1dp"
                 tools:layout_editor_absoluteY="155dp">
@@ -448,7 +448,7 @@
                     android:id="@+id/spinner"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
+                    android:gravity="fill"
                     android:paddingHorizontal="20dp"
                     android:background="@drawable/ic_fon_spinner"
                     app:layout_constraintTop_toBottomOf="@+id/xy_plot_chart"

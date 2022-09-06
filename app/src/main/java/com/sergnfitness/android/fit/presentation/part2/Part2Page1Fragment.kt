@@ -121,7 +121,7 @@ class Part2Page1Fragment : Fragment() {
         binding.inputWeight.isVisible = false
         binding.okDatapicker.isVisible = false
 
-        binding.part2page1ButtonHistoryWeight.setOnClickListener {
+        binding.part2page1ButtonHistoryGraph.setOnClickListener {
 //            showDatePickerDialog()
             showDatePickerDialogRange()
         }

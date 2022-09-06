@@ -7,6 +7,7 @@
         <entry key="app/src/main/res/drawable/ic_baseline_double_arrow_24.xml" value="0.102" />
         <entry key="app/src/main/res/drawable/ic_button_text_fon_page5.xml" value="0.265" />
         <entry key="app/src/main/res/drawable/ic_button_text_fon_page5_no_press.xml" value="0.1445" />
+        <entry key="app/src/main/res/drawable/ic_fon_chart_xy_header.xml" value="0.2005" />
         <entry key="app/src/main/res/drawable/ic_fon_spinner.xml" value="0.337" />
         <entry key="app/src/main/res/drawable/ic_house_1.xml" value="0.1925" />
         <entry key="app/src/main/res/layout/activity_dictionary.xml" value="0.27708333333333335" />
@@ -25,7 +26,7 @@
         <entry key="app/src/main/res/layout/fragment_page8_water_drink.xml" value="0.334855403348554" />
         <entry key="app/src/main/res/layout/fragment_page9_typical_day.xml" value="0.38779527559055116" />
         <entry key="app/src/main/res/layout/fragment_part2_fragment1_to_user.xml" value="0.33125" />
-        <entry key="app/src/main/res/layout/fragment_part2_page1.xml" value="0.4343015214384509" />
+        <entry key="app/src/main/res/layout/fragment_part2_page1.xml" value="0.38011695906432746" />
         <entry key="app/src/main/res/layout/fragment_part2_page3.xml" value="0.4578125" />
         <entry key="app/src/main/res/layout/fragment_part2_page4.xml" value="0.4578125" />
         <entry key="app/src/main/res/layout/fragment_part2_page5.xml" value="0.33125" />
