@@ -9,6 +9,7 @@ import androidx.lifecycle.viewModelScope
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.data.LineDataSet
 import com.sergnfitness.android.fit.presentation.adapter.RecyclerViewAdapter
+import com.sergnfitness.domain.models.UserMenuDay
 import com.sergnfitness.domain.models.user.DataUser
 import com.sergnfitness.domain.models.user.MenuDay
 import com.sergnfitness.domain.models.user.MenuDayList
@@ -30,16 +31,21 @@ import javax.inject.Inject
 class Part2Page1ViewModel @Inject constructor(
     private val apiRepository: ApiRepository,
 ) : ViewModel() {
-
-
     val taG = "Part2Page1ViewModel "
 
     lateinit var userClass: User
     lateinit var dataUser: DataUser
     lateinit var listMenuDay: List<MenuDay>
     lateinit var recyclerViewAdapter: RecyclerViewAdapter
+
+
     private var _startData: MutableLiveData<String> =
         MutableLiveData(LocalDateTime.now().plusDays(0).toString().split("T")[0])
+
+
+    private val _input_weight = MutableLiveData<String>()
+    val input_weight: LiveData<String> = _input_weight
+
     val startData: LiveData<String>
         get() = _startData
 
@@ -64,15 +70,16 @@ class Part2Page1ViewModel @Inject constructor(
         get() = _pickerCalendarData
 
     private var _listWeightForChart = mutableListOf<Entry>()
+
     val listWeightForChart: MutableList<Entry>
         get() = _listWeightForChart
-
     private val CHART_LABEL = "DAY_CHART"
     private val _lineDataSet = MutableLiveData(LineDataSet(listWeightForChart, CHART_LABEL))
+
+
     val lineDataSet: LiveData<LineDataSet> = _lineDataSet
-
-
     private val _userResourceLiveData = MutableLiveData<Resource<Any>>()
+
     val userResourceLiveData: LiveData<Resource<Any>> = _userResourceLiveData
 
     private val _dataUserResourceLiveData = MutableLiveData<Resource<Any>>()
@@ -84,13 +91,22 @@ class Part2Page1ViewModel @Inject constructor(
     private val _menuDayListLiveData = MutableLiveData<MenuDayList?>()
     val menuDayListLiveData: LiveData<MenuDayList?> = _menuDayListLiveData
 
+    private val _userMenuDayLiveData = MutableLiveData<UserMenuDay>()
+    val userMenuDayLiveData: LiveData<UserMenuDay> = _userMenuDayLiveData
+
+    private val _dataUserLiveData = MutableLiveData<DataUser?>()
+    val dataUserLiveData: LiveData<DataUser?> = _dataUserLiveData
+
+
     lateinit var recyclerListData: MutableLiveData<MenuDayList>
 
     val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+
     init {
         recyclerListData = MutableLiveData<MenuDayList>()
     }
-    fun getMenuListObserverable():MutableLiveData<MenuDayList>{
+
+    fun getMenuListObserverable(): MutableLiveData<MenuDayList> {
         return recyclerListData
     }
 
@@ -185,6 +201,111 @@ class Part2Page1ViewModel @Inject constructor(
         return _listWeightForChart
     }
 
+    fun changeWeght(text: String, s: String) {
+        dataUser.weight = text.toDouble().toString()
+        dataUser.date = s//date//LocalDateTime.now().toString().split("T")[0]
+        dataUser.fitness_id = dataUser.id
+
+    }
+
+    fun launchUpdateDataPage3() = viewModelScope.launch {
+        dataUser.id?.let { updateDataPage3(it) }
+    }
+
+    private suspend fun updateDataPage3(id: Int) {
+        _dataUserResourceLiveData.postValue(Resource.Loading())
+        _dataUserLiveData
+
+//        val retrofitInstance = RetrofitInstance.getRetroInstance().create(RetroService::class.java)
+        val call = apiRepository.pathUpdateWeigth(
+            user_id = id,
+            userData3 = dataUser)
+
+        call.enqueue(object : Callback<DataUser> {
+            override fun onFailure(call: Call<DataUser>, t: Throwable) {
+                _dataUserResourceLiveData.postValue(Resource.Error(t.message.toString()))
+                _dataUserLiveData.postValue(null)
+                Log.e(taG, "Data Page3 NULL")
+            }
+
+            override fun onResponse(call: Call<DataUser>, response: Response<DataUser>) {
+                _dataUserResourceLiveData.postValue(Resource.Loading(response))
+                if (response.isSuccessful && response.body() != null) {
+                    Log.e(taG, "Data response Body IS ${response.body()}")
+                    Log.e(taG, "Data User IS ${dataUser}")
+                    _dataUserLiveData.postValue(response.body())
+                    _dataUserResourceLiveData.postValue(Resource.Success(response))
+                    Log.e(taG, "Retrofit 22 ${dataUserLiveData.value}")
+                } else {
+                    Log.e(taG, "Data Page3 ELSE ${response.body()}")
+                    _dataUserLiveData.postValue(null)
+                    _dataUserResourceLiveData.postValue(Resource.Error("${response.message()} No this data"))
+                }
+            }
+        }
+        )
+    }
+
+    fun createUserMenuDay(
+//        id_tab: Int,
+        id: Int,
+        age: Int,
+        date: String,
+        time: String,
+        desired_weight: Double,
+        height: Int,
+        weight: Double,
+        fitness_id: Int,
+        header: String,
+        menu: String,
+    ): UserMenuDay {
+        var _classUserMenuDay = UserMenuDay(
+            0,
+            id,
+            age,
+            date,
+            time,
+            desired_weight,
+            height,
+            weight,
+            fitness_id,
+            header,
+            menu)
+        return _classUserMenuDay
+    }
+
+    fun launchPostMenuDay(userParam: UserMenuDay, position: Int) = viewModelScope.launch {
+        postMenuDay(userParam, position)
+    }
+
+    private suspend fun postMenuDay(userParam: UserMenuDay, position: Int) {
+        _menuDayResourceLiveData.postValue(Resource.Loading())
+//        val retrofitInstance = RetrofitInstance.getRetroInstance().create(RetroService::class.java)
+
+        val call = apiRepository.postQueryCreateMenuDay(menuDay = userParam, position = position)
+        call.enqueue(object : Callback<UserMenuDay> {
+            override fun onFailure(call: Call<UserMenuDay>, t: Throwable) {
+                Log.e(taG, "POST MENU Day NULL")
+                _menuDayResourceLiveData.postValue(Resource.Error(t.message.toString()))
+                _userMenuDayLiveData.postValue(null)
+            }
+
+            override fun onResponse(call: Call<UserMenuDay>, response: Response<UserMenuDay>) {
+                _menuDayResourceLiveData.postValue(Resource.Loading(response))
+                Log.e(taG, "Retrofit 2 ${response.body()}")
+                if (response.isSuccessful && response.body() != null) {
+                    Log.e(taG, "POST MENU Day IS ${response.body()}")
+                    _userMenuDayLiveData.postValue(response.body())
+                    _menuDayResourceLiveData.postValue(Resource.Success(response))
+                } else {
+                    Log.e(taG, "POST MENU Day ELSE ${response.body()}")
+                    _userMenuDayLiveData.postValue(null)
+                    _menuDayResourceLiveData.postValue(Resource.Error("${response.message()} No this data"))
+                }
+            }
+        }
+        )
+    }
 
 }
 

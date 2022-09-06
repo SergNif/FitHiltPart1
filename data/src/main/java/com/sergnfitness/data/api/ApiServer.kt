@@ -3,6 +3,7 @@ package com.sergnfitness.data.api
 
 import com.sergnfitness.data.storage.storageModel.DataUserStorage
 import com.sergnfitness.data.storage.storageModel.UserStorage
+import com.sergnfitness.domain.models.UserMenuDay
 import com.sergnfitness.domain.models.user.DataUser
 import com.sergnfitness.domain.models.user.MenuDayList
 import com.sergnfitness.domain.models.user.User
@@ -54,7 +55,13 @@ interface ApiServer {
 //        passwQuery: String,
     ): Call<User>
 
+    @POST("fit_new_menu_day/{position}/")
+    fun postQueryCreateMenuDay(
+        @Path("position") position:Int,
+//        @Body user: UsersData,
+        @Body menuDay: UserMenuDay,
 
+        ): Call<UserMenuDay>
     // *******   CHART  ***********
 
     @GET("fit_get_menu_string/")
@@ -64,6 +71,13 @@ interface ApiServer {
         @Query("endDataMenu") endDate: String,
 
         ): Call<MenuDayList>
+
+    @PATCH("fit_update/{user_id}/")
+    fun pathUpdateWeigth(
+        @Path("user_id") user_id: Int,
+        @Body userData: DataUser,
+//        @Query("data") date: Date,
+    ): Call<DataUser>
     // *******   CHART  ***********
 //    @GET("/fit_get_menu_string/")
 

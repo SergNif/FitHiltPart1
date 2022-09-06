@@ -26,9 +26,11 @@ import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5
 import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5NoPress
 import com.sergnfitness.android.fit.presentation.part1.Pg10BadHabbitsFragmentDirections
 import com.sergnfitness.android.fit.presentation.part2.part2viewModel.Part2Page1ViewModel
+import com.sergnfitness.domain.models.UserMenuDay
 import com.sergnfitness.domain.models.user.MenuDayList
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
+import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -46,7 +48,7 @@ class Part2Page1Fragment : Fragment() {
 
     private val changeFonButtonPage5NoPress = ChangeFonButtonPage5()
     private val changeFonButtonPage5 = ChangeFonButtonPage5NoPress()
-
+    lateinit var oneMenuDay: UserMenuDay
     val c:Calendar= Calendar.getInstance()
     var dd = c.get(Calendar.DAY_OF_MONTH)
     var mn = c.get(Calendar.MONTH)
@@ -102,7 +104,11 @@ class Part2Page1Fragment : Fragment() {
         }
         binding.part2page1ButtonHistoryData.setOnClickListener {
 //            showDatePickerDialog()
-            showDatePickerDialogOne()
+//            showDatePickerDialogOne()
+            onClickHistoryWeightDiagramm(view)
+        }
+        binding.okInputWeight.setOnClickListener {
+            onClickOkInputWeight()
         }
         binding.textBack.setOnClickListener {
             backToFragment()
@@ -186,7 +192,9 @@ Observer<LiveData<String>>() {it ->
 
             // Display Selected date in textbox
             run {
-                binding.textDataRightPart2Page1.text = "  $dayOfMonth ${format(monthOfYear)} , $year"
+                var datte = LocalDate.of(year,monthOfYear,dayOfMonth)
+                val formater = DateTimeFormatter.ofPattern("dd MMMM yyyy")
+                binding.textDataRightPart2Page1.text = datte.format(formater)
                 dd = dayOfMonth
                 mn = monthOfYear
                 ye = year
@@ -253,6 +261,84 @@ Observer<LiveData<String>>() {it ->
 
         dateRangePicker.show(parentFragmentManager, "Data Picker")
     }
+
+    //*********  DATA PICKER ************
+
+    fun onClickHistoryWeightDiagramm(view: View) {
+//        showSmallDatePicker()
+        binding.lynLynDatePicker.isVisible = true
+        binding.inputWeight.isVisible = true
+        binding.okDatapicker.isVisible = true
+        binding.lynWeightHistory.isVisible = false
+        binding.lynInputWeight.isVisible = true
+        binding.footerImage.isVisible = false
+        binding.parametrsButtonsChart.isVisible = false
+        Toast.makeText(context, "Click", Toast.LENGTH_SHORT).show()
+    }
+
+    private fun onClickOkInputWeight(){
+//        binding.lynLynDatePicker.isVisible = false
+//        binding.inputWeight.isVisible = false
+//        binding.lynInputWeight.isVisible = false
+//        binding.okDatapicker.isVisible = false
+//        binding.lynWeightHistory.isVisible = true
+//        binding.footerImage.isVisible = true
+//        binding.parametrsButtonsChart.isVisible = true
+        new_weigt_today = binding.inputWeight.text.toString()
+//        viewModel.dataUser.weight = new_weigt_today
+        viewModel.changeWeght(binding.inputWeight.text.toString(), "$dyear-$dmonth-${dday}r")
+        Log.e(taG, "onClickOkInputWeight  ${viewModel.dataUser.weight} ${dyear}-${dmonth}-${dday}")
+
+        viewModel.launchUpdateDataPage3()
+
+        setOneMenuDay()
+        viewModel.launchPostMenuDay(oneMenuDay,0)
+    }
+
+    fun onClickOkDatePicker(view: View){
+        onClickOkInputWeight()
+        binding.lynLynDatePicker.isVisible = false
+        binding.inputWeight.isVisible = false
+        binding.lynInputWeight.isVisible = false
+        binding.okDatapicker.isVisible = false
+        binding.lynWeightHistory.isVisible = true
+        binding.footerImage.isVisible = true
+        binding.parametrsButtonsChart.isVisible = true
+    }
+
+    fun setOneMenuDay() {
+        if (new_weigt_today.isNullOrEmpty())
+        {new_weigt_today = viewModel.dataUser.desired_weight }
+        Log.e(taG, "setOneMenuDay ssssssssss ${viewModel.dataUser.desired_weight}")
+        oneMenuDay =
+            viewModel.dataUser.id?.let {
+                viewModel.createUserMenuDay(
+                    id = it,
+                    age = viewModel.dataUser.age,
+                    date = "${dyear}-${dmonth}-${dday}",//funcData(),
+                    time = funcTime(),
+                    desired_weight = viewModel.dataUser.desired_weight.toDouble(),
+                    height = viewModel.dataUser.height,
+                    weight = new_weigt_today.toDouble(),//  binding.weightOneMenuDay.text.toString().toDouble(),
+                    //userParam.weight.toDouble(),
+                    fitness_id = it,
+                    header = "weight", //binding.headerMenuDay.text.toString(),
+                    menu = "weight" //binding.menuDay.text.toString(),
+                )
+            }!!
+    }
+    private fun funcTime(): String {
+        return LocalDateTime.now().toString().split(".")[0].split("T")[1].split(":").slice(0..1).joinToString(
+            //   prefix = "[",
+            separator = ":",
+            // postfix = "]",
+            //limit = 3,
+            //truncated = "...",
+            //transform = { it.uppercase() }
+        )
+    }
+//*********  DATA PICKER ************
+
 
 //    fun onClickHistoryWeightDiagramm(view: View) {
 //        val c = Calendar.getInstance()

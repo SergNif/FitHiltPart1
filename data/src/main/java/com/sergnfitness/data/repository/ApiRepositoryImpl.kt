@@ -3,6 +3,7 @@ package com.sergnfitness.data.repository
 import android.app.Application
 import android.util.Log
 import com.sergnfitness.data.api.ApiServer
+import com.sergnfitness.domain.models.UserMenuDay
 import com.sergnfitness.domain.models.user.DataUser
 import com.sergnfitness.domain.models.user.MenuDayList
 import com.sergnfitness.domain.models.user.User
@@ -63,12 +64,29 @@ class ApiRepositoryImpl @Inject constructor(
         startDate: String,
         endDate: String
     ): Call<MenuDayList> {
-        return api.getMenuStrings(//user_email = email, params = user)//, emailQuery = email, passwQuery = password) //.body().toUser()
+        return api.getMenuStrings(
             id  = id,
             startDate = startDate,
             endDate = endDate)
     }
 
+    override suspend fun pathUpdateWeigth(
+        user_id:Int,
+        userData: DataUser):Call<DataUser>{
+        return api.pathUpdateWeigth(
+            user_id = user_id,
+            userData = userData
+        )
+    }
+
+    override suspend fun postQueryCreateMenuDay(
+        menuDay: UserMenuDay,
+        position:Int): Call<UserMenuDay>{
+        return api.postQueryCreateMenuDay(
+            menuDay = menuDay,
+            position = position
+        )
+    }
 
 //    suspend fun getMenu() = api.getHeadLines(5, "28-05-2022" )
 }
