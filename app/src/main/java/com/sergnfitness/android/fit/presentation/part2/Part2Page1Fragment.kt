@@ -151,6 +151,9 @@ class Part2Page1Fragment : Fragment() {
         }
         )
 
+        binding.houseButton.setOnClickListener{
+            clickHouseButton()
+        }
 
         binding.textBack.setOnClickListener {
             backToFragment()
@@ -221,6 +224,21 @@ class Part2Page1Fragment : Fragment() {
 
     }
 
+    private fun clickHouseButton() {
+        binding.xyPlotChart.isVisible = false
+        binding.infoUser.isVisible = true
+        binding.parametrsButtonsChart.isVisible = true
+        binding.lynWeightHistory.isVisible = true
+        binding.parametrs.isVisible = true
+        binding.lynLynDatePicker.isVisible = false
+        binding.lynDatePicker.isVisible = false
+        binding.okDatapicker.isVisible = false
+        binding.inputWeight.isVisible = false
+        binding.lynInputWeight.isVisible = false
+        binding.footerImage.isVisible = true
+        binding.textBack.isVisible = true
+    }
+
     private fun showDatePickerDialogOne() {
         val month_date = SimpleDateFormat("MMMM")
         val month_name: String = month_date.format(c.getTime())
@@ -261,6 +279,16 @@ class Part2Page1Fragment : Fragment() {
     }
 
     private fun showDatePickerDialogRange() {
+        binding.infoUser.isVisible = false
+        binding.parametrsButtonsChart.isVisible = false
+        binding.lynWeightHistory.isVisible = false
+        binding.parametrs.isVisible = false
+        binding.lynLynDatePicker.isVisible = false
+        binding.okDatapicker.isVisible = false
+        binding.inputWeight.isVisible = false
+        binding.lynInputWeight.isVisible = false
+        binding.footerImage.isVisible = true
+        binding.textBack.isVisible = true
         var dateRangeSelected: String
         val dateRangePicker = MaterialDatePicker.Builder.dateRangePicker()
             .setTitleText("Выберите даты")

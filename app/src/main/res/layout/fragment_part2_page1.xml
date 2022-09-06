@@ -6,20 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".presentation.part2.Part2Page1Fragment">
 
-    <!--<layout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--    xmlns:tools="http://schemas.android.com/tools">-->
-
-    <!--    <data>-->
-
-    <!--        <variable-->
-    <!--            name="vmod"-->
-    <!--            type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.ui.part2.SharedViewModels" />-->
-
-    <!--        <variable-->
-    <!--            name="frag"-->
-    <!--            type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.ui.part2.Part2Page1Fragment" />-->
-    <!--    </data>-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -30,6 +16,50 @@
 
 
         <!-- TODO: Update blank fragment layout -->
+        <LinearLayout
+            android:id="@+id/xy_plot_chart"
+            android:layout_width="300dp"
+            android:layout_height="360dp"
+            android:background="@drawable/ic_button_text_fon_page5_no_press"
+
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.15">
+
+            <LinearLayout
+                android:id="@+id/lyn_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+
+                android:background="@drawable/ic_fon_chart_xy_header"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/day_chart"
+                app:layout_constraintEnd_toEndOf="@+id/day_chart"
+                app:layout_constraintStart_toStartOf="@+id/day_chart"
+                tools:layout_editor_absoluteX="1dp"
+                tools:layout_editor_absoluteY="155dp">
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/ic_fon_spinner"
+                    android:gravity="fill"
+                    android:paddingHorizontal="20dp"
+                    app:layout_constraintTop_toBottomOf="@+id/xy_plot_chart"
+                    />
+            </LinearLayout>
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/day_chart"
+                android:layout_width="300dp"
+                android:layout_height="300dp" />
+        </LinearLayout>
+
 
         <LinearLayout
             android:id="@+id/lin_lay1"
@@ -47,8 +77,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:onClick="onClickHouse"
-
                 />
 
             <TextView
@@ -57,7 +85,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-
                 />
 
             <TextView
@@ -66,7 +93,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:onClick="onClickToSetting"
 
                 />
 
@@ -418,85 +444,34 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/xy_plot_chart"
-            android:layout_width="300dp"
-            android:layout_height="360dp"
-            android:orientation="vertical"
+            android:id="@+id/lin_footer_image"
+            android:layout_width="318sp"
+            android:layout_height="180sp"
+            android:layout_marginTop="2sp"
+            android:layout_marginBottom="5sp"
 
-android:background="@drawable/ic_button_text_fon_page5_no_press"
+            android:orientation="vertical"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.15">
-
-            <LinearLayout
-                android:id="@+id/lyn_spinner"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-
-                android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="@+id/day_chart"
-                app:layout_constraintEnd_toEndOf="@+id/day_chart"
-                app:layout_constraintStart_toStartOf="@+id/day_chart"
-                android:background="@drawable/ic_fon_chart_xy_header"
-                android:gravity="center"
-                tools:layout_editor_absoluteX="1dp"
-                tools:layout_editor_absoluteY="155dp">
-
-                <Spinner
-                    android:id="@+id/spinner"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="fill"
-                    android:paddingHorizontal="20dp"
-                    android:background="@drawable/ic_fon_spinner"
-                    app:layout_constraintTop_toBottomOf="@+id/xy_plot_chart"
-
-                    />
-
-
-            </LinearLayout>
-
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/day_chart"
-                android:layout_width="300dp"
-                android:layout_height="300dp" />
-
+            app:layout_constraintStart_toStartOf="parent">
 
             <ImageButton
                 android:id="@+id/text_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
-                android:layout_marginTop="30dp"
+                android:layout_weight="4"
                 android:background="@drawable/ic_button_previos"
                 android:clickable="true"
-
-                app:layout_constraintStart_toStartOf="@+id/day_chart"
-                app:layout_constraintTop_toBottomOf="@+id/day_chart"
-                tools:ignore="OnClick" />
-
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/lin_footer_image"
-            android:layout_width="318sp"
-            android:layout_height="180sp"
-            android:layout_marginTop="2sp"
-            android:layout_marginBottom="5sp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
-
-            <ImageButton
+                />
+            <ImageView
                 android:id="@+id/footer_image"
+                android:layout_weight="2"
                 android:layout_width="210sp"
                 android:layout_height="140sp"
-                android:background="@drawable/salat" />
+                android:layout_gravity="center"
+                android:background="@drawable/salat"
+                />
         </LinearLayout>
 
 
