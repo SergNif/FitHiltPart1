@@ -8,6 +8,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.core.util.Pair
 import androidx.core.view.isVisible
@@ -63,6 +65,11 @@ class Part2Page1Fragment : Fragment() {
     var dday: String = LocalDateTime.now().toString().split("T")[0].split("-")[2]
     var new_weigt_today: String = ""
 
+
+
+    val months = arrayOf("Дек", "Ноя", "Окт", "Сент", "Авг", "Июль", "Июнь", "Май", "Апр", "Март", "Февр", "Янв")
+
+
     private val chartStyle by lazy(LazyThreadSafetyMode.NONE) {
         SparkLineStyle(context = requireActivity())
     }
@@ -86,7 +93,7 @@ class Part2Page1Fragment : Fragment() {
         val current = LocalDateTime.now()
         val formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy")
         val formatted = current.format(formatter)
-        binding.textAllRightPart2Page1.text = "$formatted"
+        binding.textAllRightPart2Page1.text = formatted
         binding.textNameUserPart2Page1.text = viewModel.userClass.fullName
         binding.textIdPart2Page1.text = "ID ${viewModel.userClass.id.toString()}"
         binding.part2page1ButtonHeight.text = "Рост ${viewModel.dataUser.height.toString()}"
@@ -94,6 +101,20 @@ class Part2Page1Fragment : Fragment() {
         binding.part2page1ButtonWeight.text = "Вес ${viewModel.dataUser.weight.toString()}"
         binding.inputWeight.hint = "Вес ${viewModel.dataUser.weight.toString()}"
 //        binding.inputWeight.text = "Вес $new_weigt_today".toEditable()
+        //*******  SPINNER  ******
+        val arrayAdapter = ArrayAdapter<String>(requireContext(),R.layout.spinner_adapter, months)
+        binding.spinner.adapter = arrayAdapter
+        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
+                Toast.makeText(requireContext(), "selected player is ${months[p2]}", Toast.LENGTH_LONG).show()
+            }
+
+            override fun onNothingSelected(p0: AdapterView<*>?) {
+                TODO("Not yet implemented")
+            }
+
+        }
+        //*******  SPINNER  ******
 
         binding.lynInputWeight.isVisible = false
         binding.lynLynDatePicker.isVisible = false

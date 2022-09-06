@@ -3,7 +3,11 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../Android/Sdk/platforms/android-32/data/res/layout/simple_spinner_dropdown_item.xml" value="0.6088541666666667" />
+        <entry key="app/src/main/res/drawable/ic_baseline_double_arrow_24.xml" value="0.102" />
         <entry key="app/src/main/res/drawable/ic_button_text_fon_page5.xml" value="0.265" />
+        <entry key="app/src/main/res/drawable/ic_button_text_fon_page5_no_press.xml" value="0.1445" />
+        <entry key="app/src/main/res/drawable/ic_fon_spinner.xml" value="0.337" />
         <entry key="app/src/main/res/drawable/ic_house_1.xml" value="0.1925" />
         <entry key="app/src/main/res/layout/activity_dictionary.xml" value="0.27708333333333335" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.5796875" />
@@ -21,7 +25,7 @@
         <entry key="app/src/main/res/layout/fragment_page8_water_drink.xml" value="0.334855403348554" />
         <entry key="app/src/main/res/layout/fragment_page9_typical_day.xml" value="0.38779527559055116" />
         <entry key="app/src/main/res/layout/fragment_part2_fragment1_to_user.xml" value="0.33125" />
-        <entry key="app/src/main/res/layout/fragment_part2_page1.xml" value="0.67" />
+        <entry key="app/src/main/res/layout/fragment_part2_page1.xml" value="0.4343015214384509" />
         <entry key="app/src/main/res/layout/fragment_part2_page3.xml" value="0.4578125" />
         <entry key="app/src/main/res/layout/fragment_part2_page4.xml" value="0.4578125" />
         <entry key="app/src/main/res/layout/fragment_part2_page5.xml" value="0.33125" />
@@ -41,6 +45,7 @@
         <entry key="app/src/main/res/layout/pg3_data_age_hight_weight.xml" value="0.5796875" />
         <entry key="app/src/main/res/layout/plus_next_day_menu_next.xml" value="0.5960163432073544" />
         <entry key="app/src/main/res/layout/recycler_row_list.xml" value="0.6078125" />
+        <entry key="app/src/main/res/layout/spinner_adapter.xml" value="0.5953703703703703" />
       </map>
     </option>
   </component>

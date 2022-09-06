@@ -334,8 +334,7 @@
                 android:textAlignment="center"
                 android:textColor="#2C3339"
                 android:textColorHint="#211223"
-                android:textSize="16sp"
-                />
+                android:textSize="16sp" />
 
             <Button
                 android:id="@+id/ok_input_weight"
@@ -349,9 +348,8 @@
 
                 android:text="OK"
                 android:textSize="16sp"
-                app:layout_constraintTop_toTopOf="@id/input_weight"
                 app:layout_constraintBottom_toBottomOf="@id/input_weight"
-                />
+                app:layout_constraintTop_toTopOf="@id/input_weight" />
 
 
         </LinearLayout>
@@ -421,14 +419,44 @@
 
         <LinearLayout
             android:id="@+id/xy_plot_chart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="360dp"
             android:orientation="vertical"
             android:paddingTop="5sp"
 
-            app:layout_constraintEnd_toEndOf="@+id/lyn_weight_history"
-            app:layout_constraintStart_toStartOf="@+id/lyn_weight_history"
-            app:layout_constraintTop_toBottomOf="@+id/lyn_weight_history">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.15">
+
+            <LinearLayout
+                android:id="@+id/lyn_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/day_chart"
+                app:layout_constraintEnd_toEndOf="@+id/day_chart"
+                app:layout_constraintStart_toStartOf="@+id/day_chart"
+                android:background="#7D6992"
+                android:gravity="center"
+                tools:layout_editor_absoluteX="1dp"
+                tools:layout_editor_absoluteY="155dp">
+
+                <Spinner
+                    android:id="@+id/spinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingHorizontal="20dp"
+                    android:background="@drawable/ic_fon_spinner"
+                    app:layout_constraintTop_toBottomOf="@+id/xy_plot_chart"
+
+                    />
+
+
+            </LinearLayout>
 
             <com.github.mikephil.charting.charts.LineChart
                 android:id="@+id/day_chart"
@@ -441,11 +469,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="25dp"
+                android:layout_marginTop="30dp"
                 android:background="@drawable/ic_button_previos"
                 android:clickable="true"
 
-                app:layout_constraintStart_toStartOf="@+id/plot"
-                app:layout_constraintTop_toBottomOf="@+id/plot"
+                app:layout_constraintStart_toStartOf="@+id/day_chart"
+                app:layout_constraintTop_toBottomOf="@+id/day_chart"
                 tools:ignore="OnClick" />
 
 
