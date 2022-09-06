@@ -271,9 +271,11 @@
             android:layout_marginTop="5sp"
             android:background="@drawable/ic_fon_datepicker"
             android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/parametrs">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.15">
 
             <DatePicker
                 android:id="@+id/lyn_datePicker"
@@ -294,7 +296,7 @@
             android:background="@drawable/ic_fon_datepicker"
             android:backgroundTintMode="multiply"
             android:fontFamily="@font/roboto_condensed_regular"
-            android:onClick="onClickOkDatePicker"
+
             android:text="OK"
             android:textAlignment="center"
             android:textColor="@color/text_grey_page4"
@@ -312,8 +314,8 @@
             android:orientation="horizontal"
             android:paddingHorizontal="5sp"
 
-            app:layout_constraintStart_toStartOf="@id/lyn_lyn_datePicker"
             app:layout_constraintEnd_toEndOf="@id/lyn_lyn_datePicker"
+            app:layout_constraintStart_toStartOf="@id/lyn_lyn_datePicker"
             app:layout_constraintTop_toBottomOf="@id/lyn_lyn_datePicker">
 
             <EditText
@@ -321,41 +323,35 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:layout_marginStart="5sp"
-
-
-                android:layout_weight="1"
+                android:layout_marginHorizontal="20dp"
+                android:layout_weight="3"
                 android:background="@drawable/ic_button_text_fon_page5_no_press"
-                android:fontFamily="@font/roboto_condensed_regular"
 
+                android:fontFamily="@font/roboto_condensed_regular"
                 android:inputType="numberDecimal"
                 android:maxLength="6"
-                android:paddingHorizontal="15sp"
-                android:paddingVertical="15sp"
-                android:layout_marginHorizontal="25dp"
 
                 android:textAlignment="center"
                 android:textColor="#2C3339"
                 android:textColorHint="#211223"
-                android:textSize="18sp"
-
-
+                android:textSize="16sp"
                 />
 
             <Button
                 android:id="@+id/ok_input_weight"
                 android:layout_width="50sp"
-                android:layout_height="match_parent"
-                android:layout_marginStart="2sp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="25dp"
+
                 android:layout_weight="1"
                 android:background="@drawable/ic_button_text_fon_page5_no_press"
                 android:fontFamily="@font/roboto_condensed_regular"
-                android:layout_marginHorizontal="25dp"
-                android:paddingHorizontal="15sp"
-                android:paddingVertical="15sp"
+
                 android:text="OK"
-                android:textSize="12sp"
-                app:layout_constraintBottom_toTopOf="@id/input_weight" />
+                android:textSize="16sp"
+                app:layout_constraintTop_toTopOf="@id/input_weight"
+                app:layout_constraintBottom_toBottomOf="@id/input_weight"
+                />
 
 
         </LinearLayout>
@@ -493,4 +489,4 @@
     <!--app:layout_constraintTop_toBottomOf="@+id/lin_lay1"-->
     <!--app:layout_constraintVertical_bias="0.0" />-->
 
-<!--    android:text="@{`c `+ vmod.startData +' '+`по`+' '+ vmod.endData}"-->
+    <!--    android:text="@{`c `+ vmod.startData +' '+`по`+' '+ vmod.endData}"-->

@@ -3,6 +3,7 @@ package com.sergnfitness.android.fit.presentation.part2
 import android.app.DatePickerDialog
 import android.os.Bundle
 import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -41,6 +42,7 @@ class Part2Page1Fragment : Fragment() {
     companion object {
         fun newInstance() = Part2Page1Fragment()
     }
+
     private val taG = "Part2Page1Fragment "
     private val viewModel: Part2Page1ViewModel by viewModels()
     private lateinit var binding: FragmentPart2Page1Binding
@@ -49,12 +51,12 @@ class Part2Page1Fragment : Fragment() {
     private val changeFonButtonPage5NoPress = ChangeFonButtonPage5()
     private val changeFonButtonPage5 = ChangeFonButtonPage5NoPress()
     lateinit var oneMenuDay: UserMenuDay
-    val c:Calendar= Calendar.getInstance()
+    val c: Calendar = Calendar.getInstance()
     var dd = c.get(Calendar.DAY_OF_MONTH)
     var mn = c.get(Calendar.MONTH)
     var ye = c.get(Calendar.YEAR)
-    val hh=c.get(Calendar.HOUR_OF_DAY)
-    var mm=c.get(Calendar.MINUTE)
+    val hh = c.get(Calendar.HOUR_OF_DAY)
+    var mm = c.get(Calendar.MINUTE)
 
     var dyear: String = LocalDateTime.now().toString().split("T")[0].split("-")[0]
     var dmonth: String = LocalDateTime.now().toString().split("T")[0].split("-")[1]
@@ -91,7 +93,7 @@ class Part2Page1Fragment : Fragment() {
         binding.part2page1ButtonAge.text = "Возраст ${viewModel.dataUser.age.toString()}"
         binding.part2page1ButtonWeight.text = "Вес ${viewModel.dataUser.weight.toString()}"
         binding.inputWeight.hint = "Вес ${viewModel.dataUser.weight.toString()}"
-        binding.inputWeight.text = "Вес $new_weigt_today".toEditable()
+//        binding.inputWeight.text = "Вес $new_weigt_today".toEditable()
 
         binding.lynInputWeight.isVisible = false
         binding.lynLynDatePicker.isVisible = false
@@ -110,6 +112,25 @@ class Part2Page1Fragment : Fragment() {
         binding.okInputWeight.setOnClickListener {
             onClickOkInputWeight()
         }
+        binding.okDatapicker.setOnClickListener {
+            onClickOkDatePicker()
+        }
+
+        binding.inputWeight.addTextChangedListener(object : TextWatcher{
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                binding.inputWeight.hint = "" //"Вес ${viewModel.dataUser.weight.toString()}"
+            }
+            override fun afterTextChanged(p0: Editable?) {
+             if (binding.inputWeight.text.isNullOrEmpty()){
+                 binding.inputWeight.hint = "Вес ${viewModel.dataUser.weight.toString()}"
+             }
+            }
+        }
+        )
+
+
         binding.textBack.setOnClickListener {
             backToFragment()
         }
@@ -160,24 +181,24 @@ class Part2Page1Fragment : Fragment() {
 //            }
 //
 //        }
-Observer<LiveData<String>>() {it ->
-    when(it){
-        viewModel.endData -> {
-                binding.textDataRightPart2Page1.setText("c ${viewModel.startData.value} по ${viewModel.endData.value}")
+        Observer<LiveData<String>>() { it ->
+            when (it) {
+                viewModel.endData -> {
+                    binding.textDataRightPart2Page1.setText("c ${viewModel.startData.value} по ${viewModel.endData.value}")
+                }
+                viewModel.startData -> {
+                    binding.textDataRightPart2Page1.setText("c ${viewModel.startData.value} по ${viewModel.endData.value}")
+                }
+                viewModel.endDataAPI -> {
+                    binding.textDataRightPart2Page1.setText("c ${viewModel.startData.value} по ${viewModel.endData.value}")
+                }
+                viewModel.startDataAPI -> {
+                    binding.textDataRightPart2Page1.setText("c ${viewModel.startData.value} по ${viewModel.endData.value}")
+                }
             }
-        viewModel.startData -> {
-                binding.textDataRightPart2Page1.setText("c ${viewModel.startData.value} по ${viewModel.endData.value}")
-            }
-        viewModel.endDataAPI -> {
-                binding.textDataRightPart2Page1.setText("c ${viewModel.startData.value} по ${viewModel.endData.value}")
-            }
-        viewModel.startDataAPI -> {
-                binding.textDataRightPart2Page1.setText("c ${viewModel.startData.value} по ${viewModel.endData.value}")
-            }
-    }
-}
+        }
 
-}
+    }
 
     private fun showDatePickerDialogOne() {
         val month_date = SimpleDateFormat("MMMM")
@@ -188,19 +209,23 @@ Observer<LiveData<String>>() {it ->
 //        },hh,mm,true)
 //        timePickerDialog.show()
 //        Log.e(taG, "$mm $hh $dd $mn $ye")
-        val datepickerdialog:DatePickerDialog = DatePickerDialog(requireContext(), DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
+        val datepickerdialog: DatePickerDialog = DatePickerDialog(requireContext(),
+            DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
 
-            // Display Selected date in textbox
-            run {
-                var datte = LocalDate.of(year,monthOfYear,dayOfMonth)
-                val formater = DateTimeFormatter.ofPattern("dd MMMM yyyy")
-                binding.textDataRightPart2Page1.text = datte.format(formater)
-                dd = dayOfMonth
-                mn = monthOfYear
-                ye = year
-                Log.e(taG, "$dd $mn $ye")
-            }
-        }, ye, mn, dd)
+                // Display Selected date in textbox
+                run {
+                    var datte = LocalDate.of(year, monthOfYear, dayOfMonth)
+                    val formater = DateTimeFormatter.ofPattern("dd MMMM yyyy")
+                    binding.textDataRightPart2Page1.text = datte.format(formater)
+                    dd = dayOfMonth
+                    mn = monthOfYear
+                    ye = year
+                    Log.e(taG, "$dd $mn $ye")
+                }
+            },
+            ye,
+            mn,
+            dd)
 
         datepickerdialog.show()
         Log.e(taG, "$dd $hh $dd $mn $ye")
@@ -276,7 +301,7 @@ Observer<LiveData<String>>() {it ->
         Toast.makeText(context, "Click", Toast.LENGTH_SHORT).show()
     }
 
-    private fun onClickOkInputWeight(){
+    private fun onClickOkInputWeight() {
 //        binding.lynLynDatePicker.isVisible = false
 //        binding.inputWeight.isVisible = false
 //        binding.lynInputWeight.isVisible = false
@@ -292,10 +317,10 @@ Observer<LiveData<String>>() {it ->
         viewModel.launchUpdateDataPage3()
 
         setOneMenuDay()
-        viewModel.launchPostMenuDay(oneMenuDay,0)
+        viewModel.launchPostMenuDay(oneMenuDay, 0)
     }
 
-    fun onClickOkDatePicker(view: View){
+    private fun onClickOkDatePicker() {
         onClickOkInputWeight()
         binding.lynLynDatePicker.isVisible = false
         binding.inputWeight.isVisible = false
@@ -307,8 +332,9 @@ Observer<LiveData<String>>() {it ->
     }
 
     fun setOneMenuDay() {
-        if (new_weigt_today.isNullOrEmpty())
-        {new_weigt_today = viewModel.dataUser.desired_weight }
+        if (new_weigt_today.isNullOrEmpty()) {
+            new_weigt_today = viewModel.dataUser.desired_weight
+        }
         Log.e(taG, "setOneMenuDay ssssssssss ${viewModel.dataUser.desired_weight}")
         oneMenuDay =
             viewModel.dataUser.id?.let {
@@ -327,15 +353,17 @@ Observer<LiveData<String>>() {it ->
                 )
             }!!
     }
+
     private fun funcTime(): String {
-        return LocalDateTime.now().toString().split(".")[0].split("T")[1].split(":").slice(0..1).joinToString(
-            //   prefix = "[",
-            separator = ":",
-            // postfix = "]",
-            //limit = 3,
-            //truncated = "...",
-            //transform = { it.uppercase() }
-        )
+        return LocalDateTime.now().toString().split(".")[0].split("T")[1].split(":").slice(0..1)
+            .joinToString(
+                //   prefix = "[",
+                separator = ":",
+                // postfix = "]",
+                //limit = 3,
+                //truncated = "...",
+                //transform = { it.uppercase() }
+            )
     }
 //*********  DATA PICKER ************
 
