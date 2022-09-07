@@ -11,6 +11,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -34,6 +35,7 @@ class MenuDayPart2Fragment : Fragment() {
     lateinit var im: ImageButton
     lateinit var plusNextDay: ImageView
     var menuList: List<MenuDay> = mutableListOf<MenuDay>()
+
     companion object {
         fun newInstance() = MenuDayPart2Fragment()
     }
@@ -47,7 +49,6 @@ class MenuDayPart2Fragment : Fragment() {
     private val changeFonButtonPage5NoPress = ChangeFonButtonPage5()
     private val changeFonButtonPage5 = ChangeFonButtonPage5NoPress()
     lateinit var oneMenuDay: UserMenuDay
-
 
 
     override fun onCreateView(
@@ -71,14 +72,16 @@ class MenuDayPart2Fragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-    binding = FragmentMenuDayPart2Binding.bind(view)
+        binding = FragmentMenuDayPart2Binding.bind(view)
         viewModel.dataUser = args.currentDataUser
         viewModel.userClass = args.currentUser
 //        viewModel.dataUserMenuDay = args.currentUserMenuDay
 //        viewModel.dataMenuDay = args.currentMenuDay
-binding.textDataRightPart2Page1.text = "c ${viewModel.startData.value?.let {
-    viewModel.converStringToData(it,1)
-}} по ${viewModel.endData.value?.let { viewModel.converStringToData(it,1) }}"
+        binding.textDataRightPart2Page1.text = "c ${
+            viewModel.startData.value?.let {
+                viewModel.converStringToData(it, 1)
+            }
+        } по ${viewModel.endData.value?.let { viewModel.converStringToData(it, 1) }}"
 
         binding.textIdPart2Page1.text = viewModel.dataUser.id.toString()
         binding.part2page1ButtonHeight.text = "Рост ${viewModel.dataUser.height.toString()}"
@@ -92,7 +95,7 @@ binding.textDataRightPart2Page1.text = "c ${viewModel.startData.value?.let {
 //                Toast.makeText(context,     "${it.listMenuDay[3]} YES result found...",  Toast.LENGTH_LONG).show()
                 Log.e(taG, "Get Menu List NOT NULL ${it.listMenuDay}")
                 viewModel.funListWeightForChart(it.listMenuDay)
-                recyclerViewAdapter.menuList =  it.listMenuDay.toMutableList()
+                recyclerViewAdapter.menuList = it.listMenuDay.toMutableList()
                 recyclerViewAdapter.notifyDataSetChanged()
             }
         })
@@ -100,33 +103,40 @@ binding.textDataRightPart2Page1.text = "c ${viewModel.startData.value?.let {
         Log.e(taG, "Get Menu List")
 //        Log.e(taG, "${}  Get Menu List ${}")
         viewModel.formatDataPickerAPI()
-        viewModel.launchGetMenuList(viewModel.startDataAPI.value.toString(), viewModel.endDataAPI.value.toString())
+        viewModel.launchGetMenuList(viewModel.startDataAPI.value.toString(),
+            viewModel.endDataAPI.value.toString())
 
-//        im.setOnClickListener {
-//
-//            Log.e(taG, "To next fragment")
-//            findNavController().navigate(R.id.action_menuDayPart2Fragment_to_newOneMenuDayFragment)
-//        }
+        im.setOnClickListener {
+val action:NavDirections =
+    MenuDayPart2FragmentDirections.actionMenuDayPart2FragmentToNewOneMenuDayFragment(
+        viewModel.userClass, viewModel.dataUser
+    )
+            Log.e(taG, "To next fragment")
+            findNavController().navigate(action)
+        }
         viewModel.endDataAPI.observe(viewLifecycleOwner, Observer {
-            viewModel.launchGetMenuList(viewModel.startDataAPI.value.toString(), viewModel.endDataAPI.value.toString())
+            viewModel.launchGetMenuList(viewModel.startDataAPI.value.toString(),
+                viewModel.endDataAPI.value.toString())
         })
 
-        binding.houseButton.setOnClickListener{
+        binding.houseButton.setOnClickListener {
             onClickHouse()
         }
-        binding.plusNextDayMenuBack.setOnClickListener{
+        binding.plusNextDayMenuBack.setOnClickListener {
             onClickBackDay()
         }
-        binding.plusNextDayMenuNext.setOnClickListener{
+        binding.plusNextDayMenuNext.setOnClickListener {
             onClickNextDay()
         }
     }
+
     fun initRecyclerView(view: View) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycl)
         recyclerView.layoutManager = LinearLayoutManager(activity)
         recyclerViewAdapter = RecyclerViewAdapter()//(menuList)
         recyclerView.adapter = recyclerViewAdapter
-        recyclerViewAdapter.setOnItemClickListener(object : RecyclerViewAdapter.onItemClickListenerRecyclViewAdapter{
+        recyclerViewAdapter.setOnItemClickListener(object :
+            RecyclerViewAdapter.onItemClickListenerRecyclViewAdapter {
             override fun onItemClick(position: Int) {
                 viewModel.positionRecycklerViewEdit = position
 //                findNavController().navigate(R.id.action_menuDayPart2Fragment_to_newOneMenuDayFragment)
@@ -141,18 +151,19 @@ binding.textDataRightPart2Page1.text = "c ${viewModel.startData.value?.let {
     private fun onClickHouse() {
         findNavController().popBackStack()
     }
+
     fun onClickNextFragment() {
 //        findNavController().navigate(R.id.action_menuDayPart2Fragment_to_part2Page2Fragment)
     }
 
-    fun onClickNextDay(){
+    fun onClickNextDay() {
         Log.e(taG, "onClickNextDay ${viewModel.startDataAPI.value}")
         Log.e(taG, "onClickNextDay ${viewModel.endDataAPI.value}")
         viewModel.oneChangeStartEndData(1)
 
     }
 
-    fun onClickBackDay(){
+    fun onClickBackDay() {
         viewModel.oneChangeStartEndData(-1)
 
     }

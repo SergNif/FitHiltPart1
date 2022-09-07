@@ -21,4 +21,5 @@ interface ApiRepository {
     suspend fun getMenuDayStrings(id:Int,  startDate:String, endDate:String): Call<MenuDayList>
     suspend fun pathUpdateWeigth(user_id: Int, userData3: DataUser): Call<DataUser>
     suspend fun postQueryCreateMenuDay(menuDay:UserMenuDay, position:Int): Call<UserMenuDay>
+    suspend fun deleteOneMenuDay(user_id:Int, position:Int): Call<MenuDayList>
 }

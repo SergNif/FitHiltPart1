@@ -211,5 +211,26 @@
         <action
             android:id="@+id/action_menuDayPart2Fragment_to_part2Page1Fragment"
             app:destination="@id/part2Page1Fragment" />
+        <action
+            android:id="@+id/action_menuDayPart2Fragment_to_newOneMenuDayFragment"
+            app:destination="@id/newOneMenuDayFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/newOneMenuDayFragment"
+        android:name="com.sergnfitness.android.fit.presentation.part2.NewOneMenuDayFragment"
+        android:label="fragment_new_one_menu_day"
+        tools:layout="@layout/fragment_new_one_menu_day" >
+        <action
+            android:id="@+id/action_newOneMenuDayFragment_to_part2Page1Fragment"
+            app:destination="@id/part2Page1Fragment" />
+        <action
+            android:id="@+id/action_newOneMenuDayFragment_to_menuDayPart2Fragment"
+            app:destination="@id/menuDayPart2Fragment" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
     </fragment>
 </navigation>
