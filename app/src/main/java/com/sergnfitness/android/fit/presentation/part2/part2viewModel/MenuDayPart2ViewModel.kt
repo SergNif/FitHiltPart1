@@ -42,7 +42,7 @@ class MenuDayPart2ViewModel @Inject constructor(
     private val getUserSharedPreferenceUseCase: GetUserSharedPreferenceUseCase,
     private val saveUserSharedPreferenceUseCase: SaveUserSharedPreferenceUseCase,
 //    private val saveUserNameUseCase:
-): ViewModel() {
+) : ViewModel() {
     val taG = "MenuDayPart2ViewModel "
 
     lateinit var userClass: User
@@ -57,6 +57,7 @@ class MenuDayPart2ViewModel @Inject constructor(
     lateinit var recyclerListData: MutableLiveData<MenuDayList>
 
     val sdf = SimpleDateFormat("dd/M/yyyy hh:mm:ss")
+
     init {
         recyclerListData = MutableLiveData<MenuDayList>()
     }
@@ -107,7 +108,7 @@ class MenuDayPart2ViewModel @Inject constructor(
     private val _menuListResourceLiveData = MutableLiveData<Resource<Any>>()
     val menuListResourceLiveData: LiveData<Resource<Any>> = _menuListResourceLiveData
 
-    fun getMenuListObserverable():MutableLiveData<MenuDayList>{
+    fun getMenuListObserverable(): MutableLiveData<MenuDayList> {
         return recyclerListData
     }
 
@@ -157,27 +158,51 @@ class MenuDayPart2ViewModel @Inject constructor(
 
     fun saveDataStartDataCalendar(startData: String, endData: String) {
         val saveDataShared: Boolean =
-            saveUserSharedPreferenceUseCase.executeSaveData(startData = startData, endData = endData)
+            saveUserSharedPreferenceUseCase.executeSaveData(startData = startData,
+                endData = endData)
     }
 
-    fun converStringToData(dt: String, i: Long): String? {
 
-        val formatter2 = DateTimeFormatter.ofPattern("d MMM yyyy")
+    fun converStringToData(dt: String, i: Long): String? {
+        var date85: Date?
+        val formatter25 = SimpleDateFormat("dd MMMM yyyy")
+        try {
+            val formatter2 = DateTimeFormatter.ofPattern("d MMMM yyyy")
+            Log.e(taG, "conv 1 ${dt}")
+            val date2 = LocalDate.parse(dt, formatter2).plusDays(i)
+            Log.e(taG, "conv 2 ${date2}")
+
+            val formatter15 = SimpleDateFormat("yyyy-MM-dd")
+            //  "EEE, MMM d, ''yy"
+            date85 = formatter15.parse(date2.toString())
+            val formatter25 = SimpleDateFormat("dd MMMM yyyy")
+
+        } catch (e: DateTimeParseException) {
+            val formatter15 = SimpleDateFormat("yyyy-MM-dd")
+            //  "EEE, MMM d, ''yy"
+            date85 = formatter15.parse(dt.toString())
+        }
+        return date85?.let { formatter25.format(it) }
+    }
+
+    fun converStringToDataLive(dt: String, i: Long): String? {
+
+//        val formatter2 = DateTimeFormatter.ofPattern("d MMM yyyy")
         Log.e(taG, "conv 1 ${dt}")
-        val date2 = LocalDate.parse(dt, formatter2).plusDays(i)
-        Log.e(taG, "conv 2 ${date2}")
+//        val date2 = LocalDate.parse(dt, formatter2).plusDays(i)
+//        Log.e(taG, "conv 2 ${date2}")
 
         val formatter15 = SimpleDateFormat("yyyy-MM-dd")
         //  "EEE, MMM d, ''yy"
-        val date85 = formatter15.parse(date2.toString())
-        val formatter25 = SimpleDateFormat("dd MMM yyyy")
+        val date85 = formatter15.parse(dt.toString())
+        val formatter25 = SimpleDateFormat("dd MMMM yyyy")
 
         return date85?.let { formatter25.format(it) }
     }
 
     fun changeStartEndDataAPI() {
         Log.e(taG, "startData ${startData.value} endData ${endData.value}")
-        val formatter2 = DateTimeFormatter.ofPattern("d MMM yyyy")
+        val formatter2 = DateTimeFormatter.ofPattern("d MMMM yyyy")
         try {
             _startDataAPI.value = LocalDate.parse(startData.value, formatter2).toString()
             _endDataAPI.value = LocalDate.parse(endData.value, formatter2).toString()
@@ -193,12 +218,14 @@ class MenuDayPart2ViewModel @Inject constructor(
         delay(500)
         dataUser.id?.let { getMenuList(it, startData, endData) }
     }
-    private suspend fun  getMenuList(id:Int, startData: String, endData: String) {
+
+    private suspend fun getMenuList(id: Int, startData: String, endData: String) {
         _menuListResourceLiveData.postValue(Resource.Loading())
         Log.e(taG, " API query startData ${startData}  endData ${endData}")
 //        val retrofitInstance = RetrofitInstance.getRetroInstance().create(RetroService::class.java)
 //        val call = retrofitInstance.getMenuStrings(id = getIdFromSharedPreferenses(), date = LocalDateTime.now().plusDays(dateMenuRecyle).toString().split("T")[0])
-        val call = apiRepository.getMenuDayStrings(id = id, startDate = startData, endDate = endData)
+        val call =
+            apiRepository.getMenuDayStrings(id = id, startDate = startData, endDate = endData)
         call.enqueue(object : Callback<MenuDayList> {
             override fun onFailure(call: Call<MenuDayList>, t: Throwable) {
                 Log.e(taG, "Get Menu List NULL")
@@ -208,13 +235,13 @@ class MenuDayPart2ViewModel @Inject constructor(
 
             override fun onResponse(call: Call<MenuDayList>, response: Response<MenuDayList>) {
                 _menuListResourceLiveData.postValue(Resource.Loading(response))
-                if (response.isSuccessful && response.body() != null){
+                if (response.isSuccessful && response.body() != null) {
                     //получен ответ от сервера
                     Log.e(taG, "Get Menu List IS ${response.body()}")
                     _menuListResourceLiveData.postValue(Resource.Success(response))
                     recyclerListData.postValue(response.body())
 
-                }else {
+                } else {
                     Log.e(taG, "Get Menu List ELSE ${response.body()}")
                     _menuListResourceLiveData.postValue(Resource.Error("${response.message()} No this data"))
                     recyclerListData.postValue(null)

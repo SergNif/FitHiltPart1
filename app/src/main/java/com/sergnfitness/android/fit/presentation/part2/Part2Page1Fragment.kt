@@ -185,9 +185,10 @@ class Part2Page1Fragment : Fragment() {
             Log.e(taG, "viewModel.dataUser   ${viewModel.dataUser}")
             Log.e(taG, "${args.currentUser}")
 //            args.currentUser.email?.let { it1 -> viewModel.createDataUserOnServer(it1) }
+
             val action: NavDirections =
-                Pg10BadHabbitsFragmentDirections.actionPg10BadHabbitsFragmentToPart2Page1Fragment(
-                    args.currentUser, viewModel.dataUser)
+                Part2Page1FragmentDirections.actionPart2Page1FragmentToMenuDayPart2Fragment(
+                    viewModel.userClass,  viewModel.dataUser)
             findNavController().navigate(action)
         }
 //        with(viewLifecycleOwner){

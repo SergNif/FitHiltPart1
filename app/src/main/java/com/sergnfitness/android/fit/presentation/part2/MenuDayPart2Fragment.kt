@@ -74,8 +74,11 @@ class MenuDayPart2Fragment : Fragment() {
     binding = FragmentMenuDayPart2Binding.bind(view)
         viewModel.dataUser = args.currentDataUser
         viewModel.userClass = args.currentUser
-        viewModel.dataUserMenuDay = args.currentUserMenuDay
-        viewModel.dataMenuDay = args.currentMenuDay
+//        viewModel.dataUserMenuDay = args.currentUserMenuDay
+//        viewModel.dataMenuDay = args.currentMenuDay
+binding.textDataRightPart2Page1.text = "c ${viewModel.startData.value?.let {
+    viewModel.converStringToData(it,1)
+}} по ${viewModel.endData.value?.let { viewModel.converStringToData(it,1) }}"
 
         binding.textIdPart2Page1.text = viewModel.dataUser.id.toString()
         binding.part2page1ButtonHeight.text = "Рост ${viewModel.dataUser.height.toString()}"

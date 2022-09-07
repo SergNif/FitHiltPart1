@@ -208,12 +208,6 @@
         <argument
             android:name="currentDataUser"
             app:argType="com.sergnfitness.domain.models.user.DataUser" />
-        <argument
-            android:name="currentUserMenuDay"
-            app:argType="com.sergnfitness.domain.models.UserMenuDay" />
-        <argument
-            android:name="currentMenuDay"
-            app:argType="com.sergnfitness.domain.models.MenuDay" />
         <action
             android:id="@+id/action_menuDayPart2Fragment_to_part2Page1Fragment"
             app:destination="@id/part2Page1Fragment" />
