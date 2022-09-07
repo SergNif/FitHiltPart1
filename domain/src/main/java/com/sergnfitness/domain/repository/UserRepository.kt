@@ -15,4 +15,5 @@ interface UserRepository {
     fun getDataUser(): MutableList<String>
 //    fun createExemplarClassDataUserStorageUseRepos(list: MutableList<String>): DataUser
     fun createExemplarClassUserUseRepos(nameOfCreateClass:String, list: MutableMap<String, String>): Any
+    fun saveDataStartDataCalendar(startData: String, endData: String): Boolean
 }

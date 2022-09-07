@@ -1,12 +1,10 @@
 package com.sergnfitness.domain.repository
 
-import android.app.DownloadManager
 import com.sergnfitness.domain.models.UserMenuDay
 import com.sergnfitness.domain.models.user.DataUser
-import com.sergnfitness.domain.models.user.MenuDayList
+import com.sergnfitness.domain.models.MenuDayList
 import com.sergnfitness.domain.models.user.User
 import retrofit2.Call
-import retrofit2.Response
 
 
 interface ApiRepository {

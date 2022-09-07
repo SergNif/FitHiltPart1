@@ -30,7 +30,7 @@ import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5N
 import com.sergnfitness.android.fit.presentation.part1.Pg10BadHabbitsFragmentDirections
 import com.sergnfitness.android.fit.presentation.part2.part2viewModel.Part2Page1ViewModel
 import com.sergnfitness.domain.models.UserMenuDay
-import com.sergnfitness.domain.models.user.MenuDayList
+import com.sergnfitness.domain.models.MenuDayList
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.time.LocalDate

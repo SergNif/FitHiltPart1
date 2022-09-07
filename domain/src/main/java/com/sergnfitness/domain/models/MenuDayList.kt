@@ -1,10 +1,13 @@
-package com.sergnfitness.domain.models.user
+package com.sergnfitness.domain.models
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
+@Parcelize
+data class MenuDayList(
+    val listMenuDay: List<MenuDay>
+    ):Parcelable
 
-data class MenuDayList(val listMenuDay: List<MenuDay> )
 @Parcelize
 data class MenuDay(
     var id: Int?,

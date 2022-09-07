@@ -192,4 +192,9 @@ class UserRepositoryImpl @Inject constructor(
 //    }
 
 
+    override fun saveDataStartDataCalendar(startData: String, endData: String): Boolean {
+        val result = sharedPrefsInterfaceStorage.saveData(startData = startData, endData = endData)
+        return result
+    }
+
 }

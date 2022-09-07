@@ -17,4 +17,5 @@ interface SharedPrefsInterfaceStorage {
 
     fun saveDataUserClass(user: DataUserStorage):Boolean
     fun getDataUserClass(): MutableList<String>
+    fun saveData(startData: String, endData: String): Boolean
 }

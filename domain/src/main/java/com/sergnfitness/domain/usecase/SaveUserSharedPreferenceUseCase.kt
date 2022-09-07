@@ -16,4 +16,8 @@ class SaveUserSharedPreferenceUseCase @Inject constructor(
             return result
         }
     }
+    fun executeSaveData(startData: String ="", endData:String =""):Boolean{
+        val result: Boolean = userRepository.saveDataStartDataCalendar(startData = startData, endData = endData)
+        return result
+    }
 }

@@ -5,7 +5,7 @@ import android.util.Log
 import com.sergnfitness.data.api.ApiServer
 import com.sergnfitness.domain.models.UserMenuDay
 import com.sergnfitness.domain.models.user.DataUser
-import com.sergnfitness.domain.models.user.MenuDayList
+import com.sergnfitness.domain.models.MenuDayList
 import com.sergnfitness.domain.models.user.User
 import com.sergnfitness.domain.repository.ApiRepository
 import retrofit2.Call

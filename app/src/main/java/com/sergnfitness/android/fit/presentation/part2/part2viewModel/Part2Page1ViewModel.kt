@@ -11,8 +11,8 @@ import com.github.mikephil.charting.data.LineDataSet
 import com.sergnfitness.android.fit.presentation.adapter.RecyclerViewAdapter
 import com.sergnfitness.domain.models.UserMenuDay
 import com.sergnfitness.domain.models.user.DataUser
-import com.sergnfitness.domain.models.user.MenuDay
-import com.sergnfitness.domain.models.user.MenuDayList
+import com.sergnfitness.domain.models.MenuDay
+import com.sergnfitness.domain.models.MenuDayList
 import com.sergnfitness.domain.models.user.User
 import com.sergnfitness.domain.repository.ApiRepository
 import com.sergnfitness.domain.util.Resource

@@ -1,14 +1,11 @@
 package com.sergnfitness.data.api
 
 
-import com.sergnfitness.data.storage.storageModel.DataUserStorage
-import com.sergnfitness.data.storage.storageModel.UserStorage
 import com.sergnfitness.domain.models.UserMenuDay
 import com.sergnfitness.domain.models.user.DataUser
-import com.sergnfitness.domain.models.user.MenuDayList
+import com.sergnfitness.domain.models.MenuDayList
 import com.sergnfitness.domain.models.user.User
 import retrofit2.Call
-import retrofit2.Response
 import retrofit2.http.*
 
 
@@ -79,6 +76,8 @@ interface ApiServer {
 //        @Query("data") date: Date,
     ): Call<DataUser>
     // *******   CHART  ***********
+
+
 //    @GET("/fit_get_menu_string/")
 
 //    ): Response<User>
