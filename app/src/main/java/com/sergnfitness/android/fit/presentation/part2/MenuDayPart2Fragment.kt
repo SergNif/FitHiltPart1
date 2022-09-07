@@ -99,11 +99,11 @@ class MenuDayPart2Fragment : Fragment() {
         viewModel.formatDataPickerAPI()
         viewModel.launchGetMenuList(viewModel.startDataAPI.value.toString(), viewModel.endDataAPI.value.toString())
 
-        im.setOnClickListener {
-
-            Log.e(taG, "To next fragment")
-            findNavController().navigate(R.id.action_menuDayPart2Fragment_to_newOneMenuDayFragment)
-        }
+//        im.setOnClickListener {
+//
+//            Log.e(taG, "To next fragment")
+//            findNavController().navigate(R.id.action_menuDayPart2Fragment_to_newOneMenuDayFragment)
+//        }
         viewModel.endDataAPI.observe(viewLifecycleOwner, Observer {
             viewModel.launchGetMenuList(viewModel.startDataAPI.value.toString(), viewModel.endDataAPI.value.toString())
         })
@@ -126,7 +126,7 @@ class MenuDayPart2Fragment : Fragment() {
         recyclerViewAdapter.setOnItemClickListener(object : RecyclerViewAdapter.onItemClickListenerRecyclViewAdapter{
             override fun onItemClick(position: Int) {
                 viewModel.positionRecycklerViewEdit = position
-                findNavController().navigate(R.id.action_menuDayPart2Fragment_to_newOneMenuDayFragment)
+//                findNavController().navigate(R.id.action_menuDayPart2Fragment_to_newOneMenuDayFragment)
                 Toast.makeText(activity, "click on ${position}", Toast.LENGTH_SHORT).show()
             }
 
@@ -139,7 +139,7 @@ class MenuDayPart2Fragment : Fragment() {
         findNavController().popBackStack()
     }
     fun onClickNextFragment() {
-        findNavController().navigate(R.id.action_menuDayPart2Fragment_to_part2Page2Fragment)
+//        findNavController().navigate(R.id.action_menuDayPart2Fragment_to_part2Page2Fragment)
     }
 
     fun onClickNextDay(){
