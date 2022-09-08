@@ -34,19 +34,7 @@
         <item name="layout_constraintVertical_bias">0.06</item>
     </style>
 
-    <style name="fon_menu_house_up_button_part2">
-        <item name="android:paddingStart">15sp</item>
-        <item name="android:paddingEnd">15sp</item>
-        <item name="android:drawableLeft">@drawable/ic_house_1</item>
 
-        <item name="android:layout_width">320dp</item>
-        <item name="android:layout_height">34dp</item>
-        <item name="android:fontFamily">@font/roboto_condensed_regular</item>
-        <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/text_grey_page4</item>
-        <item name="android:textSize">18sp</item>
-
-    </style>
 
     <style name="password_eye_part2">
 
@@ -60,11 +48,23 @@
     </style>
 
 
+    <style name="fon_menu_house_up_button_part2">
+        <item name="android:paddingStart">15sp</item>
+        <item name="android:paddingEnd">15sp</item>
+        <item name="android:drawableLeft">@drawable/ic_house_1</item>
+        <item name="android:layout_width">320dp</item>
+        <item name="android:layout_height">34dp</item>
+        <item name="android:fontFamily">@font/roboto_condensed_regular</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/text_grey_page4</item>
+        <item name="android:textSize">16sp</item>
+
+    </style>
+
     <style name="fon_menu_note_up_button_part2">
         <item name="android:paddingStart">15sp</item>
         <item name="android:paddingEnd">15sp</item>
         <item name="android:drawableLeft">@drawable/ic_icons_24_left_bar_calendar</item>
-
         <item name="android:layout_width">320dp</item>
         <item name="android:layout_height">34dp</item>
         <item name="android:fontFamily">@font/roboto_condensed_regular</item>
@@ -304,12 +304,12 @@
 
     <style name="text_data_page4">
         <item name="android:layout_width">295dp</item>
-        <item name="android:layout_height">35dp</item>
+        <item name="android:layout_height">32dp</item>
         <item name="android:background">@drawable/ic_fon_text_page_4_no_press</item>
-<!--        <item name="android:fontFamily">@font/roboto_condensed_regular</item>-->
+        <item name="android:fontFamily">@font/roboto_condensed_regular</item>
         <item name="android:gravity">center</item>
         <item name="android:paddingVertical">1dp</item>
-        <item name="android:paddingHorizontal">2dp</item>
+        <item name="android:paddingHorizontal">1dp</item>
         <item name="android:textColor">@color/text_grey_page4</item>
         <item name="android:textSize">16sp</item>
         <item name="layout_constraintBottom_toBottomOf">parent</item>
@@ -322,7 +322,7 @@
 
     <style name="text_data_page5">
         <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_height">30dp</item>
         <item name="android:layout_marginHorizontal">15dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:background">@drawable/ic_button_text_fon_page5</item>
@@ -330,7 +330,7 @@
         <item name="android:gravity">center</item>
         <item name="android:paddingVertical">1dp</item>
         <item name="android:textColor">@color/text_grey_page4</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">15sp</item>
     </style>
 
     <style name="up_grin_text">

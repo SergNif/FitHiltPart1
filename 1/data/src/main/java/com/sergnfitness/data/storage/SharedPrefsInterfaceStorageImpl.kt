@@ -26,6 +26,9 @@ private const val KEY_LAST_NAME = "Repository Impl"
 private const val DEFAULT_LAST_NAME = "Default last name"
 private const val DEFAULT_FIRST_NAME = "Default first name"
 
+private const val KEY_STARTDATA = "Start Data name"
+private const val KEY_ENDDATA = "End Data name"
+
 
 //@Module
 //@InstallIn(SingletonComponent::class)
@@ -104,4 +107,11 @@ class SharedPrefsImplStorage @Inject constructor(context: Context) : SharedPrefs
         }
         return list
     }
+
+    override fun saveData(startData: String, endData: String): Boolean {
+        sharedPreferences.edit().putString(KEY_STARTDATA, startData).apply()
+        sharedPreferences.edit().putString(KEY_ENDDATA, endData).apply()
+        return true
+    }
+
 }

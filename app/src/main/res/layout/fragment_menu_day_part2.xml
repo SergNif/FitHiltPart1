@@ -21,10 +21,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingVertical="15sp"
-
+            android:paddingVertical="8dp"
             app:layout_constraintEnd_toEndOf="@id/part2page1_button_history_weight"
-
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
@@ -32,10 +30,7 @@
                 style="@style/fon_menu_house_up_button_part2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:clickable="true"
-                android:onClick="@{frag::onClickHouse}"
-
                 />
 
             <TextView
@@ -44,7 +39,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-
                 />
 
             <TextView
@@ -53,7 +47,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-
                 />
 
             <TextView
@@ -62,12 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-
-                android:onClick="@{frag::onClickNextFragment}"
-
                 />
-
-
         </LinearLayout>
 
         <LinearLayout
@@ -75,8 +63,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingTop="15sp"
-
+            android:paddingTop="5dp"
+            android:gravity="center"
             app:layout_constraintStart_toStartOf="@id/parametrs"
             app:layout_constraintTop_toBottomOf="@+id/lin_lay1">
 
@@ -85,8 +73,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingTop="8sp"
-
+                android:paddingTop="2dp"
+                android:gravity="center"
                 app:layout_constraintStart_toStartOf="@id/parametrs"
                 app:layout_constraintTop_toBottomOf="@+id/lin_lay1">
 
@@ -95,11 +83,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans"
-                    android:gravity="center"
-                    android:paddingBottom="5sp"
+                    android:textAlignment="center"
+                    android:paddingBottom="2dp"
                     android:text="У тебя все получится!"
                     android:textColor="#898989"
-                    android:textSize="14sp"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="@+id/parametrs"
                     app:layout_constraintStart_toStartOf="@+id/info_user"
                     app:layout_constraintTop_toBottomOf="@id/text_name_user_part2_page1" />
@@ -109,15 +97,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans"
-                    android:gravity="center"
-                    android:paddingBottom="8sp"
-
+                    android:textAlignment="center"
+                    android:paddingBottom="3dp"
                     android:textColor="#898989"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="@+id/parametrs"
                     app:layout_constraintStart_toStartOf="@+id/info_user"
                     app:layout_constraintTop_toBottomOf="@id/text_name_user_part2_page1" />
-
             </LinearLayout>
 
             <TextView
@@ -125,10 +111,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_condensed_regular"
-                android:gravity="center"
+                android:textAlignment="center"
                 android:text="ФИЗИЧЕСКАЯ АКТИВНОСТЬ"
                 android:textColor="#455A64"
-                android:textSize="25sp"
+                android:textSize="22sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/text_id_part2_page1"
                 app:layout_constraintStart_toStartOf="@+id/info_user"
@@ -139,13 +125,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans"
-                android:gravity="center"
-                android:paddingBottom="12sp"
-                android:text="@{`` +vmod._data3.id}"
+                android:gravity="end"
+                android:textAlignment="textEnd"
+                android:paddingBottom="4dp"
                 android:textColor="#898989"
                 app:layout_constraintEnd_toEndOf="@+id/parametrs"
                 app:layout_constraintStart_toStartOf="@+id/info_user"
-
                 app:layout_constraintTop_toBottomOf="@id/text_name_user_part2_page1" />
         </LinearLayout>
 
@@ -154,8 +139,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingTop="15sp"
-
+            android:paddingTop="3dp"
             app:layout_constraintEnd_toEndOf="@+id/part2page1_button_history_weight"
             app:layout_constraintStart_toStartOf="@+id/part2page1_button_history_weight"
             app:layout_constraintTop_toBottomOf="@+id/info_user">
@@ -168,9 +152,8 @@
                 android:clickable="true"
                 android:gravity="center"
                 android:paddingHorizontal="6sp"
-
                 android:textColor="@color/white"
-                android:textSize="15sp"
+                android:textSize="17sp"
                 android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="@+id/part2page1_button_history_weight" />
 
@@ -178,14 +161,13 @@
                 android:id="@+id/part2page1_button_age"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/hight_40dp"
-                android:layout_marginHorizontal="50sp"
+                android:layout_marginHorizontal="30dp"
                 android:background="@drawable/ic_fon_parametrs"
                 android:clickable="true"
                 android:gravity="center"
                 android:paddingHorizontal="6sp"
-
                 android:textColor="@color/white"
-                android:textSize="15sp"
+                android:textSize="17sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -196,9 +178,8 @@
                 android:clickable="true"
                 android:gravity="center"
                 android:paddingHorizontal="6sp"
-
                 android:textColor="@color/white"
-                android:textSize="15sp"
+                android:textSize="17sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="@+id/part2page1_button_history_weight" />
         </LinearLayout>
@@ -209,7 +190,9 @@
             android:clickable="true"
             android:text="История изменения веса"
             app:layout_constraintTop_toBottomOf="@+id/parametrs"
-            tools:ignore="MissingConstraints" />
+            tools:ignore="MissingConstraints"
+            android:visibility="gone"
+            />
 
 
         <LinearLayout
@@ -235,9 +218,9 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="17dp"
+            android:layout_marginTop="7dp"
             android:layout_marginEnd="45dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="3dp"
 
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/lin_footer_image"
@@ -263,7 +246,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_margin="8sp"
+                    android:layout_margin="3dp"
                     android:layout_weight="1"
                     android:clickable="true"
                     android:rotation="-90"
@@ -276,10 +259,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="25sp"
-                    android:layout_marginVertical="8dp"
+                    android:layout_marginVertical="4dp"
                     android:layout_weight="4"
                     android:fontFamily="@font/open_sans"
-                    android:lineSpacingExtra="20sp"
+                    android:lineSpacingExtra="20dp"
                     android:gravity="center"
                     android:text="Блокнот"
 
@@ -293,7 +276,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:layout_margin="8sp"
+                    android:layout_margin="3dp"
                     android:layout_weight="1"
                     android:clickable="true"
                     android:scaleX="1"

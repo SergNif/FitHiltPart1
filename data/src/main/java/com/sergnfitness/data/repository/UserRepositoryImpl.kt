@@ -2,9 +2,8 @@ package com.sergnfitness.cleanarchitect.data.repository
 
 
 import android.util.Log
-import com.sergnfitness.cleanarchitect.data.storage.SharedPrefsInterfaceStorage
+import com.sergnfitness.data.storage.SharedPrefsInterfaceStorage
 import com.sergnfitness.data.storage.storageModel.UserStorage
-import com.sergnfitness.domain.models.user.DataUser
 import com.sergnfitness.domain.models.user.User
 import com.sergnfitness.domain.repository.UserRepository
 import java.text.SimpleDateFormat
@@ -13,7 +12,6 @@ import java.time.format.DateTimeFormatter
 import java.time.format.DateTimeParseException
 import java.util.*
 import javax.inject.Inject
-import kotlin.jvm.internal.Reflection
 import kotlin.reflect.KClass
 
 

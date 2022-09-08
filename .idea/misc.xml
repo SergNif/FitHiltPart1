@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../Android/Sdk/platforms/android-32/data/res/layout/simple_spinner_dropdown_item.xml" value="0.6088541666666667" />
+        <entry key="app/src/main/res/drawable/border_fon_rectangle.xml" value="0.2375" />
         <entry key="app/src/main/res/drawable/ic_baseline_double_arrow_24.xml" value="0.102" />
         <entry key="app/src/main/res/drawable/ic_button_text_fon_page5.xml" value="0.265" />
         <entry key="app/src/main/res/drawable/ic_button_text_fon_page5_no_press.xml" value="0.1445" />
@@ -48,7 +49,7 @@
         <entry key="app/src/main/res/layout/pg2_next.xml" value="0.5796875" />
         <entry key="app/src/main/res/layout/pg3_data_age_hight_weight.xml" value="0.5796875" />
         <entry key="app/src/main/res/layout/plus_next_day_menu_next.xml" value="0.5960163432073544" />
-        <entry key="app/src/main/res/layout/recycler_row_list.xml" value="0.6078125" />
+        <entry key="app/src/main/res/layout/recycler_row_list.xml" value="0.510670731707317" />
         <entry key="app/src/main/res/layout/spinner_adapter.xml" value="0.5953703703703703" />
       </map>
     </option>

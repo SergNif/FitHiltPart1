@@ -28,7 +28,7 @@ import com.sergnfitness.domain.models.MenuDayList
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MenuDayPart2Fragment  : Fragment() {
+class MenuDayPart2Fragment : Fragment() {
 
     lateinit var recyclerViewAdapter: RecyclerViewAdapter
     lateinit var iview: View
@@ -37,7 +37,6 @@ class MenuDayPart2Fragment  : Fragment() {
     var menuList: List<MenuDay> = mutableListOf<MenuDay>()
 
     companion object {
-
         fun newInstance() = MenuDayPart2Fragment()
     }
 
@@ -80,7 +79,7 @@ class MenuDayPart2Fragment  : Fragment() {
 //        viewModel.dataMenuDay = args.currentMenuDay
         binding.textDataRightPart2Page1.text = "c ${viewModel.startData.value} по ${viewModel.endData.value}"
 
-        binding.textIdPart2Page1.text = "ID: ${viewModel.dataUser.id.toString()}"
+        binding.textIdPart2Page1.text = viewModel.dataUser.id.toString()
         binding.part2page1ButtonHeight.text = "Рост ${viewModel.dataUser.height.toString()}"
         binding.part2page1ButtonAge.text = "Возраст ${viewModel.dataUser.age.toString()}"
         binding.part2page1ButtonWeight.text = "Вес ${viewModel.dataUser.weight.toString()}"
@@ -130,7 +129,7 @@ val action:NavDirections =
     fun initRecyclerView(view: View) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycl)
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerViewAdapter = RecyclerViewAdapter(viewModel.us)//(menuList)
+        recyclerViewAdapter = RecyclerViewAdapter()//(menuList)
         recyclerView.adapter = recyclerViewAdapter
         recyclerViewAdapter.setOnItemClickListener(object :
             RecyclerViewAdapter.onItemClickListenerRecyclViewAdapter {

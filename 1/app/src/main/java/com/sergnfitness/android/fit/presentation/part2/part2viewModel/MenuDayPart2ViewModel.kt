@@ -67,7 +67,6 @@ private  val userRepository: UserRepository,
     val listWeightForChart: MutableList<Entry>
         get() = _listWeightForChart
 
-    val us = userRepository
     private val CHART_LABEL = "DAY_CHART"
     private val dayData = mutableListOf<Entry>()
     private val _lineDataSet = MutableLiveData(LineDataSet(listWeightForChart, CHART_LABEL))
