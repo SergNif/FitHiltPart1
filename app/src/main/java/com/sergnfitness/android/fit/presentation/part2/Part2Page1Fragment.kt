@@ -208,6 +208,13 @@ class Part2Page1Fragment : Fragment() {
 //                Part2Page1FragmentDirections.actionPart2Page1FragmentToLoginFragment2()
             findNavController().navigate(R.id.action_part2Page1Fragment_to_loginFragment2)
         }
+        binding.settingButton.setOnClickListener {
+            val action: NavDirections =
+                Part2Page1FragmentDirections.actionPart2Page1FragmentToPart2Fragment1ToUser(
+                    viewModel.userClass, viewModel.dataUser
+                )
+            findNavController().navigate(action)
+        }
 
         Observer<LiveData<String>>() { it ->
             when (it) {

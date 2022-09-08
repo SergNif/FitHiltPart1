@@ -1,5 +1,6 @@
 package com.sergnfitness.android.fit.presentation.part2.part2viewModel
 
+import android.text.Editable
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -8,16 +9,19 @@ import androidx.lifecycle.viewModelScope
 import com.sergnfitness.domain.models.user.DataUser
 import com.sergnfitness.domain.models.user.User
 import com.sergnfitness.domain.repository.ApiRepository
+import com.sergnfitness.domain.repository.UserRepository
 import com.sergnfitness.domain.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.time.LocalDateTime
 import javax.inject.Inject
 
 @HiltViewModel
 class Part2Fragment1ToUserViewModel @Inject constructor(
+    private val userRepository: UserRepository,
     private val apiRepository: ApiRepository,
 ) : ViewModel() {
 
@@ -26,6 +30,11 @@ class Part2Fragment1ToUserViewModel @Inject constructor(
     lateinit var userClass: User
     lateinit var dataUser: DataUser
 
+    private var _startData: MutableLiveData<String> =
+        MutableLiveData(userRepository.converStringToData(LocalDateTime.now().plusDays(0).toString()
+            .split("T")[0], 1))
+    val startData: LiveData<String>
+        get() = _startData
 
     private var _id: MutableLiveData<Int> = MutableLiveData(0)
     val id: LiveData<Int> = _id
@@ -44,13 +53,23 @@ class Part2Fragment1ToUserViewModel @Inject constructor(
     val toUserLiveData: LiveData<User> = _toUserLiveData
 
 
-    fun saveChangeNamePassword(newPassword: String?) {
+    fun saveChangeNamePassword(newPassword: String?, newName: String) {
 
         if (newPassword != null) {
-            userClass.password =
-                if (newPassword != "null" && newPassword.isNotEmpty()) newPassword else userClass.password
-        } else {
-            userClass.password = userClass.password
+            if (newPassword != "null" && newPassword.isNotEmpty()) {
+                userClass.password = newPassword
+                _password.value = newPassword
+            } else {
+                _password.value = userClass.password
+            }
+        }
+        if (newName != null) {
+            if (newName != "null" && newName.isNotEmpty()) {
+                userClass.fullName = newName
+                _fullName.value = newName
+            } else {
+                _fullName.value = userClass.fullName
+            }
         }
         launchUpdateNamePassword(userClass)
     }
@@ -86,5 +105,11 @@ class Part2Fragment1ToUserViewModel @Inject constructor(
             }
         }
         )
+    }
+
+    fun changeName(text: Editable) {
+        if (text.toString() != "null" && text.isNotEmpty()) {
+            _fullName.value = text.toString()
+        }
     }
 }

@@ -17,7 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingVertical="8sp"
+            android:paddingVertical="2dp"
             app:layout_constraintEnd_toEndOf="@id/part2page1_button_history_weight"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -26,7 +26,7 @@
                 style="@style/fon_menu_house_up_button_part2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="45sp"
+                android:layout_marginEnd="25dp"
                 android:clickable="true"
                 />
 
@@ -65,7 +65,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingHorizontal="10sp"
-            android:paddingTop="5sp"
+            android:paddingTop="3dp"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -76,7 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:paddingTop="8sp"
+                android:paddingTop="3dp"
 
                 app:layout_constraintStart_toStartOf="@id/parametrs"
                 app:layout_constraintTop_toBottomOf="@+id/lin_lay1">
@@ -87,7 +87,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans"
                     android:gravity="center"
-                    android:paddingBottom="3sp"
+                    android:paddingBottom="3dp"
                     android:text="У тебя все получится!"
                     android:textColor="#898989"
                     android:textSize="14sp"
@@ -101,8 +101,8 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/open_sans"
                     android:gravity="center"
-                    android:paddingBottom="3sp"
-                    android:text="@{`c `+ vmod.startData +' '+`по`+' '+ vmod.endData}"
+                    android:paddingBottom="3dp"
+
                     android:textColor="#898989"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toEndOf="@+id/parametrs"
@@ -117,7 +117,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_condensed_regular"
                 android:gravity="center"
-                android:text="@{`` +vmod._user.fullName}"
+
                 android:textAllCaps="true"
                 android:textColor="#455A64"
                 android:textSize="25sp"
@@ -132,8 +132,8 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/open_sans"
                 android:gravity="center"
-                android:paddingBottom="5sp"
-                android:text="@{`ID:` + frag.recivedUserFromSharedPreferences.id}"
+                android:paddingBottom="5dp"
+
                 android:textColor="#898989"
                 app:layout_constraintEnd_toEndOf="@+id/parametrs"
                 app:layout_constraintStart_toStartOf="@+id/info_user"
@@ -146,8 +146,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            android:paddingHorizontal="5sp"
-            android:paddingTop="5sp"
+            android:paddingHorizontal="5dp"
+            android:paddingTop="5dp"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -160,9 +160,9 @@
                 android:background="@drawable/ic_fon_parametrs"
                 android:clickable="true"
                 android:gravity="center"
-                android:paddingHorizontal="3sp"
-                android:paddingVertical="2sp"
-                android:text="@{`Рост ` +vmod._data3.height}"
+                android:paddingHorizontal="3dp"
+                android:paddingVertical="2dp"
+
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 android:textStyle="bold"
@@ -176,9 +176,9 @@
                 android:background="@drawable/ic_fon_parametrs"
                 android:clickable="true"
                 android:gravity="center"
-                android:paddingHorizontal="3sp"
-                android:paddingVertical="2sp"
-                android:text="@{`Возраст ` +vmod._data3.age}"
+                android:paddingHorizontal="3dp"
+                android:paddingVertical="2dp"
+
                 android:textColor="@color/white"
 
                 android:textSize="15sp"
@@ -191,9 +191,9 @@
                 android:background="@drawable/ic_fon_parametrs"
                 android:clickable="true"
                 android:gravity="center"
-                android:paddingHorizontal="4sp"
-                android:paddingVertical="2sp"
-                android:text="@{`Вес ` +vmod._data3.weight}"
+                android:paddingHorizontal="4dp"
+                android:paddingVertical="2dp"
+
                 android:textColor="@color/white"
                 android:textSize="15sp"
                 android:textStyle="bold"
@@ -220,7 +220,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
-            android:paddingVertical="6sp"
+            android:paddingVertical="6dp"
             android:text="Настройки"
             android:textColor="#516289"
             android:textSize="20sp"
@@ -236,7 +236,7 @@
             android:layout_marginStart="30dp"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
-            android:paddingVertical="2sp"
+            android:paddingVertical="2dp"
             android:text="Изменить имя"
             android:textColor="#3C3C43"
             android:textSize="14sp"
@@ -250,8 +250,8 @@
             style="@style/data_text_part2_page4"
             android:clickable="true"
             android:hint=""
-            android:paddingStart="12sp"
-            android:text="@={vmod._user.fullName}"
+            android:paddingStart="12dp"
+
             android:textAlignment="viewStart"
             app:layout_constraintTop_toBottomOf="@+id/part2page1_to_user_header_name"
             tools:ignore="MissingConstraints" />
@@ -262,9 +262,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="30dp"
-            android:layout_marginTop="5sp"
+            android:layout_marginTop="3dp"
 
-            android:layout_marginBottom="1sp"
+            android:layout_marginBottom="1dp"
             android:fontFamily="@font/open_sans"
             android:gravity="center"
             android:text="Сменить пароль"
@@ -280,7 +280,7 @@
             android:layout_width="match_parent"
             android:layout_height="44dp"
 
-            android:layout_marginTop="5sp"
+            android:layout_marginTop="2dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@+id/part2page1_to_user_header_change_password">
@@ -289,12 +289,12 @@
                 android:id="@+id/part2page1_text_old_password"
                 style="@style/data_text_password_part2_page4"
                 android:layout_marginStart="30dp"
-                android:layout_marginTop="1sp"
+                android:layout_marginTop="1dp"
                 android:layout_weight="8"
                 android:hint="Введите старый пароль"
 
-                android:paddingStart="12sp"
-                android:text="@={vmod._user.password}"
+                android:paddingStart="12dp"
+
                 android:textAlignment="viewStart"
                 app:layout_constraintTop_toBottomOf="@+id/part2page1_to_user_header_change_password"
                 tools:ignore="MissingConstraints" />
@@ -319,7 +319,7 @@
             android:layout_width="match_parent"
             android:layout_height="44dp"
             android:layout_marginStart="10dp"
-            android:layout_marginTop="12sp"
+            android:layout_marginTop="12dp"
             android:gravity="center_vertical"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@+id/lyn_old_password">
@@ -329,13 +329,13 @@
                 android:id="@+id/part2page1_text_new_password"
                 style="@style/data_text_password_part2_page4"
                 android:layout_marginStart="18dp"
-                android:layout_marginTop="1sp"
+                android:layout_marginTop="1dp"
                 android:layout_weight="8"
 
                 android:hint="Введите новый пароль"
 
-                android:paddingStart="12sp"
-                android:text="@={newPsw}"
+                android:paddingStart="12dp"
+
                 android:textAlignment="viewStart"
                 android:textColorHint="@color/text_grey_page4"
                 app:layout_constraintTop_toBottomOf="@+id/lyn_old_password"
@@ -347,7 +347,7 @@
                 android:layout_width="43dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="-65sp"
-                android:layout_marginEnd="25sp"
+                android:layout_marginEnd="25dp"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:scaleX="0.45"
@@ -361,8 +361,8 @@
             android:id="@+id/part2page1_to_user_save_param"
             style="@style/part2_page1_to_user"
             android:clickable="true"
-            android:paddingHorizontal="2sp"
-            android:paddingVertical="2sp"
+            android:paddingHorizontal="2dp"
+            android:paddingVertical="2dp"
             android:text="Сохранить изменения"
             app:layout_constraintTop_toBottomOf="@+id/lyn_new_password"
             tools:ignore="MissingConstraints" />
@@ -371,7 +371,7 @@
             android:id="@+id/lin_footer_image"
             android:layout_width="@dimen/width_enter_data"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="35sp"
+            android:layout_marginBottom="35dp"
             android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -380,8 +380,8 @@
 
             <ImageButton
                 android:id="@+id/footer_image"
-                android:layout_width="120sp"
-                android:layout_height="140sp"
+                android:layout_width="95dp"
+                android:layout_height="110dp"
 
                 android:background="@drawable/flouwer_big" />
         </LinearLayout>
