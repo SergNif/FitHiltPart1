@@ -15,6 +15,7 @@ import com.sergnfitness.domain.models.MenuDay
 import com.sergnfitness.domain.models.MenuDayList
 import com.sergnfitness.domain.models.user.User
 import com.sergnfitness.domain.repository.ApiRepository
+import com.sergnfitness.domain.repository.UserRepository
 import com.sergnfitness.domain.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
@@ -29,6 +30,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class Part2Page1ViewModel @Inject constructor(
+    private val userRepository: UserRepository,
     private val apiRepository: ApiRepository,
 ) : ViewModel() {
     val taG = "Part2Page1ViewModel "
@@ -41,13 +43,12 @@ class Part2Page1ViewModel @Inject constructor(
 
     private var _startData: MutableLiveData<String> =
         MutableLiveData(LocalDateTime.now().plusDays(0).toString().split("T")[0])
-
-
-    private val _input_weight = MutableLiveData<String>()
-    val input_weight: LiveData<String> = _input_weight
-
     val startData: LiveData<String>
         get() = _startData
+
+    private val _input_weight = MutableLiveData<String>()
+
+    val input_weight: LiveData<String> = _input_weight
 
     private var _endData: MutableLiveData<String> =
         MutableLiveData(LocalDateTime.now().plusDays(1).toString().split("T")[0])

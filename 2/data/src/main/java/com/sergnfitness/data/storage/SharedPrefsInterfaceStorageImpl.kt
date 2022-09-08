@@ -1,11 +1,9 @@
 package com.sergnfitness.cleanarchitect.data.storage
 
 import android.content.Context
+import com.sergnfitness.data.storage.SharedPrefsInterfaceStorage
 import com.sergnfitness.data.storage.storageModel.DataUserStorage
 import com.sergnfitness.data.storage.storageModel.UserStorage
-import dagger.Module
-import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
 import javax.inject.Inject
 
 
