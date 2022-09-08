@@ -5,6 +5,8 @@ import com.sergnfitness.domain.models.user.DataUser
 import com.sergnfitness.domain.models.MenuDayList
 import com.sergnfitness.domain.models.user.User
 import retrofit2.Call
+import retrofit2.http.Body
+import retrofit2.http.Path
 
 
 interface ApiRepository {
@@ -22,4 +24,5 @@ interface ApiRepository {
     suspend fun pathUpdateWeigth(user_id: Int, userData3: DataUser): Call<DataUser>
     suspend fun postQueryCreateMenuDay(menuDay:UserMenuDay, position:Int): Call<UserMenuDay>
     suspend fun deleteOneMenuDay(user_id:Int, position:Int): Call<MenuDayList>
+    suspend fun updateNamePassword(user_id: Int, userName: User, ): Call<User>
 }

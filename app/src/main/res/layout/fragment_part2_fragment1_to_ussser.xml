@@ -1,16 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".presentation.part2.Part2Fragment1ToUser">
+<!--<layout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools">-->
+
+<!--    <data>-->
+
+<!--        <variable-->
+<!--            name="newPsw"-->
+<!--            type="String" />-->
+
+<!--        <variable-->
+<!--            name="newName"-->
+<!--            type="String" />-->
+
+<!--        <variable-->
+<!--            name="vmod"-->
+<!--            type="com.sergnfitness.android.fit.presentation.part2.SharedViewModels" />-->
+
+<!--        <variable-->
+<!--            name="frag"-->
+<!--            type="com.sergnfitness.android.fit.presentation.part2.Part2Fragment1ToUser" />-->
+<!--    </data>-->
 
     <androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        android:textColor="#190F22">
+        android:textColor="#190F22"
+        tools:context=".presentation.part2.Part2Fragment1ToUser">
+
+
+        <!-- TODO: Update blank fragment layout -->
+
+
 
         <LinearLayout
             android:id="@+id/lin_lay1"
@@ -18,7 +43,9 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:paddingVertical="8sp"
+
             app:layout_constraintEnd_toEndOf="@id/part2page1_button_history_weight"
+
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
@@ -28,6 +55,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="45sp"
                 android:clickable="true"
+                android:onClick="@{frag::onClickHouse}"
+
                 />
 
             <TextView
@@ -37,6 +66,7 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:visibility="gone"
+
                 />
 
             <TextView
@@ -46,6 +76,7 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:visibility="gone"
+
                 />
 
             <TextView
@@ -54,8 +85,10 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
-                android:visibility="gone"
+
+
                 />
+
 
         </LinearLayout>
 
@@ -222,6 +255,8 @@
             android:gravity="center"
             android:paddingVertical="6sp"
             android:text="Настройки"
+
+
             android:textColor="#516289"
             android:textSize="20sp"
             android:textStyle="bold"
@@ -308,6 +343,7 @@
                 android:layout_marginEnd="25sp"
                 android:layout_weight="1"
                 android:clickable="true"
+                android:onClick="@{frag::onClickOldPassw}"
                 android:scaleX="0.45"
                 android:scaleY="0.45"
 
@@ -350,6 +386,7 @@
                 android:layout_marginEnd="25sp"
                 android:layout_weight="1"
                 android:clickable="true"
+                android:onClick="@{frag::onClickNewPassw}"
                 android:scaleX="0.45"
                 android:scaleY="0.45"
 
@@ -360,23 +397,28 @@
         <TextView
             android:id="@+id/part2page1_to_user_save_param"
             style="@style/part2_page1_to_user"
+
             android:clickable="true"
+            android:onClick="@{frag::onClickSaveChange}"
+            android:text="Сохранить изменения"
             android:paddingHorizontal="2sp"
             android:paddingVertical="2sp"
-            android:text="Сохранить изменения"
             app:layout_constraintTop_toBottomOf="@+id/lyn_new_password"
+
             tools:ignore="MissingConstraints" />
+
 
         <LinearLayout
             android:id="@+id/lin_footer_image"
             android:layout_width="@dimen/width_enter_data"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="35sp"
-            android:gravity="center"
             android:orientation="horizontal"
+            android:gravity="center"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginBottom="35sp"
+            >
 
             <ImageButton
                 android:id="@+id/footer_image"
@@ -386,5 +428,21 @@
                 android:background="@drawable/flouwer_big" />
         </LinearLayout>
 
+
     </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+<!--</layout>-->
+
+
+    <!--<ImageView-->
+    <!--android:id="@+id/pick_page_4_image"-->
+    <!--android:layout_width="282dp"-->
+    <!--android:layout_height="264dp"-->
+    <!--android:scaleX="1"-->
+    <!--android:scaleY="1"-->
+
+
+    <!--app:layout_constraintBottom_toBottomOf="parent"-->
+    <!--app:layout_constraintEnd_toEndOf="parent"-->
+    <!--app:layout_constraintStart_toStartOf="parent"-->
+    <!--app:layout_constraintTop_toBottomOf="@+id/lin_lay1"-->
+    <!--app:layout_constraintVertical_bias="0.0" />-->

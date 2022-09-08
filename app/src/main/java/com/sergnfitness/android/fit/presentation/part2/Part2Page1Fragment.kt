@@ -181,7 +181,7 @@ class Part2Page1Fragment : Fragment() {
         binding.textBack.setOnClickListener {
             findNavController().popBackStack()
         }
-        binding.exitButton.setOnClickListener {
+        binding.part2page1ButtonHistoryData.setOnClickListener {
             Log.e(taG, "viewModel.dataUser   ${viewModel.dataUser}")
             Log.e(taG, "${args.currentUser}")
 //            args.currentUser.email?.let { it1 -> viewModel.createDataUserOnServer(it1) }
@@ -191,21 +191,24 @@ class Part2Page1Fragment : Fragment() {
                     viewModel.userClass,  viewModel.dataUser)
             findNavController().navigate(action)
         }
-//        with(viewLifecycleOwner){
-//            viewModel.endDataAPI.observe{
-//                binding.textDataRightPart2Page1.setText("c ${viewModel.startData.value} по ${viewModel.endData.value}")
-//            }
-//            viewModel.endData.observe{
-//                binding.textDataRightPart2Page1.setText("c ${viewModel.startData.value} по ${viewModel.endData.value}")
-//            }
-//            viewModel.startDataAPI.observe{
-//                binding.textDataRightPart2Page1.setText("c ${viewModel.startData.value} по ${viewModel.endData.value}")
-//            }
-//            viewModel.startData.observe{
-//                binding.textDataRightPart2Page1.setText("c ${viewModel.startData.value} по ${viewModel.endData.value}")
-//            }
-//
-//        }
+        binding.noteButton.setOnClickListener {
+            Log.e(taG, "viewModel.dataUser   ${viewModel.dataUser}")
+            Log.e(taG, "${args.currentUser}")
+//            args.currentUser.email?.let { it1 -> viewModel.createDataUserOnServer(it1) }
+
+            val action: NavDirections =
+                Part2Page1FragmentDirections.actionPart2Page1FragmentToMenuDayPart2Fragment(
+                    viewModel.userClass,  viewModel.dataUser)
+            findNavController().navigate(action)
+        }
+        binding.exitButton.setOnClickListener {
+
+//            args.currentUser.email?.let { it1 -> viewModel.createDataUserOnServer(it1) }
+//            val action: NavDirections =
+//                Part2Page1FragmentDirections.actionPart2Page1FragmentToLoginFragment2()
+            findNavController().navigate(R.id.action_part2Page1Fragment_to_loginFragment2)
+        }
+
         Observer<LiveData<String>>() { it ->
             when (it) {
                 viewModel.endData -> {
@@ -237,18 +240,13 @@ class Part2Page1Fragment : Fragment() {
         binding.inputWeight.isVisible = false
         binding.lynInputWeight.isVisible = false
         binding.footerImage.isVisible = true
-        binding.textBack.isVisible = true
+        binding.textBack.isVisible = false
     }
 
     private fun showDatePickerDialogOne() {
         val month_date = SimpleDateFormat("MMMM")
         val month_name: String = month_date.format(c.getTime())
-//eee
-//        val timePickerDialog: TimePickerDialog =TimePickerDialog(requireContext(),TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-//            binding.textDataRightPart2Page1.text = " $hourOfDay :  $minute"
-//        },hh,mm,true)
-//        timePickerDialog.show()
-//        Log.e(taG, "$mm $hh $dd $mn $ye")
+
         val datepickerdialog: DatePickerDialog = DatePickerDialog(requireContext(),
             DatePickerDialog.OnDateSetListener { _, year, monthOfYear, dayOfMonth ->
 
@@ -262,14 +260,9 @@ class Part2Page1Fragment : Fragment() {
                     ye = year
                     Log.e(taG, "$dd $mn $ye")
                 }
-            },
-            ye,
-            mn,
-            dd)
-
+            },  ye,  mn,  dd)
         datepickerdialog.show()
         Log.e(taG, "$dd $hh $dd $mn $ye")
-
     }
 
     private fun backToFragment() {
@@ -289,7 +282,7 @@ class Part2Page1Fragment : Fragment() {
         binding.inputWeight.isVisible = false
         binding.lynInputWeight.isVisible = false
         binding.footerImage.isVisible = true
-        binding.textBack.isVisible = true
+        binding.textBack.isVisible = false
         var dateRangeSelected: String
         val dateRangePicker = MaterialDatePicker.Builder.dateRangePicker()
             .setTitleText("Выберите даты")
