@@ -130,7 +130,7 @@ val action:NavDirections =
     fun initRecyclerView(view: View) {
         val recyclerView = view.findViewById<RecyclerView>(R.id.recycl)
         recyclerView.layoutManager = LinearLayoutManager(activity)
-        recyclerViewAdapter = RecyclerViewAdapter(viewModel.us)//(menuList)
+        recyclerViewAdapter = RecyclerViewAdapter()//(menuList)
         recyclerView.adapter = recyclerViewAdapter
         recyclerViewAdapter.setOnItemClickListener(object :
             RecyclerViewAdapter.onItemClickListenerRecyclViewAdapter {

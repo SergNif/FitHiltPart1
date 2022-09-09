@@ -8,13 +8,17 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.sergnfitness.android.fit.R
+import com.sergnfitness.data.repository.UserRepositoryCompanionImpl
+import com.sergnfitness.data.repository.UserRepositoryImpl
+
 import com.sergnfitness.domain.models.MenuDay
 import com.sergnfitness.domain.repository.UserRepository
+
 import javax.inject.Inject
 
 
 class RecyclerViewAdapter @Inject constructor(
-    val userRepository: UserRepository
+//    val userRepository: UserRepository
 ) : RecyclerView.Adapter<RecyclerViewAdapter.RecycleViewHolder>() {
 
     val TAG = "RecyclerViewAdapter Part2 "
@@ -38,7 +42,7 @@ class RecyclerViewAdapter @Inject constructor(
         val itemView =
             LayoutInflater.from(parent.context).inflate(R.layout.recycler_row_list, parent, false)
         Log.e(ContentValues.TAG, "onCreateViewHolder")
-        return RecycleViewHolder(itemView, itemListener, userRepository)
+        return RecycleViewHolder(itemView, itemListener)
     }
 
     override fun getItemCount(): Int {
@@ -60,7 +64,7 @@ class RecyclerViewAdapter @Inject constructor(
     class RecycleViewHolder @Inject constructor(
        val itemView: View,
        val listener: onItemClickListenerRecyclViewAdapter,
-       val  userRepository: UserRepository,
+//       val  userRepository: UserRepository,
     ) :
         RecyclerView.ViewHolder(itemView) {
 
@@ -73,15 +77,24 @@ class RecyclerViewAdapter @Inject constructor(
         init {
             itemView.setOnClickListener { listener.onItemClick(adapterPosition) }
         }
-
+companion object {
+    fun conv(dt: String, i: Long, userRepository: UserRepositoryCompanionImpl = UserRepositoryCompanionImpl()): String? {
+        return  userRepository.converStringToData(dt, i)
+    }
+}
         fun bind(data: MenuDay) {
-
+           val f = object {
+               val userRepositoryCom: UserRepositoryCompanionImpl=UserRepositoryCompanionImpl()
+                fun conv(dt: String, i: Long): String? {
+                    return  userRepositoryCom.converStringToData(dt, i)
+                }
+            }
             Log.e(ContentValues.TAG, "bind")
             Log.e(ContentValues.TAG, "Get RecycleViewHolder ${data.user.toString()}")
             Log.e(ContentValues.TAG, "Get RecycleViewHolder ${data.data.toString()}")
             Log.e(ContentValues.TAG, "Get RecycleViewHolder ${data.menu.toString()}")
-
-            string1.text = userRepository.converStringToData(data.data.toString(),1)
+string1.text = f.conv(data.data.toString(),1)
+//            string1.text = userRepository.converStringToData(data.data.toString(),1)
             string2.text = data.user.toString()
             string3.text = data.menu.joinToString(separator = "/n")
             string4.text = "Вес ${data.weight.toString()}"

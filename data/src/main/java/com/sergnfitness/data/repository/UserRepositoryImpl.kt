@@ -1,4 +1,4 @@
-package com.sergnfitness.cleanarchitect.data.repository
+package com.sergnfitness.data.repository
 
 
 import android.util.Log
@@ -26,6 +26,8 @@ class UserRepositoryImpl @Inject constructor(
             "testttttt********"//appContext.getString(androidx.core.R.string.status_bar_notification_info_overflow)
         Log.e("UserRepositoryImpl", "Heloo from ApiRepositoryImpl $appName")
     }
+
+
 
 //    override fun saveName(saveparam: SaveUserNameParam): Boolean {
 //        val user: UserModelStorage = mapToStorage(saveparam)
@@ -216,6 +218,7 @@ class UserRepositoryImpl @Inject constructor(
         }
         return date85?.let { formatter25.format(it) }
     }
+
 
     override fun saveDataStartDataCalendar(startData: String, endData: String): Boolean {
         val result = sharedPrefsInterfaceStorage.saveData(startData = startData, endData = endData)

@@ -22,4 +22,5 @@ interface UserRepository {
     fun createExemplarClassUserUseRepos(nameOfCreateClass:String, list: MutableMap<String, String>): Any
     fun saveDataStartDataCalendar(startData: String, endData: String): Boolean
     fun converStringToData(dt: String, i: Long): String?
+
 }
