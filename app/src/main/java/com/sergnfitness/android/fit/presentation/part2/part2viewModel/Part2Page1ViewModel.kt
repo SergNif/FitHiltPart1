@@ -77,6 +77,12 @@ class Part2Page1ViewModel @Inject constructor(
     private val CHART_LABEL = "DAY_CHART"
     private val _lineDataSet = MutableLiveData(LineDataSet(listWeightForChart, CHART_LABEL))
 
+    private var _positionSpinner = MutableLiveData<Int>()
+    val positionSpinnerLive: LiveData<Int> = _positionSpinner
+
+    private var _positionSpinnerStart = MutableLiveData<Int>(12-LocalDateTime.now().plusDays(0).toString().split("T")[0].split("-")[1].toInt())
+    val positionSpinnerStartLive: LiveData<Int> = _positionSpinnerStart
+
 
     val lineDataSet: LiveData<LineDataSet> = _lineDataSet
     private val _userResourceLiveData = MutableLiveData<Resource<Any>>()
@@ -306,6 +312,14 @@ class Part2Page1ViewModel @Inject constructor(
             }
         }
         )
+    }
+
+    fun countEndDataAPI(i: Int): String {
+        return LocalDateTime.now().plusDays(-i.toLong()).toString().split("T")[0]
+    }
+
+    fun setPositionSpinner(p2: Int) {
+        _positionSpinner.value = p2
     }
 
 }

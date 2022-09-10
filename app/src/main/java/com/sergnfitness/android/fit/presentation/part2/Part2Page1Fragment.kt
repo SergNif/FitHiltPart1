@@ -27,7 +27,6 @@ import com.sergnfitness.android.fit.R
 import com.sergnfitness.android.fit.databinding.FragmentPart2Page1Binding
 import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5
 import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5NoPress
-import com.sergnfitness.android.fit.presentation.part1.Pg10BadHabbitsFragmentDirections
 import com.sergnfitness.android.fit.presentation.part2.part2viewModel.Part2Page1ViewModel
 import com.sergnfitness.domain.models.UserMenuDay
 import com.sergnfitness.domain.models.MenuDayList
@@ -66,8 +65,18 @@ class Part2Page1Fragment : Fragment() {
     var new_weigt_today: String = ""
 
 
-
-    val months = arrayOf("Дек", "Ноя", "Окт", "Сент", "Авг", "Июль", "Июнь", "Май", "Апр", "Март", "Февр", "Янв")
+    val months = arrayOf("Дек",
+        "Ноя",
+        "Окт",
+        "Сент",
+        "Авг",
+        "Июль",
+        "Июнь",
+        "Май",
+        "Апр",
+        "Март",
+        "Февр",
+        "Янв")
 
 
     private val chartStyle by lazy(LazyThreadSafetyMode.NONE) {
@@ -102,18 +111,24 @@ class Part2Page1Fragment : Fragment() {
         binding.inputWeight.hint = "Вес ${viewModel.dataUser.weight.toString()}"
 //        binding.inputWeight.text = "Вес $new_weigt_today".toEditable()
         //*******  SPINNER  ******
-        val arrayAdapter = ArrayAdapter<String>(requireContext(),R.layout.spinner_adapter, months)
+        val arrayAdapter = ArrayAdapter<String>(requireContext(), R.layout.spinner_adapter, months)
         binding.spinner.adapter = arrayAdapter
-        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener{
+        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                Toast.makeText(requireContext(), "selected player is ${months[p2]}", Toast.LENGTH_LONG).show()
+
+                Log.e(taG,
+                    "p0 ${p0.toString()} /n p1 ${p1.toString()} /n p2 ${p2.toString()} /n p3 ${p3.toString()}")
+                Toast.makeText(requireContext(),
+                    "selected player is ${months[p2]} ",
+                    Toast.LENGTH_LONG).show();
+                viewModel.setPositionSpinner(p2)
+
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("Not yet implemented")
             }
-
         }
+        viewModel.positionSpinnerStartLive.value?.let { binding.spinner.setSelection(it) }
         //*******  SPINNER  ******
 
         binding.lynInputWeight.isVisible = false
@@ -122,8 +137,8 @@ class Part2Page1Fragment : Fragment() {
         binding.okDatapicker.isVisible = false
 
         binding.part2page1ButtonHistoryGraph.setOnClickListener {
-//            showDatePickerDialog()
-            showDatePickerDialogRange()
+//            showDatePickerDialogRange()
+            showChart(30)
         }
         binding.part2page1ButtonHistoryData.setOnClickListener {
 //            showDatePickerDialog()
@@ -137,21 +152,23 @@ class Part2Page1Fragment : Fragment() {
             onClickOkDatePicker()
         }
 
-        binding.inputWeight.addTextChangedListener(object : TextWatcher{
+        binding.inputWeight.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
+
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 binding.inputWeight.hint = "" //"Вес ${viewModel.dataUser.weight.toString()}"
             }
+
             override fun afterTextChanged(p0: Editable?) {
-             if (binding.inputWeight.text.isNullOrEmpty()){
-                 binding.inputWeight.hint = "Вес ${viewModel.dataUser.weight.toString()}"
-             }
+                if (binding.inputWeight.text.isNullOrEmpty()) {
+                    binding.inputWeight.hint = "Вес ${viewModel.dataUser.weight.toString()}"
+                }
             }
         }
         )
 
-        binding.houseButton.setOnClickListener{
+        binding.houseButton.setOnClickListener {
             clickHouseButton()
         }
 
@@ -159,6 +176,12 @@ class Part2Page1Fragment : Fragment() {
             backToFragment()
         }
 
+        viewModel.positionSpinnerLive.observe(viewLifecycleOwner) { it ->
+            val pos: Int = 1
+            pos.let { viewModel.positionSpinnerStartLive.value }
+            if (it > pos) showChart(pos.let { (it - pos) * 30 })
+//            showChart(it)
+        }
         viewModel.lineDataSet.observe(viewLifecycleOwner) { lineDataSet ->
             chartStyle.styleLineDataSet(lineDataSet)
             binding.dayChart.data = LineData(lineDataSet)
@@ -188,7 +211,7 @@ class Part2Page1Fragment : Fragment() {
 
             val action: NavDirections =
                 Part2Page1FragmentDirections.actionPart2Page1FragmentToMenuDayPart2Fragment(
-                    viewModel.userClass,  viewModel.dataUser)
+                    viewModel.userClass, viewModel.dataUser)
             findNavController().navigate(action)
         }
         binding.noteButton.setOnClickListener {
@@ -198,7 +221,7 @@ class Part2Page1Fragment : Fragment() {
 
             val action: NavDirections =
                 Part2Page1FragmentDirections.actionPart2Page1FragmentToMenuDayPart2Fragment(
-                    viewModel.userClass,  viewModel.dataUser)
+                    viewModel.userClass, viewModel.dataUser)
             findNavController().navigate(action)
         }
         binding.exitButton.setOnClickListener {
@@ -267,7 +290,7 @@ class Part2Page1Fragment : Fragment() {
                     ye = year
                     Log.e(taG, "$dd $mn $ye")
                 }
-            },  ye,  mn,  dd)
+            }, ye, mn, dd)
         datepickerdialog.show()
         Log.e(taG, "$dd $hh $dd $mn $ye")
     }
@@ -277,6 +300,48 @@ class Part2Page1Fragment : Fragment() {
 //        Log.e(taG, "${sharedViewModels._data3.age}")
         binding.xyPlotChart.isVisible = false
         binding.parametrsButtonsChart.isVisible = true
+    }
+
+    private fun showChart(i: Int) {
+        binding.infoUser.isVisible = false
+        binding.parametrsButtonsChart.isVisible = false
+        binding.lynWeightHistory.isVisible = false
+        binding.parametrs.isVisible = false
+        binding.lynLynDatePicker.isVisible = false
+        binding.okDatapicker.isVisible = false
+        binding.inputWeight.isVisible = false
+        binding.lynInputWeight.isVisible = false
+        binding.footerImage.isVisible = true
+        binding.textBack.isVisible = false
+
+        Log.e(taG,
+            " PICKER    ${viewModel.startDataAPI.value.toString()}     ${viewModel.endDataAPI.value.toString()}      ")
+        Log.e(taG,
+            " PICKER    ${viewModel.startData.value.toString()}     ${viewModel.endData.value.toString()}      ")
+        val dateStart = viewModel.countEndDataAPI(i)
+        viewModel.launchGetMenuList(
+            dateStart,
+            viewModel.startDataAPI.value.toString(),
+//                viewModel.endDataAPI.value.toString()
+        )
+        viewModel.recyclerListData.value?.let { it1 ->
+            viewModel.funListWeightForChart(it1.listMenuDay)
+        }
+
+        viewModel.getMenuListObserverable()
+            .observe(viewLifecycleOwner, Observer<MenuDayList> {
+                if (it == null) {
+                    Log.e(taG, "${it}")
+                } else {
+                    viewModel.funListWeightForChart(it.listMenuDay)
+                }
+            })
+//            dateRangeSelected = outputDateFormat.format(it.first).toString() + " - " + outputDateFormat.format(it.second).toString()
+//            binding.textDataRightPart2Page1.text = "Выбраны даты: ${viewModel.startData} - ${viewModel.endData}"
+        binding.xyPlotChart.isVisible = true
+        binding.parametrsButtonsChart.isVisible = false
+//            viewModel.saveDataStartDataCalendar(startData = viewModel.startData.value.toString(),
+//                endData = viewModel.endData.value.toString())
     }
 
     private fun showDatePickerDialogRange() {
@@ -303,6 +368,7 @@ class Part2Page1Fragment : Fragment() {
                 " PICKER    ${viewModel.startDataAPI.value.toString()}     ${viewModel.endDataAPI.value.toString()}      ")
             Log.e(taG,
                 " PICKER    ${viewModel.startData.value.toString()}     ${viewModel.endData.value.toString()}      ")
+            viewModel.countEndDataAPI(30)
             viewModel.launchGetMenuList(viewModel.startDataAPI.value.toString(),
                 viewModel.endDataAPI.value.toString())
             viewModel.recyclerListData.value?.let { it1 ->

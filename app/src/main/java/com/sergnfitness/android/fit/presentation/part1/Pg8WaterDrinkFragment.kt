@@ -159,7 +159,7 @@ class Pg8WaterDrinkFragment : Fragment() {
             Log.e(taG, "${args.currentUser}")
             val action: NavDirections =
                 Pg8WaterDrinkFragmentDirections.actionPg8WaterDrinkFragmentToPg9TypicalDayFragment(
-                    args.currentUser, viewModel.dataUser)
+                    viewModel.userClass, viewModel.dataUser)
             findNavController().navigate(action)
         }
     }

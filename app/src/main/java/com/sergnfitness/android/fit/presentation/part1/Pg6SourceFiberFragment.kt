@@ -82,8 +82,8 @@ class Pg6SourceFiberFragment : Fragment() {
 //                    textPage6ColorCabbage.setBackgroundResource(changeFonButtonPage5.execute())
 
                 } else {
-//                    viewModel.changetextPage6ColorCabbage(false)
-                    textPage6ColorCabbage.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                    viewModel.changetextPage6ColorCabbage(false)
+//                    textPage6ColorCabbage.setBackgroundResource(changeFonButtonPage5NoPress.execute())
                 }
             }
             textPage6Ogurz.setOnCheckedChangeListener { _, isChecked ->
@@ -100,7 +100,7 @@ class Pg6SourceFiberFragment : Fragment() {
                     viewModel.changetextPage6Broccoli(true)
 //                    textPage6Broccoli.setBackgroundResource(changeFonButtonPage5.execute())
                 } else {
-                    viewModel.changetextPage6Ogurz(false)
+                    viewModel.changetextPage6Broccoli(false)
 //                    textPage6Broccoli.setBackgroundResource(changeFonButtonPage5NoPress.execute())
                 }
             }
@@ -190,7 +190,7 @@ class Pg6SourceFiberFragment : Fragment() {
             Log.e(taG, "${args.currentUser}")
             val action: NavDirections =
                 Pg6SourceFiberFragmentDirections.actionPg6SourceFiberFragmentToPg7FoodsFragment(
-                    args.currentUser, viewModel.dataUser)
+                    viewModel.userClass, viewModel.dataUser)
             findNavController().navigate(action)
         }
     }

@@ -129,8 +129,8 @@ class Pg5SourceProteinViewModel @Inject constructor() : ViewModel() {
             _page5_seafood.value = false
             dataUser.fish = false
             dataUser.seaFood = false
-            dataUser.withoutMeat = false
-            dataUser.withoutFish = false
+//            dataUser.withoutMeat = false
+//            dataUser.withoutFish = false
         }
     }
 

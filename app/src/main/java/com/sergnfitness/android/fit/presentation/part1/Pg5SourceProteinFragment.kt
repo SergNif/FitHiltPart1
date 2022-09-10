@@ -179,7 +179,7 @@ class Pg5SourceProteinFragment : Fragment() {
             Log.e(taG, "${args.currentUser}")
             val action: NavDirections =
                 Pg5SourceProteinFragmentDirections.actionPg5SourceProteinFragmentToPg6SourceFiberFragment(
-                    args.currentUser, viewModel.dataUser)
+                    viewModel.userClass, viewModel.dataUser)
             findNavController().navigate(action)
         }
 

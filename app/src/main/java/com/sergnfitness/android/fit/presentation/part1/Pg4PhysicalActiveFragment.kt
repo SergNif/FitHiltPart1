@@ -143,7 +143,7 @@ class Pg4PhysicalActiveFragment : Fragment() {
             Log.e(taG, "viewModel.dataUser   ${viewModel.dataUser}")
             val action: NavDirections =
                 Pg4PhysicalActiveFragmentDirections.actionPg4PhysicalActiveFragmentToPg5SourceProteinFragment(
-                    args.currentUser, viewModel.dataUser)
+                    viewModel.userClass, viewModel.dataUser)
             findNavController().navigate(action)
         }
     }
