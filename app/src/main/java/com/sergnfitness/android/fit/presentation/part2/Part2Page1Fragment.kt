@@ -153,6 +153,13 @@ class Part2Page1Fragment : Fragment() {
         binding.okDatapicker.setOnClickListener {
             onClickOkDatePicker()
         }
+        binding.part2page1ButtonProgrammPp.setOnClickListener {
+            onClickPP()
+        }
+
+        binding.part2page1ButtonExamplMenuWeek.setOnClickListener {
+            onClickMenuWeek()
+        }
 
         binding.inputWeight.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -261,6 +268,22 @@ class Part2Page1Fragment : Fragment() {
             }
         }
 
+    }
+
+    private fun onClickPP() {
+        val action: NavDirections =
+            Part2Page1FragmentDirections.actionPart2Page1FragmentToPart3Page1ProgrammRghtEatFragment(
+                viewModel.userClass, viewModel.dataUser
+            )
+        findNavController().navigate(action)
+    }
+
+    private fun onClickMenuWeek() {
+        val action: NavDirections =
+            Part2Page1FragmentDirections.actionPart2Page1FragmentToPart3Page2MenuWeekFragment(
+                viewModel.userClass, viewModel.dataUser
+            )
+        findNavController().navigate(action)
     }
 
     private fun clickHouseButton() {
