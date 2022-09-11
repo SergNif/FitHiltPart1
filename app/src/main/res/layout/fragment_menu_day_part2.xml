@@ -39,6 +39,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
+                android:visibility="gone"
                 />
 
             <TextView
@@ -46,8 +47,7 @@
                 style="@style/fon_menu_setting_up_button_part2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:clickable="true"
-                />
+                android:clickable="true" />
 
             <TextView
                 android:id="@+id/exit_button"
@@ -55,6 +55,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
+                android:visibility="gone"
                 />
         </LinearLayout>
 

@@ -22,6 +22,7 @@ import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5N
 import com.sergnfitness.android.fit.presentation.part2.part2viewModel.Part2Fragment1ToUserViewModel
 import com.sergnfitness.domain.models.UserMenuDay
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class Part2Fragment1ToUser : Fragment() {
@@ -110,6 +111,15 @@ viewModel.dataUser = args.currentDataUser
         binding.part2page1ToUserSaveParam.setOnClickListener{
             onClickSaveChange()
         }
+        binding.exitButton.setOnClickListener{
+            onClickExitButton()
+        }
+    }
+
+    private fun onClickExitButton() {
+//        exitProcess(0)
+        activity?.finish()
+        System.out.close()
     }
 
     private fun onClickHouse() {

@@ -2,6 +2,7 @@ package com.sergnfitness.android.fit.presentation.part2
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.os.Process.*
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -36,6 +37,7 @@ import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
+import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class Part2Page1Fragment : Fragment() {
@@ -226,10 +228,13 @@ class Part2Page1Fragment : Fragment() {
         }
         binding.exitButton.setOnClickListener {
 
+//            exitProcess(0)
+            activity?.finish()
+            System.out.close()
 //            args.currentUser.email?.let { it1 -> viewModel.createDataUserOnServer(it1) }
 //            val action: NavDirections =
 //                Part2Page1FragmentDirections.actionPart2Page1FragmentToLoginFragment2()
-            findNavController().navigate(R.id.action_part2Page1Fragment_to_loginFragment2)
+//            findNavController().navigate(R.id.action_part2Page1Fragment_to_loginFragment2)
         }
         binding.settingButton.setOnClickListener {
             val action: NavDirections =

@@ -220,6 +220,9 @@
         <action
             android:id="@+id/action_menuDayPart2Fragment_to_newOneMenuDayFragment"
             app:destination="@id/newOneMenuDayFragment" />
+        <action
+            android:id="@+id/action_menuDayPart2Fragment_to_part2Fragment1ToUser"
+            app:destination="@id/part2Fragment1ToUser" />
     </fragment>
     <fragment
         android:id="@+id/newOneMenuDayFragment"

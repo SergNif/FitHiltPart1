@@ -16,7 +16,7 @@ import com.sergnfitness.android.fit.databinding.FragmentMenuDayPart2Binding
 import com.sergnfitness.android.fit.databinding.FragmentNewOneMenuDayBinding
 import com.sergnfitness.android.fit.presentation.part2.part2viewModel.MenuDayPart2ViewModel
 import com.sergnfitness.android.fit.presentation.part2.part2viewModel.NewOneMenuDayViewModel
-import com.sergnfitness.domain.models.UserMenuDay
+
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDateTime
 
@@ -80,9 +80,10 @@ class NewOneMenuDayFragment : Fragment() {
                         time = funcTime(),
                         desired_weight = viewModel.dataUser.desired_weight.toDouble(),
                         height = viewModel.dataUser.height,
-                        weight = binding.weightOneMenuDay.text.toString().toDouble(),
+                        binding.weightOneMenuDay.text.toString().toDouble().let {
+                            weight = it} ?: 50.0,
                         //userParam.weight.toDouble(),
-                        fitness_id = viewModel.userClass.id!!,
+                        fitness_id = it1,
                         header = binding.headerMenuDay.text.toString(),
                         menu = binding.menuDay.text.toString(),
                     )

@@ -28,7 +28,7 @@ import com.sergnfitness.domain.models.MenuDayList
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MenuDayPart2Fragment  : Fragment() {
+class MenuDayPart2Fragment : Fragment() {
 
     lateinit var recyclerViewAdapter: RecyclerViewAdapter
     lateinit var iview: View
@@ -70,7 +70,6 @@ class MenuDayPart2Fragment  : Fragment() {
 //        return binding.root
     }
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentMenuDayPart2Binding.bind(view)
@@ -78,7 +77,8 @@ class MenuDayPart2Fragment  : Fragment() {
         viewModel.userClass = args.currentUser
 //        viewModel.dataUserMenuDay = args.currentUserMenuDay
 //        viewModel.dataMenuDay = args.currentMenuDay
-        binding.textDataRightPart2Page1.text = "c ${viewModel.startData.value} по ${viewModel.endData.value}"
+        binding.textDataRightPart2Page1.text =
+            "c ${viewModel.startData.value} по ${viewModel.endData.value}"
 
         binding.textIdPart2Page1.text = "ID: ${viewModel.dataUser.id.toString()}"
         binding.part2page1ButtonHeight.text = "Рост ${viewModel.dataUser.height.toString()}"
@@ -104,10 +104,10 @@ class MenuDayPart2Fragment  : Fragment() {
             viewModel.endDataAPI.value.toString())
 
         im.setOnClickListener {
-val action:NavDirections =
-    MenuDayPart2FragmentDirections.actionMenuDayPart2FragmentToNewOneMenuDayFragment(
-        viewModel.userClass, viewModel.dataUser
-    )
+            val action: NavDirections =
+                MenuDayPart2FragmentDirections.actionMenuDayPart2FragmentToNewOneMenuDayFragment(
+                    viewModel.userClass, viewModel.dataUser
+                )
             Log.e(taG, "To next fragment")
             findNavController().navigate(action)
         }
@@ -125,6 +125,9 @@ val action:NavDirections =
         binding.plusNextDayMenuNext.setOnClickListener {
             onClickNextDay()
         }
+        binding.settingButton.setOnClickListener {
+            onClickSetting()
+        }
     }
 
     fun initRecyclerView(view: View) {
@@ -139,14 +142,23 @@ val action:NavDirections =
 //                findNavController().navigate(R.id.action_menuDayPart2Fragment_to_newOneMenuDayFragment)
                 Toast.makeText(activity, "click on ${position}", Toast.LENGTH_SHORT).show()
             }
-
         })
-
     }
 
-
     private fun onClickHouse() {
-        findNavController().popBackStack()
+        val action: NavDirections =
+            MenuDayPart2FragmentDirections.actionMenuDayPart2FragmentToPart2Page1Fragment(
+                viewModel.userClass, viewModel.dataUser
+            )
+        findNavController().navigate(action)
+    }
+
+    private fun onClickSetting() {
+        val action: NavDirections =
+            MenuDayPart2FragmentDirections.actionMenuDayPart2FragmentToPart2Fragment1ToUser(
+                viewModel.userClass, viewModel.dataUser
+            )
+        findNavController().navigate(action)
     }
 
     fun onClickNextFragment() {
@@ -157,11 +169,9 @@ val action:NavDirections =
         Log.e(taG, "onClickNextDay ${viewModel.startDataAPI.value}")
         Log.e(taG, "onClickNextDay ${viewModel.endDataAPI.value}")
         viewModel.oneChangeStartEndData(1)
-
     }
 
     fun onClickBackDay() {
         viewModel.oneChangeStartEndData(-1)
-
     }
 }
