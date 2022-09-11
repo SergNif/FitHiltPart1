@@ -211,6 +211,12 @@
         <action
             android:id="@+id/action_part2Page1Fragment_to_part3Page4PhysicalActivityFragment"
             app:destination="@id/part3Page4PhysicalActivityFragment" />
+        <action
+            android:id="@+id/action_part2Page1Fragment_to_part3Page5PrincipalEatFragment"
+            app:destination="@id/part3Page5PrincipalEatFragment" />
+        <action
+            android:id="@+id/action_part2Page1Fragment_to_part3Page6MistakeFragment"
+            app:destination="@id/part3Page6MistakeFragment" />
     </fragment>
     <fragment
         android:id="@+id/menuDayPart2Fragment"
@@ -317,6 +323,36 @@
         tools:layout="@layout/fragment_part3_page4_physical_activity" >
         <action
             android:id="@+id/action_part3Page4PhysicalActivityFragment_to_part2Page1Fragment"
+            app:destination="@id/part2Page1Fragment" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
+    </fragment>
+    <fragment
+        android:id="@+id/part3Page5PrincipalEatFragment"
+        android:name="com.sergnfitness.android.fit.presentation.part3.Part3Page5PrincipalEatFragment"
+        android:label="fragment_part3_page5_principal_eat"
+        tools:layout="@layout/fragment_part3_page5_principal_eat" >
+        <action
+            android:id="@+id/action_part3Page5PrincipalEatFragment_to_part2Page1Fragment"
+            app:destination="@id/part2Page1Fragment" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
+    </fragment>
+    <fragment
+        android:id="@+id/part3Page6MistakeFragment"
+        android:name="com.sergnfitness.android.fit.presentation.part3.Part3Page6MistakeFragment"
+        android:label="fragment_part3_page6_mistake"
+        tools:layout="@layout/fragment_part3_page6_mistake" >
+        <action
+            android:id="@+id/action_part3Page6MistakeFragment_to_part2Page1Fragment"
             app:destination="@id/part2Page1Fragment" />
         <argument
             android:name="currentUser"

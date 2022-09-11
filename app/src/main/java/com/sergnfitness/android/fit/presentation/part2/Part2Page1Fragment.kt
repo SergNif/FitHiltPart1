@@ -169,6 +169,14 @@ class Part2Page1Fragment : Fragment() {
             onClickPhisicActiv()
         }
 
+        binding.part2page1Princip.setOnClickListener {
+            onClickPrincipEat()
+        }
+
+        binding.part2page1MisstakeHud.setOnClickListener {
+            onClickMistake()
+        }
+
         binding.inputWeight.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
@@ -276,6 +284,22 @@ class Part2Page1Fragment : Fragment() {
             }
         }
 
+    }
+
+    private fun onClickMistake() {
+        val action: NavDirections =
+            Part2Page1FragmentDirections.actionPart2Page1FragmentToPart3Page6MistakeFragment(
+                viewModel.userClass, viewModel.dataUser
+            )
+        findNavController().navigate(action)
+    }
+
+    private fun onClickPrincipEat() {
+        val action: NavDirections =
+            Part2Page1FragmentDirections.actionPart2Page1FragmentToPart3Page5PrincipalEatFragment(
+                viewModel.userClass, viewModel.dataUser
+            )
+        findNavController().navigate(action)
     }
 
     private fun onClickPhisicActiv() {
