@@ -208,6 +208,9 @@
         <action
             android:id="@+id/action_part2Page1Fragment_to_part3Page3MealRegimenFragment"
             app:destination="@id/part3Page3MealRegimenFragment" />
+        <action
+            android:id="@+id/action_part2Page1Fragment_to_part3Page4PhysicalActivityFragment"
+            app:destination="@id/part3Page4PhysicalActivityFragment" />
     </fragment>
     <fragment
         android:id="@+id/menuDayPart2Fragment"
@@ -299,6 +302,21 @@
         android:label="Part3Page3MealRegimenFragment" >
         <action
             android:id="@+id/action_part3Page3MealRegimenFragment_to_part2Page1Fragment"
+            app:destination="@id/part2Page1Fragment" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
+    </fragment>
+    <fragment
+        android:id="@+id/part3Page4PhysicalActivityFragment"
+        android:name="com.sergnfitness.android.fit.presentation.part3.Part3Page4PhysicalActivityFragment"
+        android:label="fragment_part3_page4_physical_activity"
+        tools:layout="@layout/fragment_part3_page4_physical_activity" >
+        <action
+            android:id="@+id/action_part3Page4PhysicalActivityFragment_to_part2Page1Fragment"
             app:destination="@id/part2Page1Fragment" />
         <argument
             android:name="currentUser"

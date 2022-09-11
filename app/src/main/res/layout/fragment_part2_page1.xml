@@ -418,19 +418,21 @@
                 tools:ignore="MissingConstraints" />
 
             <TextView
-                android:id="@+id/part2page1_text_old_password"
+                android:id="@+id/part2page1_text_physical_activity"
                 style="@style/data_text_part2_page4"
                 android:onClick="onClickPhysicNagr"
                 android:text="Физическая нагрузка"
                 app:layout_constraintTop_toBottomOf="@+id/part2page1_button_rezhim_priem_eat"
-                tools:ignore="MissingConstraints" />
+                tools:ignore="MissingConstraints"
+
+                />
 
             <TextView
                 android:id="@+id/part2page1_princip"
                 style="@style/data_text_part2_page4"
                 android:onClick="onClickPrincipPitan"
                 android:text="Принципы ПП"
-                app:layout_constraintTop_toBottomOf="@+id/part2page1_text_old_password"
+                app:layout_constraintTop_toBottomOf="@+id/part2page1_text_physical_activity"
                 tools:ignore="MissingConstraints" />
 
             <TextView

@@ -165,6 +165,10 @@ class Part2Page1Fragment : Fragment() {
             onClickRegimen()
         }
 
+        binding.part2page1TextPhysicalActivity.setOnClickListener {
+            onClickPhisicActiv()
+        }
+
         binding.inputWeight.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
@@ -272,6 +276,14 @@ class Part2Page1Fragment : Fragment() {
             }
         }
 
+    }
+
+    private fun onClickPhisicActiv() {
+        val action: NavDirections =
+            Part2Page1FragmentDirections.actionPart2Page1FragmentToPart3Page4PhysicalActivityFragment(
+                viewModel.userClass, viewModel.dataUser
+            )
+        findNavController().navigate(action)
     }
 
     private fun onClickRegimen() {
