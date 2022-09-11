@@ -161,6 +161,10 @@ class Part2Page1Fragment : Fragment() {
             onClickMenuWeek()
         }
 
+        binding.part2page1ButtonRezhimPriemEat.setOnClickListener {
+            onClickRegimen()
+        }
+
         binding.inputWeight.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
             }
@@ -268,6 +272,14 @@ class Part2Page1Fragment : Fragment() {
             }
         }
 
+    }
+
+    private fun onClickRegimen() {
+        val action: NavDirections =
+            Part2Page1FragmentDirections.actionPart2Page1FragmentToPart3Page3MealRegimenFragment(
+                viewModel.userClass, viewModel.dataUser
+            )
+        findNavController().navigate(action)
     }
 
     private fun onClickPP() {

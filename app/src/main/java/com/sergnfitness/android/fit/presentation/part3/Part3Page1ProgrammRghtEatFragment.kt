@@ -14,8 +14,9 @@ import androidx.navigation.fragment.navArgs
 import com.sergnfitness.android.fit.R
 import com.sergnfitness.android.fit.databinding.FragmentPart3Page1ProgrammRghtEatBinding
 import com.sergnfitness.android.fit.presentation.part3.part3ViewModel.Part3Page1ProgrammRghtEatViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class Part3Page1ProgrammRghtEatFragment : Fragment() {
 
     companion object {
