@@ -1,34 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.part1.Pg10BadHabbitsFragment">
 
-    <data>
-        <import type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.MainViewModel"/>
-        <variable
-            name="vmod"
-            type="MainViewModel" />
-        <variable
-            name="imgLoad"
-            type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.ui.adapter.ImageLoader" />
-    </data>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
+        android:background="@color/color_page_data_fon_white"
         android:textColor="#190F22"
-        tools:context=".presentation.fragments.Page4Data2Fragment">
+        tools:context=".presentation.part1.Pg10BadHabbitsFragment">
 
 
         <!-- TODO: Update blank fragment layout -->
+
 
         <LinearLayout
             android:id="@+id/lin_lay1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="30sp"
-android:layout_marginHorizontal="15sp"
+            android:layout_marginHorizontal="15sp"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -38,87 +31,75 @@ android:layout_marginHorizontal="15sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:padding="6sp"
                 android:scaleX="1.2"
                 android:scaleY="1.2"
                 android:src="@drawable/ic_logo" />
 
+
             <TextView
-                android:text="Движение - это жизнь"
-
-                style="@style/up_grin_text" />
+                android:text="Намечается перестройка"
+                style="@style/up_grin_text"
+                android:padding="2sp"
+                />
         </LinearLayout>
-
-
-
-
 
         <TextView
             android:id="@+id/text_enter_data_page4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/tienne_black"
-            android:text="ФИЗИЧЕСКАЯ АКТИВНОСТЬ"
+            android:text="ВРЕДНЫЕ ПРИВЫЧКИ"
             android:textColor="@color/red_text"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginVertical="1sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/pick_page_4_image"
-            />
+            app:layout_constraintVertical_bias="0.02" />
 
         <TextView
             android:id="@+id/text_up_page3"
-            android:text="Выберите пункты, котрые Вам больше всего\nподходят"
-
+            android:text="Выберите один или несколько пунктов, котрые\nВам больше всего подходят"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/text_enter_data_page4"
             app:layout_constraintVertical_bias="0.0"
-            style="@style/middle_text_style" />
-
-
+            style="@style/middle_text_style"/>
 
         <TextView
-            android:id="@+id/page4_button_min_activ"
-            android:text="Минимальная физическая активность"
-            android:src="@{vmod.dataPage4.minimalPhysicalActive ? imgLoad.imageResourceNoPress: imgLoad.imageResource}"
+            android:id="@+id/page10_fast_food"
+            android:text="Люблю еду быстрого приготовления"
+
             app:layout_constraintTop_toBottomOf="@+id/text_up_page3"
             style="@style/text_data_page4"
             tools:ignore="MissingConstraints" />
 
         <TextView
-            android:id="@+id/page4_button_fast_walk"
-            android:text="Я часто хожу пешком"
-            android:src="@{vmod.dataPage4.fastWalkOnFoot ? imgLoad.imageResPage4: imgLoad.imageResPage4NoPress}"
-            app:layout_constraintTop_toBottomOf="@+id/page4_button_min_activ"
+            android:id="@+id/page10_eat_nigth"
+            android:text="Я ем поздно ночью"
+
+            app:layout_constraintTop_toBottomOf="@+id/page10_fast_food"
             style="@style/text_data_page4"
             tools:ignore="MissingConstraints" />
 
         <TextView
-            android:id="@+id/page4_button_1_2_per_week"
-            android:text="Я занимаюсь 1 - 2 раза в неделю"
-            app:layout_constraintTop_toBottomOf="@+id/page4_button_fast_walk"
-            android:src="@{vmod.dataPage4.examine1_2TimesWeek ? imgLoad.imageResPage4: imgLoad.imageResPage4NoPress}"
+            android:id="@+id/page10_fast_shugar"
+            android:text="Я часто ем сладкое"
+
+            app:layout_constraintTop_toBottomOf="@+id/page10_eat_nigth"
             style="@style/text_data_page4"
             tools:ignore="MissingConstraints" />
 
         <TextView
-            android:id="@+id/page4_button_3_5_per_week"
-            android:text="Я занимаюсь 3 - 5 раз в неделю"
-            android:src="@{vmod.dataPage4.examine3_5TimesWeek ? imgLoad.imageResPage4: imgLoad.imageResPage4NoPress}"
-            app:layout_constraintTop_toBottomOf="@+id/page4_button_1_2_per_week"
+            android:id="@+id/page10_nothing_of_list"
+            android:text="Ничего из перечисленного"
+
+            app:layout_constraintTop_toBottomOf="@+id/page10_fast_shugar"
             style="@style/text_data_page4"
             tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/page4_button_every_day_fitness"
-            android:text="Каждый день посещаю фитнес клуб"
-            android:src="@{vmod.dataPage4.everyDayFitness ? imgLoad.imageResPage4: imgLoad.imageResPage4NoPress}"
-            app:layout_constraintTop_toBottomOf="@+id/page4_button_3_5_per_week"
-            style="@style/text_data_page4"
-            tools:ignore="MissingConstraints" />
-
 
 
 
@@ -128,14 +109,13 @@ android:layout_marginHorizontal="15sp"
             android:layout_height="206dp"
             android:scaleX="1"
             android:scaleY="1"
-            android:src="@drawable/pict_page4"
+            android:src="@drawable/pic_page_10"
 
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/lin_lay1"
             app:layout_constraintVertical_bias="0.0" />
-
 
         <LinearLayout
             android:id="@+id/lin_bottom"
@@ -191,16 +171,6 @@ android:layout_marginHorizontal="15sp"
 
                 android:background="@drawable/footer_image" />
         </LinearLayout>
-
     </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
 
-<!--<ImageView-->
-<!--android:id="@+id/arrow_back_navigation"-->
-<!--android:layout_width="wrap_content"-->
-<!--android:layout_height="wrap_content"-->
-<!--android:src="@drawable/ic_bar_menu_back_navigation"-->
-<!--app:layout_constraintBottom_toBottomOf="@id/button_next_page3"-->
-<!--app:layout_constraintEnd_toStartOf="@id/button_next_page3"-->
-<!--app:layout_constraintStart_toStartOf="parent"-->
-<!--app:layout_constraintTop_toTopOf="@id/button_next_page3" />-->
+</FrameLayout>

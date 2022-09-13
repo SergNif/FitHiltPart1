@@ -1,8 +1,11 @@
 package com.sergnfitness.data.storage.storageModel
 
+import android.os.Parcelable
 import com.sergnfitness.domain.models.user.DataUser
+import kotlinx.parcelize.Parcelize
 import java.time.LocalDateTime
 
+@Parcelize
 data class DataUserStorage(
     var id: Int? = null,
     var woman: Boolean = true,
@@ -61,7 +64,7 @@ data class DataUserStorage(
     var Nothing: Boolean = false,
 
     var fitness_id: Int? = null,
-)
+):Parcelable
 
 fun DataUserStorage.toDataUser(): DataUser {
     return DataUser(

@@ -1,6 +1,14 @@
+
 buildscript {
     dependencies {
+        def nav_version = "2.5.1"
         classpath "com.google.dagger:hilt-android-gradle-plugin:2.40.5"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+
+        //chart
+        classpath 'com.android.tools.build:gradle:3.4.0'
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
+
     }
 }
 plugins {

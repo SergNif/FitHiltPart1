@@ -1,142 +1,166 @@
 package com.sergnfitness.android.fit.presentation.part1
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.sergnfitness.android.fit.R
-import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg8WaterDrinkViewModel
+import com.sergnfitness.android.fit.databinding.FragmentPg8WaterDrinkBinding
+import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5
+import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5NoPress
+import com.sergnfitness.android.fit.presentation.part1.part1viewModel.Pg8WaterDrinkViewModel
 import dagger.hilt.android.AndroidEntryPoint
-
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [Pg8WaterDrinkFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 
 @AndroidEntryPoint
 class Pg8WaterDrinkFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-  private val viewModel: Pg8WaterDrinkViewModel by viewModels<Pg8WaterDrinkViewModel>()
-    val TAG = "Fragment Page8"
-
-//    private lateinit var binding: FragmentPage8Data2Binding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    companion object {
+        fun newInstance() = Pg8WaterDrinkFragment()
     }
+
+    private val taG = "Pg8WaterDrinkFragment "
+    private val viewModel: Pg8WaterDrinkViewModel by viewModels<Pg8WaterDrinkViewModel>()
+    private lateinit var binding: FragmentPg8WaterDrinkBinding
+    private val args: Pg8WaterDrinkFragmentArgs by navArgs()
+
+    private val changeFonButtonPage5NoPress = ChangeFonButtonPage5()
+    private val changeFonButtonPage5 = ChangeFonButtonPage5NoPress()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_page8_water_drink, container, false)
+        return inflater.inflate(R.layout.fragment_pg8_water_drink, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        viewModel = (activity as MainActivity).viewModel
-//        binding = FragmentPage8Data2Binding.bind(view)
-//        var modifiedButton: Boolean = false
-//
-//
-//        binding.vmPage8 = viewModel
-//        binding.imgLoadPage8 = ImageLoader()
-//        binding.lifecycleOwner = this
-//
-//        binding.page8ButtonWaterWithoutGas.setOnClickListener { viewModel.changeColorButtonPage8("1")
-//                    val navController = findNavController()
-//            navController.run {
-//                popBackStack()
-//                navigate(R.id.page8Data2Fragment)
-//            }
-//        }
-//        binding.page8ButtonWaterShugar.setOnClickListener { viewModel.changeColorButtonPage8("2")
-//                    val navController = findNavController()
-//            navController.run {
-//                popBackStack()
-//                navigate(R.id.page8Data2Fragment)
-//            }
-//        }
-//        binding.page8ButtonMoreCofee.setOnClickListener { viewModel.changeColorButtonPage8("3")
-//                    val navController = findNavController()
-//            navController.run {
-//                popBackStack()
-//                navigate(R.id.page8Data2Fragment)
-//            }
-//        }
-//        binding.page8ButtonOnlyTea.setOnClickListener { viewModel.changeColorButtonPage8("4")
-//                    val navController = findNavController()
-//            navController.run {
-//                popBackStack()
-//                navigate(R.id.page8Data2Fragment)
-//            }
-//        }
+        binding = FragmentPg8WaterDrinkBinding.bind(view)
+        viewModel.dataUser = args.currentDataUser
+        viewModel.userClass = args.currentUser
 
-//        viewModel.livepage8Button1.observe(viewLifecycleOwner, Observer { color ->
-//             modifiedButton = true
-////            binding.page8ButtonWaterWithoutGas.setBackgroundColor(Color.parseColor(color))
-//            binding.page8ButtonWaterWithoutGas.setBackgroundResource(color)
-//        })
-//        viewModel.livepage8Button2.observe(viewLifecycleOwner, Observer { color ->
-//             modifiedButton = true
-////            binding.page8ButtonWaterShugar.setBackgroundColor(Color.parseColor(color))
-//            binding.page8ButtonWaterShugar.setBackgroundResource(color)
-//        })
-//        viewModel.livepage8Button3.observe(viewLifecycleOwner, Observer { color ->
-//             modifiedButton = true
-////            binding.page8ButtonMoreCofee.setBackgroundColor(Color.parseColor(color))
-//            binding.page8ButtonMoreCofee.setBackgroundResource(color)
-//        })
-//        viewModel.livepage8Button4.observe(viewLifecycleOwner, Observer { color ->
-//             modifiedButton = true
-////            binding.page8ButtonOnlyTea.setBackgroundColor(Color.parseColor(color))
-//            binding.page8ButtonOnlyTea.setBackgroundResource(color)
-//        })
+        viewModel.initLive()
 
+        with(binding) {
+            page8ButtonWaterWithoutGas.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    viewModel.changepage8ButtonWaterWithoutGas(true)
 
-//        binding.textBack.setOnClickListener{
-////            if (modifiedButton){viewModel.createLocalDataPage8()}
-//            findNavController().popBackStack()
-//        }
-//        binding.textNext.setOnClickListener{
-////            if (modifiedButton){viewModel.createLocalDataPage8()}
-//            findNavController().navigate(R.id.action_page8Data2Fragment_to_page9Data2Fragment)
-//        }
-//    }
-//    companion object {
-//        /**
-//         * Use this factory method to create a new instance of
-//         * this fragment using the provided parameters.
-//         *
-//         * @param param1 Parameter 1.
-//         * @param param2 Parameter 2.
-//         * @return A new instance of fragment Page8Data2Fragment.
-//         */
-//        // TODO: Rename and change types and number of parameters
-//        @JvmStatic
-//        fun newInstance(param1: String, param2: String) =
-//            Pg8WaterDrinkFragment().apply {
-//                arguments = Bundle().apply {
-//                    putString(ARG_PARAM1, param1)
-//                    putString(ARG_PARAM2, param2)
-//                }
-//            }
+                } else {
+                    viewModel.changepage8ButtonWaterWithoutGas(false)
+                }
+            }
+            page8ButtonWaterShugar.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    viewModel.changepage8ButtonWaterShugar(true)
+//                    page8ButtonWaterWithoutGas.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+//                    page8ButtonWaterShugar.setBackgroundResource(changeFonButtonPage5.execute())
+//                    page8ButtonMoreCofee.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+//                    page8ButtonOnlyTea.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                } else {
+                    viewModel.changepage8ButtonWaterShugar(false)
+                    page8ButtonWaterWithoutGas.isChecked = false
+                    page8ButtonMoreCofee.isChecked = false
+                    page8ButtonOnlyTea.isChecked = false
+                }
+            }
+            page8ButtonMoreCofee.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    viewModel.changepage8ButtonMoreCofee(true)
+//                    page8ButtonWaterWithoutGas.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+//                    page8ButtonWaterShugar.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+//                    page8ButtonMoreCofee.setBackgroundResource(changeFonButtonPage5.execute())
+//                    page8ButtonOnlyTea.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                } else {
+                    viewModel.changepage8ButtonMoreCofee(false)
+                    page8ButtonWaterWithoutGas.isChecked = false
+                    page8ButtonWaterShugar.isChecked = false
+                    page8ButtonOnlyTea.isChecked = false
+                }
+            }
+            page8ButtonOnlyTea.setOnCheckedChangeListener { _, isChecked ->
+                if (isChecked) {
+                    viewModel.changepage8ButtonOnlyTea(true)
+//                    page8ButtonWaterWithoutGas.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+//                    page8ButtonWaterShugar.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+//                    page8ButtonMoreCofee.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+//                    page8ButtonOnlyTea.setBackgroundResource(changeFonButtonPage5.execute())
+                } else {
+                    viewModel.changepage8ButtonOnlyTea(false)
+                    page8ButtonWaterWithoutGas.isChecked = false
+                    page8ButtonWaterShugar.isChecked = false
+                    page8ButtonMoreCofee.isChecked = false
+                }
+            }
+        }
+
+        viewModel.live_page8_button_water_without_gas.observe(viewLifecycleOwner){
+            if (it){
+                binding.page8ButtonWaterWithoutGas.setBackgroundResource(changeFonButtonPage5.execute())
+                binding.page8ButtonWaterShugar.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page8ButtonMoreCofee.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page8ButtonOnlyTea.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+            }else{
+
+            }
+        }
+        viewModel.live_page8_button_water_shugar.observe(viewLifecycleOwner){
+            if (it){
+                binding.page8ButtonWaterWithoutGas.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page8ButtonWaterShugar.setBackgroundResource(changeFonButtonPage5.execute())
+                binding.page8ButtonMoreCofee.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page8ButtonOnlyTea.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+            }else{
+
+            }
+        }
+        viewModel.live_page8_button_more_cofee.observe(viewLifecycleOwner){
+            if (it){
+                binding.page8ButtonWaterWithoutGas.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page8ButtonWaterShugar.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page8ButtonMoreCofee.setBackgroundResource(changeFonButtonPage5.execute())
+                binding.page8ButtonOnlyTea.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+            }else{
+
+            }
+        }
+        viewModel.live_page8_button_only_tea.observe(viewLifecycleOwner){
+            if (it){
+                binding.page8ButtonWaterWithoutGas.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page8ButtonWaterShugar.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page8ButtonMoreCofee.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page8ButtonOnlyTea.setBackgroundResource(changeFonButtonPage5.execute())
+            }else{
+
+            }
+        }
+        viewModel.live_page4_button_every_day_fitness.observe(viewLifecycleOwner){
+            if (it){
+                binding.page8ButtonWaterWithoutGas.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page8ButtonWaterShugar.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page8ButtonMoreCofee.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page8ButtonOnlyTea.setBackgroundResource(changeFonButtonPage5.execute())
+            }else{
+
+            }
+        }
+
+        binding.textBack.setOnClickListener {
+            findNavController().popBackStack()
+        }
+        binding.textNext.setOnClickListener {
+            Log.e(taG, "viewModel.dataUser   ${viewModel.dataUser}")
+            Log.e(taG, "${args.currentUser}")
+            val action: NavDirections =
+                Pg8WaterDrinkFragmentDirections.actionPg8WaterDrinkFragmentToPg9TypicalDayFragment(
+                    args.currentUser, viewModel.dataUser)
+            findNavController().navigate(action)
+        }
     }
 }

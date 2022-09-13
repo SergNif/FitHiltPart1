@@ -9,9 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.sergnfitness.android.fit.R
 import com.sergnfitness.android.fit.databinding.FragmentRegisterBinding
+import com.sergnfitness.domain.models.user.DataUser
 import com.sergnfitness.domain.models.user.User
 import com.sergnfitness.domain.util.Resource
 import dagger.hilt.android.AndroidEntryPoint
@@ -24,7 +27,7 @@ class RegisterFragment : Fragment() {
     val TAG = "Fragment Registr"
 
     private lateinit var binding: FragmentRegisterBinding
-
+    private val args: RegisterFragmentArgs by navArgs<RegisterFragmentArgs>()
     //    private lateinit var database: DatabaseReference
     private val viewModel: RegisterFragmentViewModel by viewModels<RegisterFragmentViewModel>()
 
@@ -101,21 +104,53 @@ class RegisterFragment : Fragment() {
         viewModel.userResourceLiveData.observe(viewLifecycleOwner) { responce ->
             when (responce) {
 
-
                 is Resource.Success -> { // пришел хороший ответ
                     Log.e(TAG, " Resource.Success  ${responce.data.toString()}")
 
                     responce.data?.let {
                         if (it is User) { // сравниваются оля email и password в активити с базой на сервере
+                            viewModel.userClass = it
+                            viewModel.createDataUserOnServer(it.email.toString())
                             viewModel.saveUserToSharedPref(it)
-                            findNavController().navigate(R.id.action_registerFragment2_to_pg1MaleFemale1)
+//                            findNavController().navigate(R.id.action_registerFragment2_to_pg1MaleFemale1)
                             // при совпадении почты и пароля -> переход на следующий фрагмент
                         }
                         Log.e(TAG, "response is User")
                     }
                     binding.loading.visibility = View.INVISIBLE
                 }
+                is Resource.Error -> {  // при запросе на сервер пришла ошибка
+                    Log.e(TAG, " Resource.Error  ${responce.message.toString()}")
 
+                    Toast.makeText(requireContext(), responce.message, Toast.LENGTH_LONG).show()
+                    binding.loading.visibility = View.INVISIBLE
+                }
+                is Resource.Loading -> {
+                    Log.e(TAG, " Resource.Loading  $responce")
+                    binding.loading.visibility = View.VISIBLE
+                }
+            }
+        }
+        viewModel.dataUserResourceLiveData.observe(viewLifecycleOwner) { responce ->
+            when (responce) {
+
+                is Resource.Success -> { // пришел хороший ответ
+                    Log.e(TAG, " Resource.Success  ${responce.data.toString()}")
+
+                    responce.data?.let {
+                        if (it is DataUser) { // сравниваются оля email и password в активити с базой на сервере
+                            viewModel.dataUser = it
+                            val action: NavDirections =
+                                RegisterFragmentDirections.actionRegisterFragment2ToPg1MaleFemale1(
+                                    viewModel.userClass,
+                                    viewModel.dataUser)
+                            findNavController().navigate(action)
+                            // при совпадении почты и пароля -> переход на следующий фрагмент
+                        }
+                        Log.e(TAG, "response is User")
+                    }
+                    binding.loading.visibility = View.INVISIBLE
+                }
                 is Resource.Error -> {  // при запросе на сервер пришла ошибка
                     Log.e(TAG, " Resource.Error  ${responce.message.toString()}")
 

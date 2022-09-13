@@ -1,74 +1,179 @@
 package com.sergnfitness.android.fit.presentation.part1
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.sergnfitness.android.fit.R
-import com.sergnfitness.android.fit.databinding.FragmentPage4PhysicalActiveBinding
-import com.sergnfitness.android.fit.presentation.viewModelPart1.Pg4PhysicalActiveFragmentViewModel
+import com.sergnfitness.android.fit.databinding.FragmentPg4PhysicalActiveBinding
+import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5
+import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5NoPress
+import com.sergnfitness.android.fit.presentation.part1.part1viewModel.Pg4PhysicalActiveViewModel
 import dagger.hilt.android.AndroidEntryPoint
-
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [Pg4PhysicalActiveFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 @AndroidEntryPoint
 class Pg4PhysicalActiveFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
-    //    lateinit var viewModel: MainViewModel
-    private val viewModel: Pg4PhysicalActiveFragmentViewModel by viewModels<Pg4PhysicalActiveFragmentViewModel>()
-
-
-    val TAG = "Fragment Page4"
-
-    //    private lateinit var bindi  //FragmentPage4Data2Binding
-    private lateinit var binding: FragmentPage4PhysicalActiveBinding
-//private lateinit var binding: com.sergnfitness.android.fit.databinding.FragmentPg4PhysicalActiveBinding
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        arguments?.let {
-//            param1 = it.getString(ARG_PARAM1)
-//            param2 = it.getString(ARG_PARAM2)
-//        }
+//
+//    companion object {
+//        fun newInstance() = Pg4PhysicalActiveFragment()
 //    }
 
-//    override fun onCreateView(
-//        inflater: LayoutInflater, container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//        // Inflate the layout for this fragment
-//        return inflater.inflate(R.layout.fragment_page4_data2, container, false)
-//    }
+    lateinit var binding: FragmentPg4PhysicalActiveBinding
+    private val args: Pg4PhysicalActiveFragmentArgs by navArgs<Pg4PhysicalActiveFragmentArgs>()
+    private val viewModel: Pg4PhysicalActiveViewModel by viewModels<Pg4PhysicalActiveViewModel>()
+    private val changeFonButtonPage5NoPress = ChangeFonButtonPage5()
+    private val changeFonButtonPage5 = ChangeFonButtonPage5NoPress()
 
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View? {
+        return inflater.inflate(R.layout.fragment_pg4_physical_active, container, false)
+    }
+
+    private val taG = "Fragment Pg4PhysicalActiveFragment"
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = FragmentPg4PhysicalActiveBinding.bind(view)
 
-//        viewModel = (activity as MainActivity).viewModel
-//        binding = FragmentPage4Data2Binding.bind(view)
-        var modifiedButton: Boolean = false
-//
-//        binding.vmod = viewModel
-//        binding.imgLoad = ImageLoader()
-//        binding.lifecycleOwner = this
+        viewModel.userClass = args.currentUser
+        viewModel.dataUser = args.currentDataUser
+        viewModel.initLive()
+        showParamOnDisplay()
+
+        binding.page4ButtonMinActiv.isClickable = true
+        binding.page4ButtonFastWalk.isClickable = true
+        binding.page4Button12PerWeek.isClickable = true
+        binding.page4Button35PerWeek.isClickable = true
+        binding.page4ButtonEveryDayFitness.isClickable = true
 
 
-//        binding.page4ButtonMinActiv.setClickable(true)
-//        binding.page4ButtonFastWalk.setClickable(true)
-//        binding.page4Button12PerWeek.setClickable(true)
-//        binding.page4Button35PerWeek.setClickable(true)
-//        binding.page4ButtonEveryDayFitness.setClickable(true)
+        with(binding) {
+            page4ButtonMinActiv.setOnClickListener {
+//                Log.e(TAG, "1 clickkkkkkk")
+                viewModel.changeMinActive()
+            }
+            page4ButtonFastWalk.setOnClickListener {
+//                Log.e(TAG, "2 clickkkkkkk")
+                viewModel.changeFastWalk()
+            }
+            page4Button12PerWeek.setOnClickListener {
+//                Log.e(TAG, "3 clickkkkkkk")
+                viewModel.changen12PerWeek()
+            }
+            page4Button35PerWeek.setOnClickListener {
+//                Log.e(TAG, "4 clickkkkkkk")
+                viewModel.changen35PerWeek()
+            }
+            page4ButtonEveryDayFitness.setOnClickListener {
+//                Log.e(TAG, "5 clickkkkkkk")
+                viewModel.changeEveryDayFitness()
+            }
+        }
+
+        viewModel.live_page4_button_min_activ.observe(viewLifecycleOwner, Observer {
+            if (it) {
+//                Log.e(TAG, "obsrve 1 clickkkkkkk")
+                binding.page4ButtonMinActiv.setBackgroundResource(changeFonButtonPage5.execute())
+                binding.page4ButtonFastWalk.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page4Button12PerWeek.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page4Button35PerWeek.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page4ButtonEveryDayFitness.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+            }
+        })
+        viewModel.live_page4_button_fast_walk.observe(viewLifecycleOwner, Observer {
+            if (it) {
+//                Log.e(TAG, "obsrve 2 clickkkkkkk")
+                binding.page4ButtonMinActiv.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page4ButtonFastWalk.setBackgroundResource(changeFonButtonPage5.execute())
+                binding.page4Button12PerWeek.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page4Button35PerWeek.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page4ButtonEveryDayFitness.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+            }
+        })
+        viewModel.live_page4_button_1_2_per_week.observe(viewLifecycleOwner, Observer {
+            if (it) {
+//                Log.e(TAG, "obsrve 3 clickkkkkkk")
+                binding.page4ButtonMinActiv.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page4ButtonFastWalk.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page4Button12PerWeek.setBackgroundResource(changeFonButtonPage5.execute())
+                binding.page4Button35PerWeek.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page4ButtonEveryDayFitness.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+            }
+        })
+        viewModel.live_page4_button_3_5_per_week.observe(viewLifecycleOwner, Observer {
+            if (it) {
+//                Log.e(TAG, "obsrve 4 clickkkkkkk")
+                binding.page4ButtonMinActiv.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page4ButtonFastWalk.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page4Button12PerWeek.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                binding.page4Button35PerWeek.setBackgroundResource(changeFonButtonPage5.execute())
+                binding.page4ButtonEveryDayFitness.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+            }
+        })
+        viewModel.live_page4_button_every_day_fitness.observe(viewLifecycleOwner,
+            Observer {
+                if (it) {
+//                    Log.e(TAG, "obsrve 5 clickkkkkkk")
+                    binding.page4ButtonMinActiv.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                    binding.page4ButtonFastWalk.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                    binding.page4Button12PerWeek.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                    binding.page4Button35PerWeek.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+                    binding.page4ButtonEveryDayFitness.setBackgroundResource(changeFonButtonPage5.execute())
+                }
+            })
+
+        binding.textBack.setOnClickListener {
+//            if (modifiedButton){viewModel.createLocalDataPage4()}
+            findNavController().popBackStack()
+        }
+        binding.textNext.setOnClickListener {
+            Log.e(taG, "viewModel.dataUser   ${viewModel.dataUser}")
+            val action: NavDirections =
+                Pg4PhysicalActiveFragmentDirections.actionPg4PhysicalActiveFragmentToPg5SourceProteinFragment(
+                    args.currentUser, viewModel.dataUser)
+            findNavController().navigate(action)
+        }
+    }
+
+    private fun showParamOnDisplay() {
+        binding.page4ButtonMinActiv.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+        binding.page4ButtonFastWalk.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+        binding.page4Button12PerWeek.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+        binding.page4Button35PerWeek.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+        binding.page4ButtonEveryDayFitness.setBackgroundResource(changeFonButtonPage5NoPress.execute())
+
+        if (args.currentDataUser.minimalPhysicalActive) {
+            Log.e(taG, "showwwww   clickkkkkkk")
+            binding.page4ButtonMinActiv.setBackgroundResource(changeFonButtonPage5.execute())
+        }
+        if (args.currentDataUser.fastWalkOnFoot) {
+            binding.page4ButtonFastWalk.setBackgroundResource(changeFonButtonPage5.execute())
+        }
+        if (args.currentDataUser.examine1_2TimesWeek) {
+            binding.page4Button12PerWeek.setBackgroundResource(changeFonButtonPage5.execute())
+        }
+        if (args.currentDataUser.examine3_5TimesWeek) {
+            binding.page4Button35PerWeek.setBackgroundResource(changeFonButtonPage5.execute())
+        }
+        if (args.currentDataUser.everyDayFitness) {
+            binding.page4ButtonEveryDayFitness.setBackgroundResource(
+                changeFonButtonPage5.execute())
+        }
+    }
+
 
 //        binding.page4ButtonMinActiv.setOnClickListener {
 //            binding.page4ButtonMinActiv.setBackgroundResource(R.drawable.ic_fon_text_page_4)
@@ -148,7 +253,7 @@ class Pg4PhysicalActiveFragment : Fragment() {
 //        }
 
 //        viewModel.dataPage5
-        //*********************************************************************************
+    //*********************************************************************************
 //        var dw = getResources().getDrawable(R.drawable.ic_fon_text_page_4)
 //        var dwNo = getResources().getDrawable(R.drawable.ic_fon_text_page_4_no_press)
 //
@@ -190,7 +295,7 @@ class Pg4PhysicalActiveFragment : Fragment() {
 //
 //            findNavController().navigate(R.id.action_page4Data2Fragment_to_page5Data2Fragment)
 //        }
-    }
+//}
 
     companion object {
         /**
@@ -211,4 +316,6 @@ class Pg4PhysicalActiveFragment : Fragment() {
                 }
             }
     }
+
+
 }

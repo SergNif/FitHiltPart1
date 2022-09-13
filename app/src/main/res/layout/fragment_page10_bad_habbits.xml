@@ -1,22 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:app="http://schemas.android.com/apk/res-auto"
-xmlns:tools="http://schemas.android.com/tools">
-    <data>
-        <import type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.MainViewModel"/>
-        <variable
-            name="vmPage10"
-            type="MainViewModel" />
-        <variable
-            name="imgLoadPage10"
-            type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.ui.adapter.ImageLoader" />
-    </data>
+<!--<layout xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--xmlns:tools="http://schemas.android.com/tools">-->
+<!--    <data>-->
+<!--        <import type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.MainViewModel"/>-->
+<!--        <variable-->
+<!--            name="vmPage10"-->
+<!--            type="MainViewModel" />-->
+<!--        <variable-->
+<!--            name="imgLoadPage10"-->
+<!--            type="com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.ui.adapter.ImageLoader" />-->
+<!--    </data>-->
 <androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/color_page_data_fon_white"
     android:textColor="#190F22"
-    tools:context=".fragments.Page10Data2Fragment">
+    tools:context=".presentation.part1.Pg10BadHabbitsFragment">
 
 
     <!-- TODO: Update blank fragment layout -->
@@ -78,7 +81,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <TextView
         android:id="@+id/page10_fast_food"
         android:text="Люблю еду быстрого приготовления"
-        android:src="@{vmPage10.dataPage10.fastFood ? imgLoadPage10.imageResPage5: imgLoadPage10.imageResPage5NoPress}"
+
         app:layout_constraintTop_toBottomOf="@+id/text_up_page3"
         style="@style/text_data_page4"
         tools:ignore="MissingConstraints" />
@@ -86,7 +89,7 @@ xmlns:tools="http://schemas.android.com/tools">
     <TextView
         android:id="@+id/page10_eat_nigth"
         android:text="Я ем поздно ночью"
-        android:src="@{vmPage10.dataPage10.laterNight ? imgLoadPage10.imageResPage5: imgLoadPage10.imageResPage5NoPress}"
+
         app:layout_constraintTop_toBottomOf="@+id/page10_fast_food"
         style="@style/text_data_page4"
         tools:ignore="MissingConstraints" />
@@ -94,15 +97,15 @@ xmlns:tools="http://schemas.android.com/tools">
     <TextView
         android:id="@+id/page10_fast_shugar"
         android:text="Я часто ем сладкое"
-        android:src="@{vmPage10.dataPage10.fastSugar ? imgLoadPage10.imageResPage5: imgLoadPage10.imageResPage5NoPress}"
+
         app:layout_constraintTop_toBottomOf="@+id/page10_eat_nigth"
         style="@style/text_data_page4"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/nothing_of_list"
+        android:id="@+id/page10_nothing_of_list"
         android:text="Ничего из перечисленного"
-        android:src="@{vmPage10.dataPage10.Nothing ? imgLoadPage10.imageResPage5: imgLoadPage10.imageResPage5NoPress}"
+
         app:layout_constraintTop_toBottomOf="@+id/page10_fast_shugar"
         style="@style/text_data_page4"
         tools:ignore="MissingConstraints" />
@@ -178,7 +181,7 @@ xmlns:tools="http://schemas.android.com/tools">
             android:background="@drawable/footer_image" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+<!--</layout>-->
 
 
 
