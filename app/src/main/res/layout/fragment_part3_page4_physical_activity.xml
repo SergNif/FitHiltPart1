@@ -1,28 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<layout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:tools="http://schemas.android.com/tools"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto">-->
-<!--    <data>-->
-
-<!--        <variable-->
-<!--            name="vmod"-->
-<!--            type="com.sergnfitness.android.fit.presentation.part2.SharedViewModels" />-->
-<!--        <variable-->
-<!--            name="frag"-->
-<!--            type="com.sergnfitness.android.fit.presentation.part2.Part2Page5Fragment" />-->
-<!--    </data>-->
-    <ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
         >
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:context=".presentation.fragments.ui.part2.Part2Page5Fragment">
+            tools:context=".presentation.part3.Part3Page4PhysicalActivityFragment"
+            >
 
             <LinearLayout
                 android:id="@+id/lyn_head"
@@ -58,7 +50,7 @@
                     android:layout_marginTop="25dp"
                     android:layout_marginLeft="70dp"
                     android:clickable="true"
-                    android:onClick="@{frag::onClickHouse}"
+
 
                     />
             </LinearLayout>
@@ -97,4 +89,5 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-<!--</layout>-->
+
+</FrameLayout>

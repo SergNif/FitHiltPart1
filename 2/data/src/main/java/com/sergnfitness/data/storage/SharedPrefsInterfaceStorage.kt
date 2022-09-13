@@ -1,5 +1,6 @@
-package com.sergnfitness.cleanarchitect.data.storage
+package com.sergnfitness.data.storage
 
+import android.content.Context
 import com.sergnfitness.data.storage.storageModel.DataUserStorage
 import com.sergnfitness.data.storage.storageModel.UserStorage
 

@@ -96,6 +96,7 @@ class Pg1MaleFemale : Fragment() {
                         Log.e(taG, "$it")
                         //newsAdapter.differ.submitList(it.articles)
                         paramUser = it as User
+
                         binding.textPage1.text = it.toString()
                     }
                     binding.loading.visibility = View.INVISIBLE

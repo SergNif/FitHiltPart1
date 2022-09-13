@@ -77,10 +77,20 @@ interface ApiServer {
     ): Call<DataUser>
     // *******   CHART  ***********
 
+    @DELETE("fit_delete_one_day_menu/{user_id}/{position}/")
+    fun deleteOneMenuDay(
+        @Path("user_id") user_id:Int,
+        @Path("position") position:Int,
+    ): Call<MenuDayList>
 
-//    @GET("/fit_get_menu_string/")
 
-//    ): Response<User>
+    @PATCH("fit_update_to_user/{user_id}/")
+    fun updateNamePassword(
+        @Path("user_id") user_id: Int,
+        @Body userName: User,
+//        @Query("data") date: Date,
+    ): Call<User>
+
 
     //    @GET("/get_one1_user/{user_id}")
 //    suspend fun getUserOfId(

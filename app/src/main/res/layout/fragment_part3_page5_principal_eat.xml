@@ -1,20 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<layout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:tools="http://schemas.android.com/tools"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto">-->
-<!--    <data>-->
-
-<!--        <variable-->
-<!--            name="vmod"-->
-<!--            type="com.sergnfitness.android.fit.presentation.part2.SharedViewModels" />-->
-<!--        <variable-->
-<!--            name="frag"-->
-<!--            type="com.sergnfitness.android.fit.presentation.part2.Part2Page7Fragment" />-->
-<!--    </data>-->
-    <ScrollView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.part3.Part3Page5PrincipalEatFragment">
+
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
@@ -22,7 +14,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:context=".presentation.fragments.ui.part2.Part2Page7Fragment">
+            >
 
             <LinearLayout
                 android:id="@+id/lyn_head"
@@ -69,7 +61,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/roboto_condensed_regular"
                 android:textAlignment="center"
-                android:text="ПРИМЕРНОЕ МЕНЮ НА\nНЕДЕЛЮ"
+                android:text="ПРИНЦИПЫ ПП"
                 android:textColor="@color/red_text"
                 android:textSize="24sp"
                 android:textStyle="bold"
@@ -97,4 +89,5 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
-<!--</layout>-->
+
+</FrameLayout>

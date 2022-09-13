@@ -48,8 +48,8 @@ class Pg2NextFragment : Fragment(R.layout.pg2_next) {
         binding.textNext.setOnClickListener {
             Log.e(taG, "viewModel.dataUser   ${viewModel.dataUser}")
             val action: NavDirections =
-                Pg2NextFragmentDirections.actionNext2ToDataAgeHightWeight2(currentUser = args.currentUser,
-                    currentDataUser = args.currentDataUser)        //.actionNext2ToDataAgeHightWeight2(args.currentUser as User)       //actionNext2ToDataAgeHightWeight2
+                Pg2NextFragmentDirections.actionNext2ToDataAgeHightWeight2(currentUser = viewModel.userClass,
+                    currentDataUser = viewModel.dataUser)        //.actionNext2ToDataAgeHightWeight2(args.currentUser as User)       //actionNext2ToDataAgeHightWeight2
 //        if (modifiedButton){viewModel.createLocalDataPage5()}
             findNavController().navigate(action)
         }

@@ -15,6 +15,7 @@ import com.sergnfitness.domain.models.MenuDay
 import com.sergnfitness.domain.models.MenuDayList
 import com.sergnfitness.domain.models.user.User
 import com.sergnfitness.domain.repository.ApiRepository
+import com.sergnfitness.domain.repository.UserRepository
 import com.sergnfitness.domain.usecase.GetUserOfIdApiUseCase
 import com.sergnfitness.domain.usecase.GetUserSharedPreferenceUseCase
 import com.sergnfitness.domain.usecase.SaveUserSharedPreferenceUseCase
@@ -35,7 +36,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MenuDayPart2ViewModel @Inject constructor(
-
+private  val userRepository: UserRepository,
     private val getUserOfIdApiUseCase: GetUserOfIdApiUseCase,
     private val apiRepository: ApiRepository,
 //    private val NOTuSEsGetUserOfIdApiUseCase: NOTuSEsGetUserOfIdApiUseCase,
@@ -66,6 +67,7 @@ class MenuDayPart2ViewModel @Inject constructor(
     val listWeightForChart: MutableList<Entry>
         get() = _listWeightForChart
 
+    val us = userRepository
     private val CHART_LABEL = "DAY_CHART"
     private val dayData = mutableListOf<Entry>()
     private val _lineDataSet = MutableLiveData(LineDataSet(listWeightForChart, CHART_LABEL))
@@ -76,12 +78,12 @@ class MenuDayPart2ViewModel @Inject constructor(
         get() = _pickerCalendarData
 
     private var _startData: MutableLiveData<String> =
-        MutableLiveData(LocalDateTime.now().plusDays(0).toString().split("T")[0])
+        MutableLiveData(userRepository.converStringToData(LocalDateTime.now().plusDays(0).toString().split("T")[0],1))
     val startData: LiveData<String>
         get() = _startData
 
     private var _endData: MutableLiveData<String> =
-        MutableLiveData(LocalDateTime.now().plusDays(1).toString().split("T")[0])
+        MutableLiveData(userRepository.converStringToData(LocalDateTime.now().plusDays(1).toString().split("T")[0],1))
     val endData: LiveData<String>
         get() = _endData
 
@@ -139,10 +141,10 @@ class MenuDayPart2ViewModel @Inject constructor(
     fun oneChangeStartEndData(i: Int) {
 
 //        Log.e(TAG, "3 ${_startData.value}")
-        _startData.value = converStringToData(_startData.value.toString(), i.toLong()).toString()
+        _startData.value = userRepository.converStringToData(_startData.value.toString(), i.toLong()).toString()
 //        Log.e(TAG, "33 ${_startData.value}")
 //        Log.e(TAG, "1 ${_endData.value}")
-        _endData.value = converStringToData(_endData.value.toString(), i.toLong()).toString()
+        _endData.value = userRepository.converStringToData(_endData.value.toString(), i.toLong()).toString()
 //        Log.e(TAG, "11 ${_endData.value}")
 //
 //        Log.e(TAG, "2 ${_endDataAPI.value}")
@@ -163,42 +165,42 @@ class MenuDayPart2ViewModel @Inject constructor(
     }
 
 
-    fun converStringToData(dt: String, i: Long): String? {
-        var date85: Date?
-        val formatter25 = SimpleDateFormat("dd MMMM yyyy")
-        try {
-            val formatter2 = DateTimeFormatter.ofPattern("d MMMM yyyy")
-            Log.e(taG, "conv 1 ${dt}")
-            val date2 = LocalDate.parse(dt, formatter2).plusDays(i)
-            Log.e(taG, "conv 2 ${date2}")
+//    fun converStringToData(dt: String, i: Long): String? {
+//        var date85: Date?
+//        val formatter25 = SimpleDateFormat("dd MMMM yyyy")
+//        try {
+//            val formatter2 = DateTimeFormatter.ofPattern("d MMMM yyyy")
+//            Log.e(taG, "conv 1 ${dt}")
+//            val date2 = LocalDate.parse(dt, formatter2).plusDays(i)
+//            Log.e(taG, "conv 2 ${date2}")
+//
+//            val formatter15 = SimpleDateFormat("yyyy-MM-dd")
+//            //  "EEE, MMM d, ''yy"
+//            date85 = formatter15.parse(date2.toString())
+//            val formatter25 = SimpleDateFormat("dd MMMM yyyy")
+//
+//        } catch (e: DateTimeParseException) {
+//            val formatter15 = SimpleDateFormat("yyyy-MM-dd")
+//            //  "EEE, MMM d, ''yy"
+//            date85 = formatter15.parse(dt.toString())
+//        }
+//        return date85?.let { formatter25.format(it) }
+//    }
 
-            val formatter15 = SimpleDateFormat("yyyy-MM-dd")
-            //  "EEE, MMM d, ''yy"
-            date85 = formatter15.parse(date2.toString())
-            val formatter25 = SimpleDateFormat("dd MMMM yyyy")
-
-        } catch (e: DateTimeParseException) {
-            val formatter15 = SimpleDateFormat("yyyy-MM-dd")
-            //  "EEE, MMM d, ''yy"
-            date85 = formatter15.parse(dt.toString())
-        }
-        return date85?.let { formatter25.format(it) }
-    }
-
-    fun converStringToDataLive(dt: String, i: Long): String? {
-
-//        val formatter2 = DateTimeFormatter.ofPattern("d MMM yyyy")
-        Log.e(taG, "conv 1 ${dt}")
-//        val date2 = LocalDate.parse(dt, formatter2).plusDays(i)
-//        Log.e(taG, "conv 2 ${date2}")
-
-        val formatter15 = SimpleDateFormat("yyyy-MM-dd")
-        //  "EEE, MMM d, ''yy"
-        val date85 = formatter15.parse(dt.toString())
-        val formatter25 = SimpleDateFormat("dd MMMM yyyy")
-
-        return date85?.let { formatter25.format(it) }
-    }
+//    fun converStringToDataLive(dt: String, i: Long): String? {
+//
+////        val formatter2 = DateTimeFormatter.ofPattern("d MMM yyyy")
+//        Log.e(taG, "conv 1 ${dt}")
+////        val date2 = LocalDate.parse(dt, formatter2).plusDays(i)
+////        Log.e(taG, "conv 2 ${date2}")
+//
+//        val formatter15 = SimpleDateFormat("yyyy-MM-dd")
+//        //  "EEE, MMM d, ''yy"
+//        val date85 = formatter15.parse(dt.toString())
+//        val formatter25 = SimpleDateFormat("dd MMMM yyyy")
+//
+//        return date85?.let { formatter25.format(it) }
+//    }
 
     fun changeStartEndDataAPI() {
         Log.e(taG, "startData ${startData.value} endData ${endData.value}")

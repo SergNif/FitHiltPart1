@@ -88,8 +88,8 @@ class Pg7FoodsFragment : Fragment() {
                     viewModel.changetextPage6CottageCheese(true)
 //                    textPage6CottageCheese.setBackgroundResource(changeFonButtonPage5.execute())
                 } else {
-                    textPage6CottageCheese.setBackgroundResource(changeFonButtonPage5NoPress.execute())
-//                    viewModel.changetextPage6CottageCheese(false)
+                    viewModel.changetextPage6CottageCheese(false)
+//                    textPage6CottageCheese.setBackgroundResource(changeFonButtonPage5NoPress.execute())
                 }
             }
             textPage6Kefir.setOnCheckedChangeListener { _, isChecked ->
@@ -161,7 +161,7 @@ class Pg7FoodsFragment : Fragment() {
             Log.e(taG, "${args.currentUser}")
             val action: NavDirections =
                 Pg7FoodsFragmentDirections.actionPg7FoodsFragmentToPg8WaterDrinkFragment(
-                    args.currentUser, viewModel.dataUser)
+                    viewModel.userClass, viewModel.dataUser)
             findNavController().navigate(action)
         }
     }

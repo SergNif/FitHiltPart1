@@ -1,8 +1,7 @@
 package com.sergnfitness.android.fit.di
 
-import android.app.Application
 import android.content.Context
-import com.sergnfitness.cleanarchitect.data.repository.UserRepositoryImpl
+import com.sergnfitness.data.repository.UserRepositoryImpl
 import com.sergnfitness.cleanarchitect.data.storage.SharedPrefsImplStorage
 import com.sergnfitness.domain.repository.UserRepository
 import dagger.Module

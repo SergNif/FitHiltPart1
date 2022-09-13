@@ -115,7 +115,7 @@ class Pg9TypicalDayFragment : Fragment() {
             Log.e(taG, "${args.currentUser}")
             val action: NavDirections =
                 Pg9TypicalDayFragmentDirections.actionPg9TypicalDayFragmentToPg10BadHabbitsFragment(
-                    args.currentUser, viewModel.dataUser)
+                    viewModel.userClass, viewModel.dataUser)
             findNavController().navigate(action)
         }
     }

@@ -87,6 +87,24 @@ class ApiRepositoryImpl @Inject constructor(
             position = position
         )
     }
+   override suspend fun deleteOneMenuDay(
+       user_id:Int,
+       position:Int): Call<MenuDayList>{
+       return api.deleteOneMenuDay(
+           user_id = user_id,
+           position = position
+       )
+   }
+
+    override suspend fun updateNamePassword(
+        user_id: Int,
+        userName: User,
+    ): Call<User>{
+        return api.updateNamePassword(
+            user_id = user_id,
+            userName = userName
+        )
+    }
 
 //    suspend fun getMenu() = api.getHeadLines(5, "28-05-2022" )
 }

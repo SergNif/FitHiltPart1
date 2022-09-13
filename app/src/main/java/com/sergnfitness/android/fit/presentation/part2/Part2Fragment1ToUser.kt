@@ -1,10 +1,11 @@
 package com.sergnfitness.android.fit.presentation.part2
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import android.text.Editable
+import android.text.TextWatcher
 import android.text.method.PasswordTransformationMethod
 import android.text.method.SingleLineTransformationMethod
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -21,6 +22,7 @@ import com.sergnfitness.android.fit.presentation.controlUI.ChangeFonButtonPage5N
 import com.sergnfitness.android.fit.presentation.part2.part2viewModel.Part2Fragment1ToUserViewModel
 import com.sergnfitness.domain.models.UserMenuDay
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class Part2Fragment1ToUser : Fragment() {
@@ -52,7 +54,8 @@ class Part2Fragment1ToUser : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentPart2Fragment1ToUserBinding.bind(view)
-
+viewModel.userClass = args.currentUser
+viewModel.dataUser = args.currentDataUser
         var newPassword: String = ""
 
         binding.eyeOldPassword.setBackgroundResource(R.drawable.shut_eye)
@@ -61,14 +64,39 @@ class Part2Fragment1ToUser : Fragment() {
         binding.part2page1TextNewPassword.transformationMethod = PasswordTransformationMethod.getInstance()
 
         fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
+
+        binding.textDataRightPart2Page1.text = "${viewModel.startData.value}"
+        binding.textNameUserPart2Page1.text = "${viewModel.userClass.fullName}"
+        Log.e(taG, "  ggggg  ${viewModel.userClass.fullName}")
+        binding.textIdPart2Page1.text = "ID ${viewModel.userClass.id}"
+        binding.part2page1ButtonHeight.text = "Рост ${viewModel.dataUser.height.toString()}"
+        binding.part2page1ButtonAge.text = "Возраст ${viewModel.dataUser.age.toString()}"
+        binding.part2page1ButtonWeight.text = "Вес ${viewModel.dataUser.weight.toString()}"
+        binding.part2page1ButtonExamplMenuWeek.text = viewModel.userClass.fullName!!.toEditable()
+        binding.part2page1TextOldPassword.text = viewModel.userClass.password!!.toEditable()
+        binding.part2page1TextNewPassword.text = viewModel.userClass.password!!.toEditable()
+
+
+        binding.part2page1ButtonExamplMenuWeek.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+            override fun afterTextChanged(p0: Editable?) {
+                viewModel.changeName(binding.part2page1ButtonExamplMenuWeek.text)
+            }
+        }
+        )
+
+
         viewModel.fullName.observe(viewLifecycleOwner, Observer { fullName ->
-            binding.textNameUserPart2Page1.text = fullName.toString()
+            binding.textNameUserPart2Page1.text = fullName
 
 //            com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.ARG_AGE = age.toString()
         })
 
         viewModel.password.observe(viewLifecycleOwner, Observer { password ->
-            binding.part2page1TextOldPassword.text = password.toEditable()
+            binding.part2page1TextOldPassword.text = viewModel.userClass.password!!.toEditable()
             //            com.bignerdranch.android.finnesretrofitmvvm.presentation.fragments.ARG_AGE = age.toString()
         })
         binding.houseButton.setOnClickListener {
@@ -83,6 +111,15 @@ class Part2Fragment1ToUser : Fragment() {
         binding.part2page1ToUserSaveParam.setOnClickListener{
             onClickSaveChange()
         }
+        binding.exitButton.setOnClickListener{
+            onClickExitButton()
+        }
+    }
+
+    private fun onClickExitButton() {
+//        exitProcess(0)
+        activity?.finish()
+        System.out.close()
     }
 
     private fun onClickHouse() {
@@ -118,7 +155,10 @@ class Part2Fragment1ToUser : Fragment() {
     }
 
     private fun onClickSaveChange() {
-        viewModel.saveChangeNamePassword(binding.part2page1TextNewPassword.toString())
+        viewModel.saveChangeNamePassword(
+            binding.part2page1TextNewPassword.text.toString(),
+        binding.textNameUserPart2Page1.text.toString()
+            )
     }
 
 
