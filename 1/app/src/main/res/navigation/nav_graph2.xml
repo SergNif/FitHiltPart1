@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph2"
+    app:startDestination="@id/loginFragment2">
+    <fragment
+        android:id="@+id/pg1MaleFemale1"
+        android:name="com.sergnfitness.android.fit.presentation.part1.Pg1MaleFemale"
+        android:label="Pg1MaleFemale1" >
+        <action
+            android:id="@+id/action_pg1MaleFemale1_to_next2"
+            app:destination="@id/next2" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment2"
+        android:name="com.sergnfitness.android.fit.presentation.login.RegisterFragment"
+        android:label="RegisterFragment" >
+        <action
+            android:id="@+id/action_registerFragment2_to_pg1MaleFemale1"
+            app:destination="@id/pg1MaleFemale1" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment2"
+        android:name="com.sergnfitness.android.fit.presentation.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment2_to_registerFragment2"
+            app:destination="@id/registerFragment2" />
+        <action
+            android:id="@+id/action_loginFragment2_to_pg1MaleFemale1"
+            app:destination="@id/pg1MaleFemale1" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
+    </fragment>
+    <fragment
+        android:id="@+id/next2"
+        android:name="com.sergnfitness.android.fit.presentation.part1.Pg2NextFragment"
+        android:label="pg2_next"
+        tools:layout="@layout/pg2_next" >
+        <action
+            android:id="@+id/action_next2_to_dataAgeHightWeight2"
+            app:destination="@id/dataAgeHightWeight2" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
+    </fragment>
+    <fragment
+        android:id="@+id/dataAgeHightWeight2"
+        android:name="com.sergnfitness.android.fit.presentation.part1.Pg3DataAgeHightWeightFrafment"
+        android:label="pg3_data_age_hight_weight"
+        tools:layout="@layout/pg3_data_age_hight_weight" >
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
+        <action
+            android:id="@+id/action_dataAgeHightWeight2_to_pg4PhysicalActiveFragment"
+            app:destination="@id/pg4PhysicalActiveFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pg4PhysicalActiveFragment"
+        android:name="com.sergnfitness.android.fit.presentation.part1.Pg4PhysicalActiveFragment"
+        android:label="fragment_pg4_physical_active"
+        tools:layout="@layout/fragment_pg4_physical_active" >
+        <action
+            android:id="@+id/action_pg4PhysicalActiveFragment_to_pg5SourceProteinFragment"
+            app:destination="@id/pg5SourceProteinFragment" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
+    </fragment>
+    <fragment
+        android:id="@+id/pg5SourceProteinFragment"
+        android:name="com.sergnfitness.android.fit.presentation.part1.Pg5SourceProteinFragment"
+        android:label="fragment_pg5_source_protein"
+        tools:layout="@layout/fragment_pg5_source_protein" >
+        <action
+            android:id="@+id/action_pg5SourceProteinFragment_to_pg6SourceFiberFragment"
+            app:destination="@id/pg6SourceFiberFragment" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
+    </fragment>
+    <fragment
+        android:id="@+id/pg6SourceFiberFragment"
+        android:name="com.sergnfitness.android.fit.presentation.part1.Pg6SourceFiberFragment"
+        android:label="fragment_pg6_source_fiber"
+        tools:layout="@layout/fragment_pg6_source_fiber" >
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
+        <action
+            android:id="@+id/action_pg6SourceFiberFragment_to_pg7FoodsFragment"
+            app:destination="@id/pg7FoodsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/pg7FoodsFragment"
+        android:name="com.sergnfitness.android.fit.presentation.part1.Pg7FoodsFragment"
+        android:label="fragment_pg7_foods"
+        tools:layout="@layout/fragment_pg7_foods" >
+        <action
+            android:id="@+id/action_pg7FoodsFragment_to_pg8WaterDrinkFragment"
+            app:destination="@id/pg8WaterDrinkFragment" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
+    </fragment>
+    <fragment
+        android:id="@+id/pg9TypicalDayFragment"
+        android:name="com.sergnfitness.android.fit.presentation.part1.Pg9TypicalDayFragment"
+        android:label="fragment_pg9_typical_day"
+        tools:layout="@layout/fragment_pg9_typical_day" >
+        <action
+            android:id="@+id/action_pg9TypicalDayFragment_to_pg10BadHabbitsFragment"
+            app:destination="@id/pg10BadHabbitsFragment" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
+    </fragment>
+    <fragment
+        android:id="@+id/pg10BadHabbitsFragment"
+        android:name="com.sergnfitness.android.fit.presentation.part1.Pg10BadHabbitsFragment"
+        android:label="fragment_page10_bad_habbits"
+        tools:layout="@layout/fragment_page10_bad_habbits" >
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
+        <action
+            android:id="@+id/action_pg10BadHabbitsFragment_to_loginFragment2"
+            app:destination="@id/loginFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/pg8WaterDrinkFragment"
+        android:name="com.sergnfitness.android.fit.presentation.part1.Pg8WaterDrinkFragment"
+        android:label="fragment_pg8_water_drink"
+        tools:layout="@layout/fragment_pg8_water_drink" >
+        <action
+            android:id="@+id/action_pg8WaterDrinkFragment_to_pg9TypicalDayFragment"
+            app:destination="@id/pg9TypicalDayFragment" />
+        <argument
+            android:name="currentUser"
+            app:argType="com.sergnfitness.domain.models.user.User" />
+        <argument
+            android:name="currentDataUser"
+            app:argType="com.sergnfitness.domain.models.user.DataUser" />
+    </fragment>
+</navigation>
